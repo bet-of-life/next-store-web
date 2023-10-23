@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/pages/api/hello.ts"  ],
   "exclude": [
     "node_modules"
   ]

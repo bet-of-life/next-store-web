@@ -1,7 +1,10 @@
 import { Box } from '@mui/material'
+import Layout from '../components/Layout'
 
 export default function Home() {
   return (
-    <Box></Box>
+    <Layout>
+      fdsf
+    </Layout>
   )
 }
