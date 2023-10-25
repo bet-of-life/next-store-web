@@ -8,7 +8,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const theme = useTheme()
   return (
-    <Box>
+    <Box width='100%' height='100vh'>
       <NavBar />
       <Box>
         {children}
