@@ -9,7 +9,7 @@ const NavBar = () => {
   const theme = useTheme()
   return (
     <Box>
-      <AppBar position="fixed" color="primary" sx={{ height: '170px' }}>
+      <AppBar position="fixed" color="primary" sx={{ height: '160px' }}>
         <Toolbar sx={{ marginLeft: theme.spacing(17), marginRight: theme.spacing(2) }}>
           <SearchBox />
           <Logo />

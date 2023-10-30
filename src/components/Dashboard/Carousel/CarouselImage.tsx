@@ -29,7 +29,13 @@ const CarouselImage = () => {
   ]
   return (
     <>
-      <Carousel height={theme.spacing(70)} navButtonsAlwaysVisible={true} navButtonsProps={{ style: { opacity: 0.4 } }} >
+      <Carousel
+        height={theme.spacing(72.7)}
+        navButtonsAlwaysVisible={true}
+        navButtonsProps={{ style: { opacity: 0.4 } }}
+        indicators={true}
+        indicatorContainerProps={{ style: { zIndex: 1, marginTop: '-50px', position: 'relative' } }}
+      >
         {src.map(item => <Image src={item.src} alt="wallpaper" fill key={item.id} />)}
       </Carousel>
     </>

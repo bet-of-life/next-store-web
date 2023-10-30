@@ -5,12 +5,12 @@ import BannerCamisas from "./Roupas/BannerCamidas";
 const Dashboard = () => {
   const theme = useTheme()
   return (
-    <Box width='100%' height='100vh' marginTop='170px'>
+    <Box width='100%' height='auto'>
       <Box height='auto' width='100%'>
         <CarouselImage />
       </Box>
       <Box
-        paddingTop={theme.spacing(1)}
+        paddingTop={theme.spacing(3)}
         paddingLeft={theme.spacing(12)}
         paddingRight={theme.spacing(12)}
       >

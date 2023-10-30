@@ -61,8 +61,8 @@ const BannerCamisas = () => {
                 image={item.src}
                 alt={item.src}
               />
-              <CardContent>
-                <Typography variant="body2">
+              <CardContent sx={{ maxWidth: '200px' }}>
+                <Typography variant="body2" sx={{ backgroundColor: 'red' }}>
                   his impressive paella is a perfe dasdasdasdada
                 </Typography>
                 <Typography variant="h5" fontWeight='bold' marginTop={3}>
