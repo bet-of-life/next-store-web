@@ -1,4 +1,4 @@
-import { Box, useTheme, Typography } from '@mui/material'
+import { Box, useTheme, Typography, styled } from '@mui/material'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 

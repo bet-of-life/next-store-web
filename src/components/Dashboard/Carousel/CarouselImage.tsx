@@ -1,9 +1,10 @@
 import Carousel from "react-material-ui-carousel";
-import { useTheme } from "@mui/material";
+import { styled, useTheme, Box, useMediaQuery, Theme } from "@mui/material";
 import Image from "next/image";
 
 const CarouselImage = () => {
   const theme = useTheme()
+  const smDown = useMediaQuery((theme: Theme) => (theme.breakpoints.down('sm')))
 
   const src = [
     {
@@ -27,18 +28,28 @@ const CarouselImage = () => {
       src: '/carousel/wallpaper5.jpg'
     },
   ]
+
+  const CustomBox = styled(Box)(({ theme }) => ({
+    width: '100%',
+
+  }))
+
   return (
-    <>
+    <CustomBox>
       <Carousel
-        height={theme.spacing(72.7)}
+        height={smDown ? theme.spacing(45) : theme.spacing(80.1)}
         navButtonsAlwaysVisible={true}
         navButtonsProps={{ style: { opacity: 0.4 } }}
         indicators={true}
         indicatorContainerProps={{ style: { zIndex: 1, marginTop: '-50px', position: 'relative' } }}
       >
-        {src.map(item => <Image src={item.src} alt="wallpaper" fill key={item.id} />)}
+        {src.map(item =>
+          <Box key={item.id}>
+            <Image src={item.src} alt="wallpaper" fill />
+          </Box>
+        )}
       </Carousel>
-    </>
+    </CustomBox>
   );
 }
 

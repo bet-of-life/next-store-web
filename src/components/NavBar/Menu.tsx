@@ -6,8 +6,6 @@ const Menu = () => {
   return (
     <Box
       display='flex'
-      height='50px'
-      width='100%'
       borderTop='1px solid #525252'
       justifyContent='center'
       alignItems='center'

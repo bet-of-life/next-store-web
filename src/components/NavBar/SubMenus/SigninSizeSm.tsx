@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button, Menu, MenuItem } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
-const Categorias = () => {
+const SigninSizeSm = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -11,7 +12,6 @@ const Categorias = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <div>
       <Button
@@ -22,12 +22,14 @@ const Categorias = () => {
         onClick={handleClick}
         color="secondary"
         variant="text"
-        endIcon={<ArrowDropDownIcon />}
+        sx={{ borderRadius: '100%' }}
+
       >
-        CATEGORIAS
+        <PermIdentityIcon sx={{ marginBottom: '2px' }} />
       </Button>
       <Menu
         id="basic-menu"
+        color="primary"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -35,12 +37,11 @@ const Categorias = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>Entrar</MenuItem>
+        <MenuItem onClick={handleClose}>Criar conta</MenuItem>
       </Menu>
     </div>
   );
 }
 
-export default Categorias;
+export default SigninSizeSm

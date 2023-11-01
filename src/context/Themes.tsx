@@ -11,15 +11,16 @@ export const roboto = Roboto({
   display: 'swap',
 });
 
+
 interface ThemeModeProps {
   children: React.ReactNode
 }
 
 export const ThemeModeProvider = ({ children }: ThemeModeProps) => {
-  const [mode, setMode] = useState<boolean>(true)
+  const [mode, setMode] = useState<'light' | 'dark'>('light')
   const colorMode = useMemo(() => ({
     toggleThemeMode: () => {
-      setMode(prev => !prev);
+      setMode((prev) => (prev === 'light' ? 'dark' : 'light'));
     },
   }), [],)
 
@@ -34,7 +35,7 @@ export const ThemeModeProvider = ({ children }: ThemeModeProps) => {
       error: {
         main: red.A400,
       },
-      mode: mode ? 'light' : 'dark'
+      mode: mode,
     },
     typography: {
       fontFamily: roboto.style.fontFamily,

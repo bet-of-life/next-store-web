@@ -20,7 +20,7 @@ const Acessorios = () => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         color="secondary"
-        variant="outlined"
+        variant="text"
         endIcon={<ArrowDropDownIcon />}
       >
         ACESSÓRIOS

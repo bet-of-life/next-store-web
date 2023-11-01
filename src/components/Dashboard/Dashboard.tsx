@@ -1,18 +1,23 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, useTheme, Theme, useMediaQuery } from "@mui/material";
 import CarouselImage from "./Carousel/CarouselImage";
 import BannerCamisas from "./Roupas/BannerCamidas";
 
 const Dashboard = () => {
   const theme = useTheme()
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
+
   return (
-    <Box width='100%' height='auto'>
-      <Box height='auto' width='100%'>
-        <CarouselImage />
-      </Box>
+    <Box width='100%' height='auto' bgcolor='#f0f0f0'>
+      <CarouselImage />
+
       <Box
+        display='flex'
+        flexDirection='column'
+        gap={smDown ? 1 : 5}
+        justifyContent='center'
+        alignItems='center'
         paddingTop={theme.spacing(3)}
-        paddingLeft={theme.spacing(12)}
-        paddingRight={theme.spacing(12)}
+        paddingBottom={theme.spacing(3)}
       >
         <BannerCamisas />
         <BannerCamisas />
