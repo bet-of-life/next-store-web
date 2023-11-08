@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button, Menu, MenuItem } from '@mui/material'
+import { Button, Menu, MenuItem, Typography } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-const Categorias = () => {
+const Roupas = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -13,21 +13,24 @@ const Categorias = () => {
   };
 
   return (
-    <div>
+    <>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        variant="contained"
         color="secondary"
-        variant="text"
         endIcon={<ArrowDropDownIcon />}
       >
-        CATEGORIAS
+        <Typography textTransform='capitalize'>
+          Roupas
+        </Typography>
       </Button>
       <Menu
         id="basic-menu"
+        disableScrollLock={true}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -39,8 +42,8 @@ const Categorias = () => {
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }
 
-export default Categorias;
+export default Roupas;

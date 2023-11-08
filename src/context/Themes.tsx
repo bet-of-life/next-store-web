@@ -1,54 +1,38 @@
-import { ThemeProvider, createTheme, } from "@mui/material";
-import { Roboto } from 'next/font/google';
-import { createContext, useMemo, useState } from "react";
-import { red } from '@mui/material/colors';
-
-const Themes = createContext({ toggleThemeMode: () => { } })
-
-export const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-
-interface ThemeModeProps {
+import { ThemeProvider } from "@mui/material";
+import { createContext, useState, useCallback, useMemo } from "react";
+import { LightTheme } from "../themes/Light";
+import { DarkTheme } from "../themes/Dark";
+interface ThemesContextProps {
+  mode: 'light' | 'dark',
+  toggleTheme: () => void
+}
+interface ThemeModeProviderProps {
   children: React.ReactNode
 }
 
-export const ThemeModeProvider = ({ children }: ThemeModeProps) => {
-  const [mode, setMode] = useState<'light' | 'dark'>('light')
-  const colorMode = useMemo(() => ({
-    toggleThemeMode: () => {
-      setMode((prev) => (prev === 'light' ? 'dark' : 'light'));
-    },
-  }), [],)
+const ThemesContext = createContext({} as ThemesContextProps)
 
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#000',
-      },
-      secondary: {
-        main: '#fff',
-      },
-      error: {
-        main: red.A400,
-      },
-      mode: mode,
-    },
-    typography: {
-      fontFamily: roboto.style.fontFamily,
-    },
-  });
+export const ThemeModeProvider = ({ children }: ThemeModeProviderProps) => {
+  const [mode, setMode] = useState<'light' | 'dark'>('light')
+
+  const toggleTheme = useCallback(() => {
+    setMode(prev => prev === 'light' ? 'dark' : 'light')
+  }, [])
+
+  const theme = useMemo(() => {
+    if (mode === 'light') return LightTheme;
+
+    return DarkTheme
+
+  }, [mode])
 
   return (
-    <Themes.Provider value={colorMode}>
+    <ThemesContext.Provider value={{ mode, toggleTheme }}>
       <ThemeProvider theme={theme}>
         {children}
       </ThemeProvider>
-    </Themes.Provider>
+    </ThemesContext.Provider>
   )
 }
 
-export default Themes;
+export default ThemesContext;

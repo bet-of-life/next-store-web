@@ -1,30 +1,31 @@
-import { Box, useTheme, Typography, styled } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import useThemeMode from '../../hooks/useThemeMode';
 
 const Footer = () => {
-  const theme = useTheme()
+  const { mode } = useThemeMode()
   const [background, setBackground] = useState('black')
 
   useEffect(() => {
-    theme.palette.mode === 'dark' ? setBackground('#2e2929') : setBackground('black')
-  }, [theme])
+    mode === 'dark' ? setBackground('#171717') : setBackground('#000336')
+  }, [mode])
 
   return (
     <Box
       width='100%'
       height='160px'
       display='flex'
-      sx={{ backgroundColor: background }}
+      bgcolor={background}
       pl='200px'
       pr='200px'
       pt='20px'
       pb='20px'
     >
-      <Box display='flex' flexDirection='column' width='20%' height='auto'>
-        <Typography color='secondary'>INSTITUCIONAL</Typography>
+      <Box display='flex' flexDirection='column' >
+        <Typography color='white'>INSTITUCIONAL</Typography>
         <Link href='/'>
-          <Typography color='secondary'>Home</Typography>
+          <Typography color='white'>Home</Typography>
         </Link>
       </Box>
     </Box>

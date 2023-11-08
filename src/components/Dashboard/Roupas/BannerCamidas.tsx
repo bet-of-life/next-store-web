@@ -1,11 +1,15 @@
-import { Box, Typography, Button, useMediaQuery, Theme } from "@mui/material"
-import { MouseEvent, useRef, useState } from "react";
+import { Box, Typography, Button } from "@mui/material"
+import { MouseEvent, useRef } from "react";
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import Image from "next/image";
+import useThemeMode from "../../../hooks/useThemeMode";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 
 const BannerCamisas = () => {
   const carousel = useRef(null)
-  const smDown = useMediaQuery((theme: Theme) => (theme.breakpoints.down('sm')))
+  const { mode } = useThemeMode()
+  const { sm, md } = useMediaQuery()
 
   const src = [
     {
@@ -64,22 +68,23 @@ const BannerCamisas = () => {
 
   return (
     <Box
-      width={smDown ? '100vw' : '90vw'}
-      height={smDown ? '300px' : '400px'}
+      width={sm ? '100vw' : '85vw'}
+      height={sm ? '250px' : '400px'}
       display='flex'
       alignItems='center'
     >
       <Button
         onClick={handleLeftClick}
-        sx={{ marginRight: smDown ? '-50px' : null, height: smDown ? '40px' : '400px' }}
+        sx={{ marginRight: sm ? '-50px' : null, height: sm ? '40px' : '400px' }}
       >
         <ArrowBackIosNewOutlinedIcon fontSize="large" />
       </Button>
       <Box
         display='flex'
         flexDirection='row'
-        maxWidth={smDown ? '100vw' : '79vw'}
-        gap={2}
+        maxWidth={sm ? '100vw' : '80vw'}
+        gap={3}
+        paddingX={1}
         ref={carousel}
         sx={{ overflowX: 'auto', scrollBehavior: 'smooth', '&::-webkit-scrollbar': { display: 'none' } }}
       >
@@ -88,16 +93,21 @@ const BannerCamisas = () => {
             key={item.id}
             display='flex'
             flexDirection='column'
+            alignItems='center'
             flex='none'
-            width={smDown ? '163px' : '230px'}
-            height={smDown ? '290px' : '400px'}
+            width={sm ? '163px' : '272px'}
+            height={sm ? '250px' : '400px'}
             bgcolor='white'
             borderRadius={3}
-            gap={smDown ? 2 : 5}
-            pt={smDown ? 2 : 4}
+            gap={sm ? 1 : 5}
+            pt={sm ? 1 : 4}
             sx={{ cursor: 'pointer', ":hover": { boxShadow: 'top:-10px;box-shadow:0 10px 10px #666' } }}
           >
-            <img src={item.src} alt="camisa" />
+            <Image
+              src={item.src}
+              alt="camisa"
+              width={sm ? 120 : (md ? 150 : 200)}
+              height={sm ? 130 : (md ? 150 : 220)} />
 
             <Box
               display='flex'
@@ -107,7 +117,6 @@ const BannerCamisas = () => {
               color='black'
             >
               <Typography
-                variant="body1"
                 fontWeight='bold'
                 mb={1}
               >
@@ -124,7 +133,7 @@ const BannerCamisas = () => {
                 fontWeight='bold'
                 mt={1}
                 bgcolor='#ff7e3b'
-                width={smDown ? 100 : 200}
+                width={sm ? 100 : 200}
                 textAlign='center'
                 borderRadius={3}
               >
@@ -136,7 +145,7 @@ const BannerCamisas = () => {
       </Box>
       <Button
         onClick={handleRightClick}
-        sx={{ marginLeft: smDown ? '-50px' : null, height: smDown ? '40px' : '400px' }}
+        sx={{ marginLeft: sm ? '-50px' : null, height: sm ? '40px' : '400px' }}
       >
         <ArrowForwardIosOutlinedIcon fontSize="large" />
       </Button>

@@ -1,10 +1,10 @@
 import Carousel from "react-material-ui-carousel";
-import { styled, useTheme, Box, useMediaQuery, Theme } from "@mui/material";
+import { styled, Box } from "@mui/material";
 import Image from "next/image";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 
 const CarouselImage = () => {
-  const theme = useTheme()
-  const smDown = useMediaQuery((theme: Theme) => (theme.breakpoints.down('sm')))
+  const { sm, md } = useMediaQuery()
 
   const src = [
     {
@@ -37,7 +37,7 @@ const CarouselImage = () => {
   return (
     <CustomBox>
       <Carousel
-        height={smDown ? theme.spacing(45) : theme.spacing(80.1)}
+        height={sm ? 300 : (md ? 480 : 621)}
         navButtonsAlwaysVisible={true}
         navButtonsProps={{ style: { opacity: 0.4 } }}
         indicators={true}

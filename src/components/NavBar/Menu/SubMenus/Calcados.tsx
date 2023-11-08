@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Menu, MenuItem } from '@mui/material'
+import { Button, Menu, MenuItem, Typography } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Acessorios = () => {
@@ -12,22 +12,24 @@ const Acessorios = () => {
     setAnchorEl(null);
   };
   return (
-    <div>
+    <>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        variant="contained"
         color="secondary"
-        variant="text"
         endIcon={<ArrowDropDownIcon />}
       >
-        ACESSÓRIOS
+        <Typography textTransform='capitalize'>
+          Calçados
+        </Typography>
       </Button>
       <Menu
         id="basic-menu"
-        color="primary"
+        disableScrollLock={true}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -39,7 +41,7 @@ const Acessorios = () => {
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }
 
