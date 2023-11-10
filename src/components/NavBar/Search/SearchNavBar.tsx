@@ -1,17 +1,18 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, IconButton, InputBase } from '@mui/material';
+import { Box, IconButton, TextField } from '@mui/material';
 
 const SearchNavBar = () => {
   return (
-    <Box display="flex" gap={1} height={80} justifyContent='center' alignItems='center'>
-      <Box component="form" noValidate autoComplete="off" sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 230 }}>
-        <InputBase
-          sx={{ ml: 1, flex: 1, input: { color: 'white' }, borderBottom: '1px solid', borderColor: 'white' }}
-          placeholder="Search..."
-          inputProps={{ 'aria-label': 'search google maps' }}
-          color="secondary"
+    <Box display="flex" height='100%' justifyContent='center' alignItems='center'>
+      <Box display='flex' width='80%' justifyContent='center' alignItems='center'>
+        <TextField
+          id="outlined-basic"
+          label="Search..."
+          variant="filled"
+          InputLabelProps={{ style: { color: '#fff' } }}
+          inputProps={{ style: { color: '#fff' } }}
         />
-        <IconButton type="button" sx={{ p: '10px' }} aria-label="search" color="secondary">
+        <IconButton type="button" sx={{ ml: '-40px' }} aria-label="search">
           <SearchIcon sx={{ color: 'white' }} />
         </IconButton>
       </Box>

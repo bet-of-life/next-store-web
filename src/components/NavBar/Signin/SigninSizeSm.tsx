@@ -28,12 +28,8 @@ const SigninSizeSm = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <Typography>
-            Entrar
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>Criar conta</MenuItem>
+        <MenuItem onClick={handleClose} sx={{ color: 'white' }}>Entrar</MenuItem>
+        <MenuItem onClick={handleClose} sx={{ color: 'white' }}>Criar conta</MenuItem>
       </Menu>
     </>
   );

@@ -5,6 +5,8 @@ import CheckroomIcon from '@mui/icons-material/Checkroom';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import useThemeMode from '../../../../hooks/useThemeMode';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const Roupas = () => {
   const { toggleDrawerOpen } = useDrawerMode()
@@ -26,7 +28,6 @@ const Roupas = () => {
   const handleClose = (e: string) => {
     setOpen(prev => !prev);
     toggleDrawerOpen()
-    console.log(e)
   };
 
 
@@ -34,29 +35,19 @@ const Roupas = () => {
     <List
       component='nav'
       aria-labelledby="nested-list-subheader"
-      sx={{
-        borderRadius: 2,
-        bgcolor: mode === 'light' ? 'secondary.main' : 'primary.dark',
-        mb: '2px',
-        padding: '5px',
-      }}>
-
+      disablePadding
+      sx={{ mb: '2px', }}
+    >
       <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
-          <CheckroomIcon sx={{ color: 'white' }} />
-        </ListItemIcon>
-        <ListItemText primary="Inbox" />
-        {open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+        {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
+        <ListItemText primary="Categorias" sx={{ flex: 'none', marginLeft: '10px' }} />
       </ListItemButton>
 
       <Collapse in={open} timeout="auto" unmountOnExit>
         {collapse.map((e) => (
-          <List key={e.id} component="nav" disablePadding sx={{ borderBottom: '1px solid' }}>
-            <ListItemButton sx={{ pl: 4 }} onClick={() => handleClose(e.name)}>
-              <ListItemIcon>
-                {/* <StarBorder /> */}
-              </ListItemIcon>
-              <ListItemText primary={e.name} />
+          <List key={e.id} component="nav" sx={{ pl: 5, pt: 0, pr: 0, pb: 0 }}>
+            <ListItemButton sx={{ pl: 0, borderLeft: '1px solid' }} onClick={() => handleClose(e.name)}>
+              <ListItemText primary={e.name} sx={{ marginY: 0, marginLeft: 3 }} />
             </ListItemButton>
           </List>
         ))}
