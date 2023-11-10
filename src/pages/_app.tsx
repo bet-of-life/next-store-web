@@ -5,6 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import createEmotionCache from '../utils/createEmotionCache';
 import { ThemeModeProvider } from '../context/Themes';
+import { DrawerProvider } from '../context/Drawer';
+import { MediaQueryProvider } from '../context/MediaQuery';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -19,12 +21,15 @@ export default function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <ThemeModeProvider>
-        <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <Component {...pageProps} />
+        <DrawerProvider>
+          <MediaQueryProvider>
+            <Head>
+              <meta name="viewport" content="initial-scale=1, width=device-width" />
+            </Head>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </MediaQueryProvider>
+        </DrawerProvider>
       </ThemeModeProvider>
     </CacheProvider>
   );
