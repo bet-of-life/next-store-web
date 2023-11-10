@@ -75,6 +75,7 @@ const BannerCamisas = () => {
     >
       <Button
         onClick={handleLeftClick}
+        color="secondary"
         sx={{ marginRight: sm ? '-50px' : null, height: sm ? '40px' : '400px' }}
       >
         <ArrowBackIosNewOutlinedIcon fontSize="large" />
@@ -145,6 +146,7 @@ const BannerCamisas = () => {
       </Box>
       <Button
         onClick={handleRightClick}
+        color="secondary"
         sx={{ marginLeft: sm ? '-50px' : null, height: sm ? '40px' : '400px' }}
       >
         <ArrowForwardIosOutlinedIcon fontSize="large" />

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Box height={80} display='flex' justifyContent='center' alignItems='center'>
+    <Box height='100%' display='flex' justifyContent='center' alignItems='center'>
       <Link href='/'>
         <Image src='/logo.jpeg' alt="logo" width={120} height={50} />
       </Link>

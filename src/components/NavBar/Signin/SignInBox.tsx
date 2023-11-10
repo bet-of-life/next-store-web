@@ -8,7 +8,7 @@ const SignInBox = () => {
   const { sm } = useMediaQuery()
 
   return (
-    <Box height={80} display='flex' justifyContent='center' alignItems='center' gap={2}>
+    <Box height='100%' display='flex' justifyContent='center' alignItems='center' gap={2}>
       {!sm &&
         <>
           <Box display='flex' gap={1} alignItems='center' sx={{ cursor: 'pointer' }}>

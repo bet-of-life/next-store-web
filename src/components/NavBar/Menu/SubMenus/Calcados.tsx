@@ -4,7 +4,9 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Acessorios = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -20,7 +22,6 @@ const Acessorios = () => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         variant="contained"
-        color="secondary"
         endIcon={<ArrowDropDownIcon />}
       >
         <Typography textTransform='capitalize'>
@@ -37,9 +38,9 @@ const Acessorios = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose} sx={{ color: 'white' }}>Profile</MenuItem>
+        <MenuItem onClick={handleClose} sx={{ color: 'white' }}>My account</MenuItem>
+        <MenuItem onClick={handleClose} sx={{ color: 'white' }}>Logout</MenuItem>
       </Menu>
     </>
   );

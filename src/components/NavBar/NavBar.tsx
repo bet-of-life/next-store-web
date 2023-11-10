@@ -15,7 +15,7 @@ const NavBar = () => {
       <AppBar position="fixed" color="primary">
         <Grid container direction='column'>
 
-          <Grid container item direction='row' paddingX={sm ? 0 : (md ? 2 : (lg ? 5 : 10))}>
+          <Grid container item direction='row' height={80} paddingX={sm ? 0 : (md ? 2 : (lg ? 5 : 10))}>
             <Grid item xs={4} sm={1.5} lg={1}>
               <SocialIcons />
             </Grid>

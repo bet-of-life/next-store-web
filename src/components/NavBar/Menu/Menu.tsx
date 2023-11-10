@@ -20,15 +20,20 @@ const Menu = () => {
       gap={3}
     >
 
-      {!sm && <Roupas />}
-      {!sm && <Acessorios />}
-      {!sm && <Calcados />}
-      {!sm && <Marcas />}
+      {!sm &&
+        <>
+          <Roupas />
+          <Acessorios />
+          <Calcados />
+          <Marcas />
+        </>
+      }
 
-
-      <Button onClick={toggleDrawerOpen}>
-        <MenuIcon sx={{ color: 'white' }} />
-      </Button>
+      {sm &&
+        <Button onClick={toggleDrawerOpen}>
+          <MenuIcon sx={{ color: 'white' }} />
+        </Button>
+      }
 
       <DrawerMenu />
 
