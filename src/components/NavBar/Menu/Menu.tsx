@@ -14,26 +14,14 @@ const Menu = () => {
 
   return (
     <Box
+      height='100%'
       display='flex'
       justifyContent='center'
       alignItems='center'
-      gap={3}
     >
-
-      {!sm &&
-        <>
-          <Roupas />
-          <Acessorios />
-          <Calcados />
-          <Marcas />
-        </>
-      }
-
-      {sm &&
-        <Button onClick={toggleDrawerOpen}>
-          <MenuIcon sx={{ color: 'white' }} />
-        </Button>
-      }
+      <Button onClick={toggleDrawerOpen}>
+        <MenuIcon sx={{ color: 'white' }} fontSize="large" />
+      </Button>
 
       <DrawerMenu />
 

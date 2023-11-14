@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import SigninSizeSm from "./SigninSizeSm";
@@ -8,7 +8,7 @@ const SignInBox = () => {
   const { sm } = useMediaQuery()
 
   return (
-    <Box height='100%' display='flex' justifyContent='center' alignItems='center' gap={2}>
+    <Box height='100%' display='flex' justifyContent='center' alignItems='center' gap={2} flexDirection='row'>
       {!sm &&
         <>
           <Box display='flex' gap={1} alignItems='center' sx={{ cursor: 'pointer' }}>

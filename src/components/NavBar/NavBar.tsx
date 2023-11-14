@@ -1,9 +1,7 @@
-import { AppBar, Box, Grid } from "@mui/material";
+import { AppBar, Box, Button, Grid, Avatar } from "@mui/material";
 import SignInBox from "./Signin/SignInBox";
-import ThemeMui from "./ThemeMui";
 import Logo from "./Logo";
 import Menu from "./Menu/Menu";
-import SocialIcons from "./SocialIcons";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import SearchNavBar from "./Search/SearchNavBar";
 
@@ -12,35 +10,25 @@ const NavBar = () => {
 
   return (
     <Box>
-      <AppBar position="fixed" color="primary">
+      <AppBar position="fixed">
         <Grid container direction='column'>
-
-          <Grid container item direction='row' height={80} paddingX={sm ? 0 : (md ? 2 : (lg ? 5 : 10))}>
-            <Grid item xs={4} sm={1.5} lg={1}>
-              <SocialIcons />
-            </Grid>
-            {!sm &&
-              <Grid item sm={3.5} lg={3}>
-                <SearchNavBar />
-              </Grid>}
-            <Grid item xs={4} sm={2} lg={4}>
-              <Logo />
-            </Grid>
-            <Grid item xs={4} sm={4} lg={3}>
-              <SignInBox />
-            </Grid>
-            {!sm &&
-              <Grid item sm={1} lg={1}>
-                <ThemeMui />
-              </Grid>}
-          </Grid>
-
-          <Grid container item height={40}>
-            <Grid item xs={12}>
+          <Grid container item direction='row' height={90} paddingX={sm ? 2 : (md ? 2 : (lg ? 5 : 18))}>
+            <Grid item xs={2} sm={1}>
               <Menu />
             </Grid>
+            <Grid item xs={2} sm={4}>
+              {!sm && <SearchNavBar width="75%" variant="filled" />}
+            </Grid>
+            <Grid item xs={4} sm={2}>
+              <Logo />
+            </Grid>
+            <Grid item xs={2} sm={4}>
+              {!sm && <SignInBox />}
+            </Grid>
+            <Grid item xs={2} sm={1} display='flex' justifyContent='center' alignItems='center'>
+              <Avatar alt="pessoa" />
+            </Grid>
           </Grid>
-
         </Grid>
       </AppBar>
     </Box>

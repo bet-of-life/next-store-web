@@ -29,15 +29,10 @@ const CarouselImage = () => {
     },
   ]
 
-  const CustomBox = styled(Box)(({ theme }) => ({
-    width: '100%',
-
-  }))
-
   return (
-    <CustomBox>
+    <Box width='100%'>
       <Carousel
-        height={sm ? 300 : (md ? 480 : 621)}
+        height={sm ? 300 : (md ? 480 : 651)}
         navButtonsAlwaysVisible={true}
         navButtonsProps={{ style: { opacity: 0.4 } }}
         indicators={true}
@@ -49,7 +44,7 @@ const CarouselImage = () => {
           </Box>
         )}
       </Carousel>
-    </CustomBox>
+    </Box>
   );
 }
 
