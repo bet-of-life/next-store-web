@@ -7,6 +7,7 @@ import createEmotionCache from '../utils/createEmotionCache';
 import { ThemeModeProvider } from '../context/Themes';
 import { DrawerProvider } from '../context/Drawer';
 import { MediaQueryProvider } from '../context/MediaQuery';
+import { ModalProvider } from '../context/Modal';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -23,11 +24,13 @@ export default function MyApp(props: MyAppProps) {
       <ThemeModeProvider>
         <DrawerProvider>
           <MediaQueryProvider>
-            <Head>
-              <meta name="viewport" content="initial-scale=1, width=device-width" />
-            </Head>
-            <CssBaseline />
-            <Component {...pageProps} />
+            <ModalProvider>
+              <Head>
+                <meta name="viewport" content="initial-scale=1, width=device-width" />
+              </Head>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ModalProvider>
           </MediaQueryProvider>
         </DrawerProvider>
       </ThemeModeProvider>

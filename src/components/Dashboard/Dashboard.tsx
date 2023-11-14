@@ -5,7 +5,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 
 const Dashboard = () => {
   const theme = useTheme()
-  const { sm } = useMediaQuery()
+  const { sm, md } = useMediaQuery()
 
   return (
     <Box width='100%' height='auto'>
@@ -13,11 +13,10 @@ const Dashboard = () => {
       <Box
         display='flex'
         flexDirection='column'
-        gap={sm ? 2 : 5}
+        gap={sm ? 2 : (md ? 3 : 5)}
         justifyContent='center'
         alignItems='center'
-        paddingTop={theme.spacing(3)}
-        paddingBottom={theme.spacing(3)}
+        paddingY={theme.spacing(3)}
       >
         <BannerCamisas />
         <BannerCamisas />

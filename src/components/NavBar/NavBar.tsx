@@ -1,12 +1,17 @@
-import { AppBar, Box, Button, Grid, Avatar } from "@mui/material";
+import { AppBar, Box, Grid, Avatar } from "@mui/material";
 import SignInBox from "./Signin/SignInBox";
 import Logo from "./Logo";
 import Menu from "./Menu/Menu";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import SearchNavBar from "./Search/SearchNavBar";
+import SigninSizeSm from "./Signin/SigninSizeSm";
+import useModal from "../../hooks/useModal";
+import ModalLogin from "./Signin/Modals/ModalLogin";
+import ModalRegister from "./Signin/Modals/ModalRegister";
 
 const NavBar = () => {
   const { sm, md, lg } = useMediaQuery()
+  const { isOpenLogin, isOpenRegister, toggleModalLogin, toggleModalRegister } = useModal()
 
   return (
     <Box>
@@ -22,15 +27,17 @@ const NavBar = () => {
             <Grid item xs={4} sm={2}>
               <Logo />
             </Grid>
-            <Grid item xs={2} sm={4}>
+            <Grid item xs={4} sm={5}>
               {!sm && <SignInBox />}
-            </Grid>
-            <Grid item xs={2} sm={1} display='flex' justifyContent='center' alignItems='center'>
-              <Avatar alt="pessoa" />
+              {sm && <SigninSizeSm />}
             </Grid>
           </Grid>
         </Grid>
       </AppBar>
+
+      <ModalLogin open={isOpenLogin} handleClose={toggleModalLogin} />
+      <ModalRegister open={isOpenRegister} handleClose={toggleModalRegister} />
+
     </Box>
   );
 }
