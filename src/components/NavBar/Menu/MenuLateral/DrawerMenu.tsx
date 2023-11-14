@@ -21,7 +21,13 @@ const DrawerMenu = () => {
       color='secondary'
     >
 
-      <Box display='flex' flexDirection='column' width={sm ? 200 : 250} height='100vh' p={1}>
+      <Box
+        display='flex'
+        flexDirection='column'
+        width={sm ? 200 : 250}
+        height='100vh' p={1}
+        sx={{ backgroundColor: mode == 'dark' ? '#171717' : '#000336' }}
+      >
         <Box width='100%' height={120}>
           <SearchNavBar width='100%' variant='outlined' />
         </Box>

@@ -68,22 +68,22 @@ const BannerCamisas = () => {
 
   return (
     <Box
-      width={sm ? '100vw' : '85vw'}
-      height={sm ? '250px' : '400px'}
+      width={md ? '100vw' : '85vw'}
+      height={sm ? '250px' : (md ? '350px' : '400px')}
       display='flex'
       alignItems='center'
     >
       <Button
         onClick={handleLeftClick}
         color="secondary"
-        sx={{ marginRight: sm ? '-50px' : null, height: sm ? '40px' : '400px' }}
+        sx={{ marginRight: md ? '-50px' : null, height: md ? '40px' : '100%' }}
       >
         <ArrowBackIosNewOutlinedIcon fontSize="large" />
       </Button>
       <Box
         display='flex'
         flexDirection='row'
-        maxWidth={sm ? '100vw' : '80vw'}
+        maxWidth={md ? '100vw' : '80vw'}
         gap={3}
         paddingX={1}
         ref={carousel}
@@ -96,11 +96,11 @@ const BannerCamisas = () => {
             flexDirection='column'
             alignItems='center'
             flex='none'
-            width={sm ? '163px' : '272px'}
-            height={sm ? '250px' : '400px'}
+            width={sm ? '163px' : (md ? '230px' : '272px')}
+            height={sm ? '250px' : (md ? '330px' : '400px')}
             bgcolor='white'
             borderRadius={3}
-            gap={sm ? 1 : 5}
+            gap={sm ? 1 : (md ? 3 : 4)}
             pt={sm ? 1 : 4}
             sx={{ cursor: 'pointer', ":hover": { boxShadow: 'top:-10px;box-shadow:0 10px 10px #666' } }}
           >
@@ -147,7 +147,7 @@ const BannerCamisas = () => {
       <Button
         onClick={handleRightClick}
         color="secondary"
-        sx={{ marginLeft: sm ? '-50px' : null, height: sm ? '40px' : '400px' }}
+        sx={{ marginLeft: md ? '-50px' : null, height: md ? '40px' : '100%' }}
       >
         <ArrowForwardIosOutlinedIcon fontSize="large" />
       </Button>
