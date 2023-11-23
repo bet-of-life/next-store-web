@@ -16,14 +16,14 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
   const { mode } = useThemeMode()
   const colors = tokens(mode)
   const { sm } = useMediaQuery()
-  const { singIn, user } = useContext(AuthContext);
+  const { singIn, user, isAuthenticated } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const [userLogin, setUserLogin] = useState({
     email: '',
     password: '',
   })
-  console.log(user)
+ 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,7 +41,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
     p: 4,
     borderRadius: '15px'
   };
-
+  console.log(user)
   return (
     <>
       <Modal

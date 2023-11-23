@@ -1,10 +1,11 @@
-import { createContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, useState, ReactNode, useContext } from "react";
 import { setCookie, parseCookies } from "nookies";
 import parseJwt from "../utils/parseJwt";
 import { singOut } from "../utils/singOut";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import api from "../config/api";
+import useModal from "../hooks/useModal";
 
 interface User {
   id: string;
@@ -24,12 +25,7 @@ interface AuthContextProps {
   signOutUser: () => void;
 }
 
-const AuthContext = createContext<AuthContextProps>({
-  singIn: async () => {},
-  isAuthenticated: false,
-  user: undefined,
-  signOutUser: () => {},
-});
+const AuthContext = createContext({} as AuthContextProps);
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -38,7 +34,7 @@ interface AuthProviderProps {
 function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | undefined>();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
+  const {toggleModalLogin} = useModal()
   const router = useRouter();
 
   useEffect(() => {
@@ -49,7 +45,6 @@ function AuthProvider({ children }: AuthProviderProps) {
     } else {
       setUser(undefined);
       setIsAuthenticated(false);
-      singOut();
     }
   }, []);
 
@@ -59,8 +54,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     singOut();
   };
 
-  async function singIn({ email, password }: { email: string; password: string }) {
-    try {
+  const singIn = async ({ email, password }: { email: string; password: string }) => {
+    try {        
       const res = await api.post("/token", {
         email,
         password,
@@ -76,12 +71,13 @@ function AuthProvider({ children }: AuthProviderProps) {
       setUser(parseJwt(token) as User);
       setIsAuthenticated(true);
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
-
-      router.push("/");
+      toggleModalLogin();
+      router.push("/dashboard");
     } catch (err) {
-      toast.error(err.response.data?.message, {
-        autoClose: 2000,
-      });
+      console.log(err)
+      // toast.error(err?.response?.data?.error, {
+      //   autoClose: 2000,
+      // });
     }
   }
 

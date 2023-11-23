@@ -1,13 +1,15 @@
-import * as React from 'react';
-import Head from 'next/head';
-import { AppProps } from 'next/app';
-import CssBaseline from '@mui/material/CssBaseline';
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import createEmotionCache from '../utils/createEmotionCache';
-import { ThemeModeProvider } from '../context/Themes';
-import { DrawerProvider } from '../context/Drawer';
-import { MediaQueryProvider } from '../context/MediaQuery';
-import { ModalProvider } from '../context/Modal';
+import * as React from "react";
+import Head from "next/head";
+import { AppProps } from "next/app";
+import CssBaseline from "@mui/material/CssBaseline";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import createEmotionCache from "../utils/createEmotionCache";
+import { ThemeModeProvider } from "../context/Themes";
+import { DrawerProvider } from "../context/Drawer";
+import { MediaQueryProvider } from "../context/MediaQuery";
+import { ModalProvider } from "../context/Modal";
+import { AuthProvider } from "../context/AuthContenxt";
+import { ToastContainer } from "react-toastify";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -21,19 +23,25 @@ export default function MyApp(props: MyAppProps) {
 
   return (
     <CacheProvider value={emotionCache}>
-      <ThemeModeProvider>
-        <DrawerProvider>
-          <MediaQueryProvider>
-            <ModalProvider>
-              <Head>
-                <meta name="viewport" content="initial-scale=1, width=device-width" />
-              </Head>
-              <CssBaseline />
-              <Component {...pageProps} />
-            </ModalProvider>
-          </MediaQueryProvider>
-        </DrawerProvider>
-      </ThemeModeProvider>
+      <ModalProvider>
+        <AuthProvider>
+          <ThemeModeProvider>
+            <DrawerProvider>
+              <MediaQueryProvider>
+                <Head>
+                  <meta
+                    name="viewport"
+                    content="initial-scale=1, width=device-width"
+                  />
+                </Head>
+                <CssBaseline />
+                <ToastContainer />
+                <Component {...pageProps} />
+              </MediaQueryProvider>
+            </DrawerProvider>
+          </ThemeModeProvider>
+        </AuthProvider>
+      </ModalProvider>
     </CacheProvider>
   );
 }
