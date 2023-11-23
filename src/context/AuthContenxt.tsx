@@ -1,10 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import { setCookie, parseCookies } from "nookies";
-import axios from "../config/axios";
 import parseJwt from "../utils/parseJwt";
 import { singOut } from "../utils/singOut";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import api from "../config/api";
 const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
@@ -34,7 +34,7 @@ function AuthProvider({ children }) {
 
   async function singIn({ email, password }) {
     try {
-      const res = await axios.post("/token", {
+      const res = await api.post("/token", {
         email,
         password,
       });
@@ -52,7 +52,7 @@ function AuthProvider({ children }) {
       setUser(parseJwt(token));
       setIsAuthenticated(true);
       //atulizando o header
-      axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+      api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
       router.push("/");
     } catch (err) {

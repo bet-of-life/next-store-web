@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Box height='100%' display='flex' justifyContent='center' alignItems='center'>
+    <Box mt={1} height={"100%"} display='flex' justifyContent='center' alignItems='center'>
       <Link href='/'>
-        <Image src='/logo.jpeg' alt="logo" width={120} height={60} />
+        <Image src='/logo.png' alt="logo" width={150} height={70} />
       </Link>
     </Box>
   );
