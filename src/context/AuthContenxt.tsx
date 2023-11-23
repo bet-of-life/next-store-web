@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { setCookie, parseCookies } from "nookies";
 import axios from "../config/axios";
-import parseJwt from "../utils/parseJWT";
+import parseJwt from "../utils/parseJwt";
 import { singOut } from "../utils/singOut";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
@@ -16,14 +16,14 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const { "nextauth.token": token } = parseCookies();
-      if (token) {
-        setUser(parseJwt(token));
-        setIsAuthenticated(true)
-      } else {
-        setUser(undefined);
-        setIsAuthenticated(false)
-        singOut();
-      }
+    if (token) {
+      setUser(parseJwt(token));
+      setIsAuthenticated(true)
+    } else {
+      setUser(undefined);
+      setIsAuthenticated(false)
+      singOut();
+    }
   }, []);
 
   const signOutUser = () => {
@@ -64,7 +64,7 @@ function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ singIn, isAuthenticated, user, signOutUser}}
+      value={{ singIn, isAuthenticated, user, signOutUser }}
     >
       {children}
     </AuthContext.Provider>
