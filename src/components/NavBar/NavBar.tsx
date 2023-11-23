@@ -1,7 +1,6 @@
-import { AppBar, Box, Grid, Avatar, useTheme, Typography } from "@mui/material";
+import { AppBar, Box, Grid, useTheme } from "@mui/material";
 import SignInBox from "./Signin/SignInBox";
 import Logo from "./Logo";
-import Menu from "./Menu/Menu";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import SearchNavBar from "./Search/SearchNavBar";
 import SigninSizeSm from "./Signin/SigninSizeSm";
@@ -9,9 +8,6 @@ import useModal from "../../hooks/useModal";
 import ModalLogin from "./Signin/Modals/ModalLogin";
 import ModalRegister from "./Signin/Modals/ModalRegister";
 import { tokens } from "../../themes/theme";
-import ThemeMui from "./ThemeMui";
-import useThemeMode from "../../hooks/useThemeMode";
-import SocialIcons from "../Footer/SocialIcons";
 
 const NavBar = () => {
   const theme = useTheme();
@@ -28,19 +24,19 @@ const NavBar = () => {
           direction="row"
           height={90}
           paddingX={sm ? 2 : md ? 2 : lg ? 5 : 18}
-          bgcolor={colors.black[900]}
+          bgcolor={colors.black[800]}
         >
           {/* <Grid item xs={2} sm={1}>
             <Menu />
           </Grid> */}
-              {/* <Grid item xs={2} sm={2}>
+          {/* <Grid item xs={2} sm={2}>
         
           </Grid> */}
           <Grid item xs={2} sm={5}>
-  
+
             {!sm && <SearchNavBar width="40%" variant="filled" />}
           </Grid>
-      
+
           <Grid item xs={4} sm={2}>
             <Logo />
           </Grid>

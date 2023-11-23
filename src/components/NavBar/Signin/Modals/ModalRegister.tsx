@@ -5,6 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import MailIcon from '@mui/icons-material/Mail';
 import useMediaQuery from '../../../../hooks/useMediaQuery';
+import { tokens } from '../../../../themes/theme';
 
 interface ModalRegisterProps {
   open: boolean
@@ -13,6 +14,7 @@ interface ModalRegisterProps {
 
 const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
   const { mode } = useThemeMode()
+  const colors = tokens(mode)
   const { sm } = useMediaQuery()
 
   const [showPassword, setShowPassword] = useState(false);
@@ -29,7 +31,7 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: sm ? 330 : 400,
-    bgcolor: mode == 'dark' ? '#171717' : '#000336',
+    bgcolor: colors.black[900],
     boxShadow: 24,
     p: 4,
     borderRadius: '15px'
@@ -46,21 +48,19 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
       >
         <Grid container sx={style} direction='column' gap={2}>
           <Grid item display='flex' justifyContent='center'>
-            <Typography variant='h6' sx={{ color: 'white' }}>Register</Typography>
+            <Typography variant='h6' sx={{ color: colors.grey[100] }}>Register</Typography>
           </Grid>
           <Grid container item direction='row'>
             <TextField
               id="outlined-basic1"
               label="Usuario"
               variant='filled'
-              InputLabelProps={{ style: { color: '#fff' } }}
-              inputProps={{
-                style: { color: '#fff', backgroundColor: mode == 'dark' ? '#171717' : '#000336' },
-              }}
+              InputLabelProps={{ style: { color: colors.grey[100] } }}
+              inputProps={{ style: { backgroundColor: colors.black[900] } }}
               fullWidth
             />
             <IconButton sx={{ ml: '-40px', mt: '7px' }}>
-              <PersonIcon sx={{ color: 'white' }} />
+              <PersonIcon sx={{ color: colors.grey[100] }} />
             </IconButton>
           </Grid>
           <Grid container item direction='row'>
@@ -68,14 +68,12 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
               id="outlined-basic2"
               label="Email"
               variant='filled'
-              InputLabelProps={{ style: { color: '#fff' } }}
-              inputProps={{
-                style: { color: '#fff', backgroundColor: mode == 'dark' ? '#171717' : '#000336' },
-              }}
+              InputLabelProps={{ style: { color: colors.grey[100] } }}
+              inputProps={{ style: { backgroundColor: colors.black[900] }, }}
               fullWidth
             />
             <IconButton sx={{ ml: '-40px', mt: '7px' }}>
-              <MailIcon sx={{ color: 'white' }} />
+              <MailIcon sx={{ color: colors.grey[100] }} />
             </IconButton>
           </Grid>
           <Grid container item direction='row'>
@@ -84,17 +82,15 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
               label="Password"
               variant='filled'
               type={showPassword ? 'text' : 'password'}
-              InputLabelProps={{ style: { color: '#fff' } }}
-              inputProps={{
-                style: { color: '#fff', backgroundColor: mode == 'dark' ? '#171717' : '#000336' },
-              }}
+              InputLabelProps={{ style: { color: colors.grey[100] } }}
+              inputProps={{ style: { backgroundColor: colors.black[900] } }}
               fullWidth
             />
             <IconButton
               aria-label="toggle password visibility"
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
-              sx={{ ml: '-40px', mt: '7px', color: 'white' }}
+              sx={{ ml: '-40px', mt: '7px', color: colors.grey[100] }}
             >
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
@@ -103,9 +99,9 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
             <Button
               variant='contained'
               fullWidth
-              sx={{ bgcolor: '#1a237e', mt: '10px' }}
+              sx={{ bgcolor: colors.grey[100] }}
             >
-              <Typography>
+              <Typography sx={{ color: colors.grey[900] }}>
                 Register
               </Typography>
             </Button>
