@@ -1,15 +1,18 @@
-import { Box, Typography, Button } from "@mui/material"
+import { Box, Typography, Button, useTheme } from "@mui/material"
 import { MouseEvent, useRef } from "react";
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import Image from "next/image";
 import useThemeMode from "../../../hooks/useThemeMode";
 import useMediaQuery from "../../../hooks/useMediaQuery";
+import { tokens } from "../../../themes/theme";
 
 const BannerCamisas = () => {
   const carousel = useRef(null)
   const { mode } = useThemeMode()
   const { sm, md } = useMediaQuery()
+  const theme = useTheme()
+  const colors = tokens(theme.palette.mode)
 
   const src = [
     {
@@ -75,10 +78,9 @@ const BannerCamisas = () => {
     >
       <Button
         onClick={handleLeftClick}
-        color="secondary"
         sx={{ marginRight: md ? '-50px' : null, height: md ? '40px' : '100%' }}
       >
-        <ArrowBackIosNewOutlinedIcon fontSize="large" />
+        <ArrowBackIosNewOutlinedIcon fontSize="large" sx={{ color: colors.grey[100] }} />
       </Button>
       <Box
         display='flex'
@@ -146,10 +148,9 @@ const BannerCamisas = () => {
       </Box>
       <Button
         onClick={handleRightClick}
-        color="secondary"
         sx={{ marginLeft: md ? '-50px' : null, height: md ? '40px' : '100%' }}
       >
-        <ArrowForwardIosOutlinedIcon fontSize="large" />
+        <ArrowForwardIosOutlinedIcon fontSize="large" sx={{ color: colors.grey[100] }} />
       </Button>
     </Box>
   );
