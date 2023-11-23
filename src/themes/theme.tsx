@@ -13,7 +13,26 @@ export const tokens = (mode: PaletteMode) => ({
   ...(mode === "dark"
     ? {
       black: {
-        900: "#000"
+        100: "#ffffff",
+        200: "#e6f0ff",
+        300: "#666666",
+        400: "#333333",
+        500: "#000000",
+        600: "#000000",
+        700: "#171717",
+        800: "#000000",
+        900: "#000000"
+      },
+      indigo: {
+        100: "#d8deff",
+        200: "#b1bdff",
+        300: "#8b9cfe",
+        400: "#647bfe",
+        500: "#3d5afe",
+        600: "#3148cb",
+        700: "#253698",
+        800: "#182466",
+        900: "#0c1233"
       },
       grey: {
         100: "#e0e0e0",
@@ -64,7 +83,7 @@ export const tokens = (mode: PaletteMode) => ({
         200: "#c3c6fd",
         300: "#a4a9fc",
         400: "#868dfb",
-        500: "#6870fa",
+        500: "#2c37ff",
         600: "#535ac8",
         700: "#3e4396",
         800: "#2a2d64",
@@ -84,7 +103,26 @@ export const tokens = (mode: PaletteMode) => ({
     }
     : {
       black: {
-        900: "#141414"
+        100: "#000000",
+        200: "#000000",
+        300: "#000000",
+        400: "#000000",
+        500: "#000000",
+        600: "#333333",
+        700: "#ddebff",
+        800: "#f5f5f5",
+        900: "#ffffff",
+      },
+      indigo: {
+        100: "#0c1233",
+        200: "#182466",
+        300: "#253698",
+        400: "#3148cb",
+        500: "#3d5afe",
+        600: "#647bfe",
+        700: "#8b9cfe",
+        800: "#b1bdff",
+        900: "#d8deff",
       },
       grey: {
         100: "#141414",
@@ -95,7 +133,7 @@ export const tokens = (mode: PaletteMode) => ({
         600: "#858585",
         700: "#a3a3a3",
         800: "#c2c2c2",
-        900: '#000336',
+        900: '#f5f5f5',
       },
       primary: {
         100: "#040509",
@@ -168,6 +206,8 @@ export const themeSettings = (mode: PaletteMode) => {
           // palette values for dark mode
           primary: {
             main: colors.primary[500],
+            dark: colors.primary[100],
+            light: colors.primary[700],
           },
           secondary: {
             main: colors.greenAccent[500],
@@ -178,7 +218,7 @@ export const themeSettings = (mode: PaletteMode) => {
             light: colors.grey[100],
           },
           background: {
-            default: colors.primary[600],
+            default: colors.black[900],
           },
         }
         : {
@@ -195,7 +235,7 @@ export const themeSettings = (mode: PaletteMode) => {
             light: colors.grey[100],
           },
           background: {
-            default: '#e6f0ff',
+            default: '#f5f5f5',
           },
 
         }),
@@ -203,64 +243,64 @@ export const themeSettings = (mode: PaletteMode) => {
     typography: {
       fontFamily: roboto.style.fontFamily,
     },
-    components: {
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            '--TextField-brandBorderColor': '#E0E3E7',
-            '--TextField-brandBorderHoverColor': '#B2BAC2',
-            '--TextField-brandBorderFocusedColor': '#feffff',
-            '& label.Mui-focused': {
-              color: 'var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-      MuiOutlinedInput: {
-        styleOverrides: {
-          notchedOutline: {
-            borderColor: 'var(--TextField-brandBorderColor)',
-          },
-          root: {
-            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: 'var(--TextField-brandBorderHoverColor)',
-            },
-            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: 'var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-      MuiFilledInput: {
-        styleOverrides: {
-          root: {
-            '&:before, &:after': {
-              borderBottom: '2px solid var(--TextField-brandBorderColor)',
-            },
-            '&:hover:not(.Mui-disabled, .Mui-error):before': {
-              borderBottom: '2px solid var(--TextField-brandBorderHoverColor)',
-            },
-            '&.Mui-focused:after': {
-              borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-      MuiInput: {
-        styleOverrides: {
-          root: {
-            '&:before': {
-              borderBottom: '2px solid var(--TextField-brandBorderColor)',
-            },
-            '&:hover:not(.Mui-disabled, .Mui-error):before': {
-              borderBottom: '2px solid var(--TextField-brandBorderHoverColor)',
-            },
-            '&.Mui-focused:after': {
-              borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-    },
+    // components: {
+    //   MuiTextField: {
+    //     styleOverrides: {
+    //       root: {
+    //         '--TextField-brandBorderColor': '#E0E3E7',
+    //         '--TextField-brandBorderHoverColor': '#B2BAC2',
+    //         '--TextField-brandBorderFocusedColor': '#feffff',
+    //         '& label.Mui-focused': {
+    //           color: 'var(--TextField-brandBorderFocusedColor)',
+    //         },
+    //       },
+    //     },
+    //   },
+    //   MuiOutlinedInput: {
+    //     styleOverrides: {
+    //       notchedOutline: {
+    //         borderColor: 'var(--TextField-brandBorderColor)',
+    //       },
+    //       root: {
+    //         [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+    //           borderColor: 'var(--TextField-brandBorderHoverColor)',
+    //         },
+    //         [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+    //           borderColor: 'var(--TextField-brandBorderFocusedColor)',
+    //         },
+    //       },
+    //     },
+    //   },
+    //   MuiFilledInput: {
+    //     styleOverrides: {
+    //       root: {
+    //         '&:before, &:after': {
+    //           borderBottom: '2px solid var(--TextField-brandBorderColor)',
+    //         },
+    //         '&:hover:not(.Mui-disabled, .Mui-error):before': {
+    //           borderBottom: '2px solid var(--TextField-brandBorderHoverColor)',
+    //         },
+    //         '&.Mui-focused:after': {
+    //           borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
+    //         },
+    //       },
+    //     },
+    //   },
+    //   MuiInput: {
+    //     styleOverrides: {
+    //       root: {
+    //         '&:before': {
+    //           borderBottom: '2px solid var(--TextField-brandBorderColor)',
+    //         },
+    //         '&:hover:not(.Mui-disabled, .Mui-error):before': {
+    //           borderBottom: '2px solid var(--TextField-brandBorderHoverColor)',
+    //         },
+    //         '&.Mui-focused:after': {
+    //           borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
   };
 };

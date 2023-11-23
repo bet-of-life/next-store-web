@@ -21,12 +21,12 @@ const SignInBox = () => {
         flexDirection="row"
         px="35px"
       >
-        <Button onClick={toggleModalLogin} sx={{ color: "white" }}>
+        <Button onClick={toggleModalLogin} sx={{ color: colors.grey[100] }}>
           <PermIdentityIcon sx={{ mb: "2px", mr: "6px" }} />
           <Typography textTransform="capitalize">Entrar</Typography>
         </Button>
-        |
-        <Button sx={{ color: "white" }} onClick={toggleModalRegister}>
+        <Typography color={colors.grey[100]}>|</Typography>
+        <Button sx={{ color: colors.grey[100] }} onClick={toggleModalRegister}>
           <Typography textTransform="capitalize">Criar conta</Typography>
         </Button>
         <Box
@@ -39,7 +39,7 @@ const SignInBox = () => {
           }}
         >
           <ThemeMui />
-          <Typography>{mode === "dark" ? "Dark" : "Light"}</Typography>
+          <Typography color={colors.grey[100]}>{mode === "dark" ? "Dark" : "Light"}</Typography>
         </Box>
       </Box>
     </>
