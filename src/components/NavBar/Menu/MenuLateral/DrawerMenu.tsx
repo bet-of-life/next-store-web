@@ -40,10 +40,6 @@ const DrawerMenu = () => {
           <Roupas />
         </Box>
 
-        <Box height={60} display='flex' justifyContent='center' alignItems='center' gap={1}>
-          <ThemeMui />
-          {mode === 'dark' ? 'Dark' : 'Light'}
-        </Box>
 
       </Box>
     </Drawer>

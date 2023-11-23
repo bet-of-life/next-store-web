@@ -12,6 +12,9 @@ export const roboto = Roboto({
 export const tokens = (mode: PaletteMode) => ({
   ...(mode === "dark"
     ? {
+      black: {
+        900: "#000"
+      },
       grey: {
         100: "#e0e0e0",
         200: "#c2c2c2",
@@ -80,6 +83,9 @@ export const tokens = (mode: PaletteMode) => ({
       },
     }
     : {
+      black: {
+        900: "#141414"
+      },
       grey: {
         100: "#141414",
         200: "#292929",

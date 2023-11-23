@@ -11,7 +11,7 @@ interface ThemesContextProps {
 const ThemesContext = createContext({} as ThemesContextProps)
 
 export const ThemeModeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [mode, setMode] = useState<'light' | 'dark'>('light')
+  const [mode, setMode] = useState<'light' | 'dark'>('dark')
 
   const toggleTheme = useCallback(() => {
     setMode(prev => prev === 'light' ? 'dark' : 'light')
