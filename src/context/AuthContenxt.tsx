@@ -9,7 +9,6 @@ const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // const isAuthenticated = !!user;
@@ -18,20 +17,16 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const { "nextauth.token": token } = parseCookies();
       if (token) {
-        setIsLoading(true);
         setUser(parseJwt(token));
         setIsAuthenticated(true)
-        setIsLoading(false);
       } else {
         setUser(undefined);
         setIsAuthenticated(false)
-        setIsLoading(false);
         singOut();
       }
   }, []);
 
   const signOutUser = () => {
-    setIsLoading(false);
     setUser(undefined);
     setIsAuthenticated(false);
     singOut();
@@ -69,7 +64,7 @@ function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ singIn, isAuthenticated, user, signOutUser, isLoading }}
+      value={{ singIn, isAuthenticated, user, signOutUser}}
     >
       {children}
     </AuthContext.Provider>
