@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Modal, Typography, Grid, TextField, Button, IconButton } from '@mui/material'
 import useThemeMode from '../../../../hooks/useThemeMode'
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import MailIcon from '@mui/icons-material/Mail';
 import useMediaQuery from '../../../../hooks/useMediaQuery';
 import { tokens } from '../../../../themes/theme';
+import { AuthContext } from '../../../../context/AuthContenxt';
 
 interface ModalLoginProps {
   open: boolean
@@ -15,7 +16,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
   const { mode } = useThemeMode()
   const colors = tokens(mode)
   const { sm } = useMediaQuery()
-
+  const { singIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
