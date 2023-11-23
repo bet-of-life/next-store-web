@@ -3,6 +3,7 @@ import { Modal, Typography, Grid, TextField, Button, IconButton } from '@mui/mat
 import useThemeMode from '../../../../hooks/useThemeMode'
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import MailIcon from '@mui/icons-material/Mail';
+import useMediaQuery from '../../../../hooks/useMediaQuery';
 
 interface ModalLoginProps {
   open: boolean
@@ -11,6 +12,7 @@ interface ModalLoginProps {
 
 const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
   const { mode } = useThemeMode()
+  const { sm } = useMediaQuery()
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -25,11 +27,11 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 330,
+    width: sm ? 330 : 400,
     bgcolor: mode == 'dark' ? '#171717' : '#000336',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    borderRadius: '15px'
   };
 
   return (
@@ -45,9 +47,9 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
           <Grid item display='flex' justifyContent='center'>
             <Typography variant='h6' sx={{ color: 'white' }}>Login</Typography>
           </Grid>
-          <Grid item direction='row'>
+          <Grid item container direction='row'>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic2"
               label="Email"
               variant='filled'
               autoFocus
@@ -59,7 +61,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               <MailIcon sx={{ color: 'white' }} />
             </IconButton>
           </Grid>
-          <Grid item direction='row'>
+          <Grid container item direction='row' >
             <TextField
               id="outlined-basic1"
               label="Password"

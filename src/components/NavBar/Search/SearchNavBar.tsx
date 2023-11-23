@@ -20,7 +20,9 @@ const SearchNavBar: React.FC<SearchNavBarprops> = ({ width, variant }) => {
           label="Search..."
           variant={variant}
           InputLabelProps={{ style: { color: '#fff' } }}
-          inputProps={{ style: { color: '#fff', backgroundColor: mode == 'dark' ? '#171717' : '#000336' } }}
+          inputProps={{
+            style: { color: '#fff', backgroundColor: mode == 'dark' ? '#171717' : '#000336' },
+          }}
           fullWidth
         />
         <IconButton type="button" sx={{ ml: '-40px' }} aria-label="search">

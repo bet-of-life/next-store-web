@@ -4,6 +4,7 @@ import useThemeMode from '../../../../hooks/useThemeMode'
 import PersonIcon from '@mui/icons-material/Person';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import MailIcon from '@mui/icons-material/Mail';
+import useMediaQuery from '../../../../hooks/useMediaQuery';
 
 interface ModalRegisterProps {
   open: boolean
@@ -12,6 +13,7 @@ interface ModalRegisterProps {
 
 const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
   const { mode } = useThemeMode()
+  const { sm } = useMediaQuery()
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,11 +28,11 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 330,
+    width: sm ? 330 : 400,
     bgcolor: mode == 'dark' ? '#171717' : '#000336',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    borderRadius: '15px'
   };
 
   return (
@@ -46,7 +48,7 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
           <Grid item display='flex' justifyContent='center'>
             <Typography variant='h6' sx={{ color: 'white' }}>Register</Typography>
           </Grid>
-          <Grid item direction='row'>
+          <Grid container item direction='row'>
             <TextField
               id="outlined-basic1"
               label="Usuario"
@@ -61,7 +63,7 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
               <PersonIcon sx={{ color: 'white' }} />
             </IconButton>
           </Grid>
-          <Grid item direction='row'>
+          <Grid container item direction='row'>
             <TextField
               id="outlined-basic2"
               label="Email"
@@ -76,7 +78,7 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
               <MailIcon sx={{ color: 'white' }} />
             </IconButton>
           </Grid>
-          <Grid item direction='row'>
+          <Grid container item direction='row'>
             <TextField
               id="outlined-basic"
               label="Password"
