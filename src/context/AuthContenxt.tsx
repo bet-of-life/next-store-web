@@ -1,27 +1,54 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, ReactNode } from "react";
 import { setCookie, parseCookies } from "nookies";
 import parseJwt from "../utils/parseJwt";
 import { singOut } from "../utils/singOut";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import api from "../config/api";
-const AuthContext = createContext({});
 
-function AuthProvider({ children }) {
-  const [user, setUser] = useState();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  phone: string;
+  gender: string;
+  created_at: string;
+  updated_at: string;
+}
 
-  // const isAuthenticated = !!user;
+interface AuthContextProps {
+  singIn: (credentials: { email: string; password: string }) => Promise<void>;
+  isAuthenticated: boolean;
+  user: User | undefined;
+  signOutUser: () => void;
+}
+
+const AuthContext = createContext<AuthContextProps>({
+  singIn: async () => {},
+  isAuthenticated: false,
+  user: undefined,
+  signOutUser: () => {},
+});
+
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<User | undefined>();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
   const router = useRouter();
 
   useEffect(() => {
     const { "nextauth.token": token } = parseCookies();
     if (token) {
-      setUser(parseJwt(token));
-      setIsAuthenticated(true)
+      setUser(parseJwt(token) as User);
+      setIsAuthenticated(true);
     } else {
       setUser(undefined);
-      setIsAuthenticated(false)
+      setIsAuthenticated(false);
       singOut();
     }
   }, []);
@@ -32,7 +59,7 @@ function AuthProvider({ children }) {
     singOut();
   };
 
-  async function singIn({ email, password }) {
+  async function singIn({ email, password }: { email: string; password: string }) {
     try {
       const res = await api.post("/token", {
         email,
@@ -42,16 +69,12 @@ function AuthProvider({ children }) {
       const { token } = res.data;
 
       setCookie(undefined, "nextauth.token", token, {
-        //tempo de vida do cookie
-        maxAge: 60 * 60 * 24 * 30, //30 dias
-        //quais caminhos da aplicação vão ter acessos a esses cookies
-        //no caso,esse vai ser usado de forma global
+        maxAge: 60 * 60 * 24 * 30,
         path: "/",
       });
 
-      setUser(parseJwt(token));
+      setUser(parseJwt(token) as User);
       setIsAuthenticated(true);
-      //atulizando o header
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
       router.push("/");
