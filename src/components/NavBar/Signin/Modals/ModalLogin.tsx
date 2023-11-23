@@ -16,9 +16,14 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
   const { mode } = useThemeMode()
   const colors = tokens(mode)
   const { sm } = useMediaQuery()
-  const { singIn } = useContext(AuthContext);
+  const { singIn, user } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
+  const [userLogin, setUserLogin] = useState({
+    email: '',
+    password: '',
+  })
+  console.log(user)
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -59,6 +64,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               InputLabelProps={{ style: { color: colors.grey[100] } }}
               inputProps={{ style: { backgroundColor: colors.black[800] } }}
               fullWidth
+              onChange={(e) => setUserLogin({ ...userLogin, email: e.target.value })}
             />
             <IconButton sx={{ ml: '-40px', mt: '7px' }}>
               <MailIcon sx={{ color: colors.grey[100] }} />
@@ -73,6 +79,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               InputLabelProps={{ style: { color: colors.grey[100] } }}
               inputProps={{ style: { backgroundColor: colors.black[800] } }}
               fullWidth
+              onChange={(e) => setUserLogin({ ...userLogin, password: e.target.value })}
             />
             <IconButton
               aria-label="toggle password visibility"
@@ -88,6 +95,8 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               variant='contained'
               fullWidth
               sx={{ bgcolor: colors.grey[100] }}
+              onClick={() => singIn({ email: userLogin.email, password: userLogin.password })}
+            //onClick={() => console.log('cliquei')}
             >
               <Typography sx={{ color: colors.grey[900] }}>
                 Login
