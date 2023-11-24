@@ -23,6 +23,7 @@ interface AuthContextProps {
   isAuthenticated: boolean;
   user: User | undefined;
   signOutUser: () => void;
+  errorUser: boolean
 }
 
 const AuthContext = createContext({} as AuthContextProps);
@@ -34,7 +35,8 @@ interface AuthProviderProps {
 function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | undefined>();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const {toggleModalLogin} = useModal()
+  const [errorUser, setErrorUser] = useState<boolean>(false)
+  const { toggleModalLogin } = useModal()
   const router = useRouter();
 
   useEffect(() => {
@@ -55,7 +57,13 @@ function AuthProvider({ children }: AuthProviderProps) {
   };
 
   const singIn = async ({ email, password }: { email: string; password: string }) => {
-    try {        
+
+    try {
+      if (!email || !password) {
+        setErrorUser(true)
+        return
+      }
+
       const res = await api.post("/token", {
         email,
         password,
@@ -75,15 +83,15 @@ function AuthProvider({ children }: AuthProviderProps) {
       router.push("/dashboard");
     } catch (err) {
       console.log(err)
-      // toast.error(err?.response?.data?.error, {
-      //   autoClose: 2000,
-      // });
+      toast.error(err?.response?.data?.error, {
+        autoClose: 2000,
+      });
     }
   }
 
   return (
     <AuthContext.Provider
-      value={{ singIn, isAuthenticated, user, signOutUser }}
+      value={{ singIn, isAuthenticated, user, signOutUser, errorUser }}
     >
       {children}
     </AuthContext.Provider>

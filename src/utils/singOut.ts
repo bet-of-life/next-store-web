@@ -2,7 +2,7 @@ import { destroyCookie } from "nookies";
 import Router from "next/router";
 const singOut = () => {
   destroyCookie(undefined, "nextauth.token");
-  Router.push("/produtos?page=1");
+  Router.push("/dashboard");
 };
 
 export { singOut };
