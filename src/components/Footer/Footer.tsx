@@ -2,21 +2,18 @@ import { Box, Typography } from '@mui/material'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import useThemeMode from '../../hooks/useThemeMode';
+import { tokens } from '../../themes/theme';
 
 const Footer = () => {
   const { mode } = useThemeMode()
-  const [background, setBackground] = useState('black')
-
-  useEffect(() => {
-    mode === 'dark' ? setBackground('#171717') : setBackground('#000336')
-  }, [mode])
+  const colors = tokens(mode)
 
   return (
     <Box
       width='100%'
       height='160px'
       display='flex'
-      bgcolor={background}
+      bgcolor={colors.black[900]}
       pl='200px'
       pr='200px'
       pt='20px'

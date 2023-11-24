@@ -13,19 +13,21 @@ const Dashboard = () => {
 
   return (
     <Layout>
-    <Box width='100%' height='auto'>
-      <CarouselImage />
-      <Box
-        display='flex'
-        flexDirection='column'
-        gap={sm ? 2 : (md ? 3 : 5)}
-        justifyContent='center'
-        alignItems='center'
-        paddingY={theme.spacing(3)}
-      >
-        <ShirtsCatalog />
+      <Box width='100%' height='auto'>
+        <CarouselImage />
+        <Box
+          display='flex'
+          flexDirection='column'
+          gap={sm ? 2 : (md ? 3 : 5)}
+          justifyContent='center'
+          alignItems='center'
+          paddingY={theme.spacing(3)}
+        >
+          <ShirtsCatalog />
+          <ShirtsCatalog />
+          <ShirtsCatalog />
+        </Box>
       </Box>
-    </Box>
     </Layout>
   );
 }

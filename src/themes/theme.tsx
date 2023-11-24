@@ -18,7 +18,7 @@ export const tokens = (mode: PaletteMode) => ({
         300: "#666666",
         400: "#333333",
         500: "#000000",
-        600: "#000000",
+        600: "#141414",
         700: "#171717",
         800: "#000000",
         900: "#000000"
@@ -108,7 +108,7 @@ export const tokens = (mode: PaletteMode) => ({
         300: "#000000",
         400: "#000000",
         500: "#000000",
-        600: "#333333",
+        600: "#e6e6e6",
         700: "#ddebff",
         800: "#f5f5f5",
         900: "#ffffff",
@@ -218,7 +218,7 @@ export const themeSettings = (mode: PaletteMode) => {
             light: colors.grey[100],
           },
           background: {
-            default: colors.black[900],
+            default: "#181818",
           },
         }
         : {
