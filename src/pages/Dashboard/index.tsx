@@ -1,6 +1,7 @@
 import { Box, useTheme, Theme } from "@mui/material";
 import CarouselImage from "../../components/Dashboard/Carousel/CarouselImage";
 import BannerCamisas from "../../components/Dashboard/Roupas/BannerCamidas";
+import ShirtsCatalog from "../../components/Dashboard/Roupas/ShirtsCatalog";
 import Layout from "../../components/Layout";
 import WhatsAppButton from "../../components/Whatsapp/WhatsAppButton";
 import useMediaQuery from "../../hooks/useMediaQuery";
@@ -25,6 +26,7 @@ const Dashboard = () => {
         <WhatsAppButton />
         <BannerCamisas />
         <BannerCamisas />
+        <ShirtsCatalog />
       </Box>
     </Box>
     </Layout>
