@@ -28,6 +28,7 @@ export default function MyApp(props: MyAppProps) {
           <ThemeModeProvider>
             <DrawerProvider>
               <MediaQueryProvider>
+                <ToastContainer />
                 <Head>
                   <meta
                     name="viewport"
@@ -35,7 +36,6 @@ export default function MyApp(props: MyAppProps) {
                   />
                 </Head>
                 <CssBaseline />
-                <ToastContainer />
                 <Component {...pageProps} />
               </MediaQueryProvider>
             </DrawerProvider>

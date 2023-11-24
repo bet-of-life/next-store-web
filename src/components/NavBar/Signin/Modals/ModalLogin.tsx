@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react';
-import { Modal, Typography, Grid, TextField, Button, IconButton } from '@mui/material'
+import { Modal, Typography, Grid, TextField, Button, IconButton, Link } from '@mui/material'
 import useThemeMode from '../../../../hooks/useThemeMode'
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import MailIcon from '@mui/icons-material/Mail';
 import useMediaQuery from '../../../../hooks/useMediaQuery';
 import { tokens } from '../../../../themes/theme';
 import { AuthContext } from '../../../../context/AuthContenxt';
+import useModal from '../../../../hooks/useModal';
 
 interface ModalLoginProps {
   open: boolean
@@ -14,34 +15,40 @@ interface ModalLoginProps {
 
 const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
   const { mode } = useThemeMode()
-  const colors = tokens(mode)
   const { sm } = useMediaQuery()
-  const { singIn, user, isAuthenticated } = useContext(AuthContext);
+  const { singIn, user, errorUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const { toggleModalLogin, toggleModalRegister } = useModal()
+  const colors = tokens(mode)
 
   const [userLogin, setUserLogin] = useState({
     email: '',
     password: '',
   })
- 
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
+  const handleCloseModal = () => {
+    toggleModalLogin()
+    toggleModalRegister()
+  }
+
   const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: sm ? 330 : 400,
+    width: sm ? 330 : 450,
     bgcolor: colors.black[800],
     boxShadow: 24,
     p: 4,
     borderRadius: '15px'
   };
-  console.log(user)
+
   return (
     <>
       <Modal
@@ -51,35 +58,36 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
         aria-describedby="modal-modal-description"
         disableScrollLock={true}
       >
-        <Grid container sx={style} direction='column' gap={2}>
+        <Grid container sx={style} direction='column' gap={1}>
           <Grid item display='flex' justifyContent='center'>
-            <Typography variant='h6' sx={{ color: colors.grey[100] }}>Login</Typography>
+            <Typography variant='h6' sx={{ color: colors.grey[100] }}>Entre com sua Conta</Typography>
           </Grid>
           <Grid item container direction='row'>
             <TextField
-              id="outlined-basic2"
+              id="outlined-basic"
               label="Email"
               variant='filled'
               autoFocus
+              required
               InputLabelProps={{ style: { color: colors.grey[100] } }}
               inputProps={{ style: { backgroundColor: colors.black[800] } }}
               fullWidth
               onChange={(e) => setUserLogin({ ...userLogin, email: e.target.value })}
             />
-            <IconButton sx={{ ml: '-40px', mt: '7px' }}>
-              <MailIcon sx={{ color: colors.grey[100] }} />
-            </IconButton>
           </Grid>
           <Grid container item direction='row' >
             <TextField
               id="outlined-basic1"
               label="Password"
               variant='filled'
+              required
               type={showPassword ? 'text' : 'password'}
               InputLabelProps={{ style: { color: colors.grey[100] } }}
               inputProps={{ style: { backgroundColor: colors.black[800] } }}
               fullWidth
               onChange={(e) => setUserLogin({ ...userLogin, password: e.target.value })}
+              error={errorUser}
+              helperText={errorUser && 'Por favor, insira uma senha!'}
             />
             <IconButton
               aria-label="toggle password visibility"
@@ -90,18 +98,31 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               {showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </Grid>
-          <Grid item>
+          <Grid item mt={1}>
+            <Typography variant='body2'>
+              <Link color={colors.grey[100]} sx={{ cursor: 'pointer', underline: 'aways' }}>
+                Esqueceu a senha ?
+              </Link>
+            </Typography>
+          </Grid>
+          <Grid item mt={2}>
             <Button
               variant='contained'
               fullWidth
               sx={{ bgcolor: colors.grey[100] }}
               onClick={() => singIn({ email: userLogin.email, password: userLogin.password })}
-            //onClick={() => console.log('cliquei')}
             >
-              <Typography sx={{ color: colors.grey[900] }}>
-                Login
+              <Typography sx={{ color: colors.grey[900], fontWeight: 'bold' }}>
+                Entrar
               </Typography>
             </Button>
+          </Grid>
+          <Grid item display='flex' justifyContent='center' alignItems='center'>
+            <Typography mt={2} >
+              <Link onClick={handleCloseModal} color={colors.grey[100]} sx={{ cursor: 'pointer' }}>
+                Não possui uma conta ?
+              </Link>
+            </Typography>
           </Grid>
         </Grid>
       </Modal>

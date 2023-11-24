@@ -1,5 +1,5 @@
 import { AppBar, Box, Grid, useTheme } from "@mui/material";
-import SignInBox from "./Signin/SignInBox";
+import SignIn from "./Signin/SignIn";
 import Logo from "./Logo";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import SearchNavBar from "./Search/SearchNavBar";
@@ -17,7 +17,7 @@ const NavBar = () => {
   const { sm, md, lg } = useMediaQuery();
   const { isOpenLogin, isOpenRegister, toggleModalLogin, toggleModalRegister } = useModal();
   const { isAuthenticated } = useContext(AuthContext)
-  console.log(isAuthenticated)
+
   return (
     <Box>
       <AppBar position="fixed">
@@ -35,15 +35,15 @@ const NavBar = () => {
         
           </Grid> */}
           <Grid item xs={2} sm={5}>
-
             {!sm && <SearchNavBar width="40%" variant="filled" />}
           </Grid>
 
           <Grid item xs={4} sm={2}>
             <Logo />
           </Grid>
+
           <Grid item xs={4} sm={5}>
-            {!sm && <SignInBox />}
+            {!sm && <SignIn />}
             {sm && <SigninSizeSm />}
           </Grid>
           {/* <Grid item xs={2} sm={4}>
