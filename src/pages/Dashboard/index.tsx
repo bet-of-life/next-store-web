@@ -23,9 +23,6 @@ const Dashboard = () => {
         alignItems='center'
         paddingY={theme.spacing(3)}
       >
-        <WhatsAppButton />
-        <BannerCamisas />
-        <BannerCamisas />
         <ShirtsCatalog />
       </Box>
     </Box>
