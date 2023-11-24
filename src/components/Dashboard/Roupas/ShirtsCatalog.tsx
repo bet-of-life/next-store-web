@@ -1,38 +1,25 @@
 import { Box, useTheme } from "@mui/material";
-import { useRef } from "react";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import Banner from "./Banner";
-import { data, dataBlack } from "./utils";
+import { blackFemale, blackMale, whiteFemale, whiteMale } from "./utils";
 
 const ShirtsCatalog = () => {
-  const carousel = useRef(null);
 
   const { sm, md } = useMediaQuery();
-  const theme = useTheme();
 
   return (
     <Box
-      width={md ? "100vw" : "85vw"}
-      height={sm ? "250px" : md ? "350px" : "400px"}
+      width={md ? "100vw" : "75vw"}
+      height={sm ? "250px" : md ? "350px" : "450px"}
       display="flex"
+      justifyContent='center'
       alignItems="center"
+      gap={4}
     >
-      <Box
-        display="flex"
-        flexDirection="row"
-        maxWidth={md ? "100vw" : "80vw"}
-        gap={3}
-        paddingX={1}
-        ref={carousel}
-        sx={{
-          overflowX: "auto",
-          scrollBehavior: "smooth",
-          "&::-webkit-scrollbar": { display: "none" },
-        }}
-      >
-        <Banner item={data} />
-        <Banner item={dataBlack} />
-      </Box>
+      <Banner item={whiteFemale} />
+      <Banner item={blackMale} />
+      <Banner item={whiteMale} />
+      <Banner item={blackFemale} />
     </Box>
   );
 };

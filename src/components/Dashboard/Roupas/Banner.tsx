@@ -1,17 +1,22 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
 import useMediaQuery from "../../../hooks/useMediaQuery";
+import useThemeMode from "../../../hooks/useThemeMode";
+import { tokens } from "../../../themes/theme";
 interface BannerProps {
-    item: {
-      id: number;
-      src: string;
-      srcHover: string;
-      oldPrice: string;
-      price: string;
-    };
-  }
+  item: {
+    id: number;
+    src: string;
+    srcHover: string;
+    name: string;
+    oldPrice: string;
+    price: string;
+  };
+}
 const Banner = ({ item }: BannerProps) => {
+  const { mode } = useThemeMode()
+  const colors = tokens(mode)
   const { sm, md } = useMediaQuery();
   const [hoveredImage, setHoveredImage] = useState<string>(item.src);
 
@@ -19,8 +24,8 @@ const Banner = ({ item }: BannerProps) => {
 
   const handleMouseOver = () => {
     timeoutId = setTimeout(() => {
-        setHoveredImage(item.srcHover);
-      }, 100);
+      setHoveredImage(item.srcHover);
+    }, 100);
   };
 
   const handleMouseOut = () => {
@@ -35,46 +40,44 @@ const Banner = ({ item }: BannerProps) => {
       flexDirection="column"
       alignItems="center"
       flex="none"
-      width={sm ? "163px" : md ? "230px" : "450px"}
-      height={sm ? "250px" : md ? "330px" : "400px"}
-      bgcolor="white"
+      width={sm ? "163px" : md ? "230px" : "250px"}
+      height={sm ? "250px" : md ? "330px" : "450px"}
       borderRadius={3}
       gap={sm ? 1 : md ? 3 : 4}
-      sx={{
-        cursor: "pointer"
-      }}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      sx={{ cursor: "pointer", bgcolor: colors.black[600] }}
     >
-      <Image
-        src={hoveredImage}
-        alt="camisa"
-        width={sm ? 120 : md ? 150 : 450}
-        height={sm ? 130 : md ? 150 : 300}
-        style={{ borderRadius: 8 }}
-      />
+      <Box width='100%' height='310px'
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+      >
+        <Image
+          src={hoveredImage}
+          alt="camisa"
+          width={250}
+          height={310}
+          style={{ borderRadius: '8px 8px 0 0' }}
+        />
+      </Box>
 
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        color="black"
+        justifyContent="start"
+        alignItems="start"
+        px={1}
       >
-        <Typography fontWeight="bold" mb={1}>
-          Camisa Oficial
+        <Typography mb={1} color={colors.grey[100]} variant="body2">
+          {item.name}
         </Typography>
-        <Typography variant="body2" sx={{ textDecoration: "line-through" }}>
+        <Typography variant="body2" sx={{ textDecoration: "line-through" }} color={colors.grey[100]}>
           R$ {item.oldPrice}
         </Typography>
         <Typography
           variant="body1"
           fontWeight="bold"
           mt={1}
-          bgcolor="#ff7e3b"
           width={sm ? 100 : 200}
-          textAlign="center"
-          borderRadius={3}
+          color={colors.grey[100]}
         >
           R$ {item.price}
         </Typography>

@@ -8,14 +8,16 @@ import useModal from "../../hooks/useModal";
 import ModalLogin from "./Signin/Modals/ModalLogin";
 import ModalRegister from "./Signin/Modals/ModalRegister";
 import { tokens } from "../../themes/theme";
+import { AuthContext } from "../../context/AuthContenxt";
+import { useContext } from "react";
 
 const NavBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { sm, md, lg } = useMediaQuery();
-  const { isOpenLogin, isOpenRegister, toggleModalLogin, toggleModalRegister } =
-    useModal();
-
+  const { isOpenLogin, isOpenRegister, toggleModalLogin, toggleModalRegister } = useModal();
+  const { isAuthenticated } = useContext(AuthContext)
+  console.log(isAuthenticated)
   return (
     <Box>
       <AppBar position="fixed">

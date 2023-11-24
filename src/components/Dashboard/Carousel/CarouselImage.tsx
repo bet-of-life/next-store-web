@@ -9,7 +9,7 @@ const CarouselImage = () => {
   const src = [
     {
       id: 1,
-      src: '/carousel/wallpaper1.jpg'
+      src: '/photos/carousel/carousel1.jpeg'
     },
     {
       id: 2,
