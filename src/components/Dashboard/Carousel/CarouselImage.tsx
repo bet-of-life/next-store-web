@@ -13,7 +13,7 @@ const CarouselImage = () => {
     },
     {
       id: 2,
-      src: '/carousel/wallpaper2.jpg'
+      src: '/photos/carousel/carousel6.jpeg'
     },
     {
       id: 3,

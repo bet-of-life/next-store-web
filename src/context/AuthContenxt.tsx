@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import api from "../config/api";
 import useModal from "../hooks/useModal";
-import { validarEmail } from "./utils";
 
 interface User {
   id: string;
@@ -24,7 +23,6 @@ interface AuthContextProps {
   isAuthenticated: boolean;
   user: User | undefined;
   signOutUser: () => void;
-  errorUser: object
 }
 
 const AuthContext = createContext({} as AuthContextProps);
@@ -32,20 +30,12 @@ const AuthContext = createContext({} as AuthContextProps);
 interface AuthProviderProps {
   children: ReactNode;
 }
-interface UserErrorState {
-  errorEmail: boolean;
-  errorPassword: boolean;
-  errorMessage: string;
-}
+
 
 function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | undefined>();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [errorUser, setErrorUser] = useState<UserErrorState>({
-    errorEmail: false,
-    errorPassword: false,
-    errorMessage: '',
-  })
+
   const { toggleModalLogin } = useModal()
   const router = useRouter();
 
@@ -68,30 +58,6 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   const singIn = async ({ email, password }: { email: string; password: string }) => {
     try {
-      if (!email) {
-        setErrorUser({
-          errorEmail: true, 
-          errorPassword: false,
-          errorMessage: 'Por favor, insira um e-mail!' 
-          })
-        return
-      }
-      if (!password) {
-        setErrorUser({
-          errorEmail: false, 
-          errorPassword: true,
-          errorMessage:  'Por favor, insira uma senha!'
-          })
-        return
-      }
-      if(!validarEmail(email)){
-        setErrorUser({
-          errorEmail: true, 
-          errorPassword: false,
-          errorMessage: 'Por favor, insira um e-mail válido!' 
-          })
-        return
-      }
       const res = await api.post("/token", {
         email,
         password,
@@ -110,12 +76,7 @@ function AuthProvider({ children }: AuthProviderProps) {
       toggleModalLogin();
       router.push("/dashboard");
     } catch (err) {
-      setErrorUser({
-        errorEmail: false,
-        errorPassword: false,
-        errorMessage: ""
-      })
-      toast.error(err?.response?.data?.error[0], {
+      toast.error(err?.response?.data?.error, {
         autoClose: 2000,
       });
     }
@@ -123,7 +84,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ singIn, isAuthenticated, user, signOutUser, errorUser }}
+      value={{ singIn, isAuthenticated, user, signOutUser }}
     >
       {children}
     </AuthContext.Provider>
