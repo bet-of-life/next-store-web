@@ -13,7 +13,7 @@ const SignIn = () => {
   const colors = tokens(theme.palette.mode);
   const { toggleModalLogin, toggleModalRegister } = useModal();
   const { mode } = useThemeMode();
-  const { isAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated, user } = useContext(AuthContext)
 
   return (
     <>
@@ -39,7 +39,10 @@ const SignIn = () => {
           </>
         }
         {isAuthenticated &&
-          <SignOut />
+          <>
+            {user.name}
+            <SignOut />
+          </>
         }
         <Box
           sx={{
