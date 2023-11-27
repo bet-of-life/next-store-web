@@ -44,7 +44,7 @@ const Banner = ({ item }: BannerProps) => {
       height={sm ? "250px" : md ? "330px" : "450px"}
       borderRadius={3}
       gap={sm ? 1 : md ? 3 : 4}
-      sx={{ cursor: "pointer", bgcolor: colors.black[600] }}
+      sx={{ cursor: "pointer", bgcolor: colors.black[900], ":hover": { boxShadow: 'top: 10px;box-shadow:0 10px 10px #252525' } }}
     >
       <Box width='100%' height='310px'
         onMouseOver={handleMouseOver}
