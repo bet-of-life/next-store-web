@@ -1,41 +1,43 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import useThemeMode from "../../../hooks/useThemeMode";
 import { tokens } from "../../../themes/theme";
+import { useRouter } from "next/navigation";
 interface BannerProps {
-  item: {
-    id: number;
-    src: string;
-    srcHover: string;
-    name: string;
-    oldPrice: string;
-    price: string;
-  };
+  id: number;
+  src: string;
+  srcHover: string;
+  name: string;
+  oldPrice: string;
+  price: string;
 }
-const Banner = ({ item }: BannerProps) => {
+
+const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
   const { mode } = useThemeMode()
-  const colors = tokens(mode)
+  const [hoveredImage, setHoveredImage] = useState<string>(src);
   const { sm, md } = useMediaQuery();
-  const [hoveredImage, setHoveredImage] = useState<string>(item.src);
+  const router = useRouter()
+  const colors = tokens(mode)
 
   let timeoutId: ReturnType<typeof setTimeout>;
 
   const handleMouseOver = () => {
     timeoutId = setTimeout(() => {
-      setHoveredImage(item.srcHover);
+      setHoveredImage(srcHover);
     }, 100);
   };
 
   const handleMouseOut = () => {
     clearTimeout(timeoutId);
-    setHoveredImage(item.src);
+    setHoveredImage(src);
   };
 
   return (
     <Box
-      key={item.id}
+      key={id}
+      onClick={() => router.push(`/item/${id}`)}
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -67,10 +69,10 @@ const Banner = ({ item }: BannerProps) => {
         px={1}
       >
         <Typography mb={1} color={colors.grey[100]} variant="body2">
-          {item.name}
+          {name}
         </Typography>
         <Typography variant="body2" sx={{ textDecoration: "line-through" }} color={colors.grey[100]}>
-          R$ {item.oldPrice}
+          R$ {oldPrice}
         </Typography>
         <Typography
           variant="body1"
@@ -79,7 +81,7 @@ const Banner = ({ item }: BannerProps) => {
           width={sm ? 100 : 200}
           color={colors.grey[100]}
         >
-          R$ {item.price}
+          R$ {price}
         </Typography>
       </Box>
     </Box>

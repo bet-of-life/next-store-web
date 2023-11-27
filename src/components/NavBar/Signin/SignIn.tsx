@@ -6,6 +6,8 @@ import ThemeMui from "../ThemeMui";
 import useThemeMode from "../../../hooks/useThemeMode";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContenxt";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 import SignOut from "./SignOut";
 
 const SignIn = () => {
@@ -36,26 +38,16 @@ const SignIn = () => {
             <Button sx={{ color: colors.grey[100] }} onClick={toggleModalRegister}>
               <Typography textTransform="capitalize">Criar conta</Typography>
             </Button>
+            <ThemeMui />
           </>
         }
         {isAuthenticated &&
-          <>
+          <Box color={colors.grey[100]} display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
             {user.name}
+            <ShoppingCartIcon fontSize="medium" />
             <SignOut />
-          </>
+          </Box>
         }
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-          }}
-        >
-          <ThemeMui />
-          <Typography color={colors.grey[100]}>{mode === "dark" ? "Dark" : "Light"}</Typography>
-        </Box>
       </Box>
     </>
   );
