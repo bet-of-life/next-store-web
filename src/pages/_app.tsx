@@ -10,7 +10,7 @@ import { MediaQueryProvider } from "../context/MediaQuery";
 import { ModalProvider } from "../context/Modal";
 import { AuthProvider } from "../context/AuthContenxt";
 import { ToastContainer } from "react-toastify";
-
+import 'react-toastify/dist/ReactToastify.css' ; 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -28,7 +28,6 @@ export default function MyApp(props: MyAppProps) {
           <ThemeModeProvider>
             <DrawerProvider>
               <MediaQueryProvider>
-                <ToastContainer />
                 <Head>
                   <meta
                     name="viewport"
@@ -36,6 +35,7 @@ export default function MyApp(props: MyAppProps) {
                   />
                 </Head>
                 <CssBaseline />
+                <ToastContainer />
                 <Component {...pageProps} />
               </MediaQueryProvider>
             </DrawerProvider>

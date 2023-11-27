@@ -48,6 +48,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
     p: 4,
     borderRadius: '15px'
   };
+  const error = errorUser as { errorEmail: boolean; errorPassword: boolean, errorMessage: string };
 
   return (
     <>
@@ -73,6 +74,8 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               inputProps={{ style: { backgroundColor: colors.black[800] } }}
               fullWidth
               onChange={(e) => setUserLogin({ ...userLogin, email: e.target.value })}
+              error={error.errorEmail}
+              helperText={error.errorEmail && error.errorMessage}
             />
           </Grid>
           <Grid container item direction='row' >
@@ -86,8 +89,8 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               inputProps={{ style: { backgroundColor: colors.black[800] } }}
               fullWidth
               onChange={(e) => setUserLogin({ ...userLogin, password: e.target.value })}
-              error={errorUser}
-              helperText={errorUser && 'Por favor, insira uma senha!'}
+              error={error.errorPassword}
+              helperText={error.errorPassword && error.errorMessage}
             />
             <IconButton
               aria-label="toggle password visibility"
@@ -110,7 +113,9 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               variant='contained'
               fullWidth
               sx={{ bgcolor: colors.grey[100] }}
-              onClick={() => singIn({ email: userLogin.email, password: userLogin.password })}
+              onClick={() => {
+                singIn({ email: userLogin.email, password: userLogin.password })
+              } }
             >
               <Typography sx={{ color: colors.grey[900], fontWeight: 'bold' }}>
                 Entrar
