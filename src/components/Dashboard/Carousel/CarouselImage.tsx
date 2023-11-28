@@ -9,28 +9,25 @@ const CarouselImage = () => {
   const src = [
     {
       id: 1,
-      src: '/photos/carousel/2.svg'
-    },
-    {
-      id: 2,
-      src: '/photos/carousel/3.svg'
-    },
-    {
-      id: 3,
       src: '/photos/carousel/4.svg'
     },
     {
-      id: 4,
+      id: 2,
       src: '/photos/carousel/5.svg'
     },
     {
-      id: 5,
+      id: 3,
+      src: '/photos/carousel/7.svg'
+    },
+    {
+      id: 4,
       src: '/photos/carousel/6.svg'
     },
     {
-      id: 6,
-      src: '/photos/carousel/7.svg'
+      id: 5,
+      src: '/photos/carousel/2.svg'
     },
+
   ]
 
   return (
