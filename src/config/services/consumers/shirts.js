@@ -3,8 +3,7 @@ import api from "../../api";
 const HANDLE_SHIRTS = "/shirts";
 
 export const fetchGetAllShirts = async () => {
-  const { shirts } = await api.get(HANDLE_SHIRTS);
-  return shirts;
+  return await api.get(HANDLE_SHIRTS);
 };
 export const fetchGetShirt = async (id) => {
   return await api.get(HANDLE_SHIRTS + "/" + id);

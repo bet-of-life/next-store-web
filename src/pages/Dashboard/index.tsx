@@ -1,13 +1,23 @@
 import { Box, useTheme, Theme } from "@mui/material";
 import CarouselImage from "../../components/Dashboard/Carousel/CarouselImage";
-import BannerCamisas from "../../components/Dashboard/Roupas/BannerCamisas";
 import ShirtsCatalog from "../../components/Dashboard/Roupas/ShirtsCatalog";
 import Layout from "../../components/Layout";
 import WhatsAppButton from "../../components/Whatsapp/WhatsAppButton";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import { fetchGetAllShirts } from "../../config/services/consumers/shirts";
 
+interface AllDataShirtsProps {
+  data: [{
+    id: number,
+    src: string,
+    srcHover: string,
+    name: string,
+    price: string,
+    oldPrice: string,
+  }]
+}
 
-const Dashboard = () => {
+const Dashboard = ({ data }: AllDataShirtsProps) => {
   const theme = useTheme()
   const { sm, md } = useMediaQuery()
 
@@ -23,9 +33,7 @@ const Dashboard = () => {
           alignItems='center'
           paddingY={theme.spacing(3)}
         >
-          <ShirtsCatalog />
-          <ShirtsCatalog />
-          <ShirtsCatalog />
+          <ShirtsCatalog data={data} />
         </Box>
       </Box>
     </Layout>
@@ -33,3 +41,13 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
+
+export const getServerSideProps = async () => {
+  const response = await fetchGetAllShirts()
+
+  return {
+    props: {
+      data: response.data
+    }
+  }
+}
