@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Modal, Typography, Grid, Button, Link } from "@mui/material";
+import {
+  Modal,
+  Typography,
+  Grid,
+  Button,
+  Link,
+  CircularProgress,
+} from "@mui/material";
 import useThemeMode from "../../../../../hooks/useThemeMode";
 import useMediaQuery from "../../../../../hooks/useMediaQuery";
 import { tokens } from "../../../../../themes/theme";
@@ -11,6 +18,9 @@ import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInputAndConfirmPassword";
 import PhoneAndCpfInput from "./components/PhoneAndCpfInput";
 import { toast } from "react-toastify";
+import { validateCPF } from "../../../../../utils/validateCpf";
+import { validatePhoneNumber } from "../../../../../utils/validatePhone";
+import { handleSubmit } from "./utils";
 
 interface ModalRegisterProps {
   open: boolean;
@@ -29,7 +39,7 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
   const { mode } = useThemeMode();
   const { sm } = useMediaQuery();
   const { toggleModalLogin, toggleModalRegister } = useModal();
-
+  const [isLoading, setIsLoading] = useState<Boolean>(false);
   const colors = tokens(mode);
 
   const [errorRegisterUser, setErroRegisterUser] =
@@ -50,124 +60,6 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
     phone: "",
     cpf: "",
   });
-
-  const handleSubmit = async () => {
-    if (
-      !userLogin.email &&
-      !userLogin.password &&
-      !userLogin.confirmPassword &&
-      !userLogin.cpf &&
-      !userLogin.name &&
-      !userLogin.phone
-    ) {
-      setErroRegisterUser({
-        ...errorRegisterUser,
-        errorEmail: true,
-        errorPassword: true,
-        errorName: true,
-        errorConfirmPassowrd: true,
-        errorPhone: true,
-        errorCpf: true,
-        errorMessage: "Por favor, preencha os campos!",
-      });
-    } else if (!userLogin.email) {
-      setErroRegisterUser({
-        ...errorRegisterUser,
-        errorEmail: true,
-        errorPassword: false,
-        errorName: false,
-        errorConfirmPassowrd: false,
-        errorPhone: false,
-        errorCpf: false,
-        errorMessage: "Por favor, insira um e-mail!",
-      });
-    } else if (!userLogin.password) {
-      setErroRegisterUser({
-        ...errorRegisterUser,
-        errorEmail: false,
-        errorPassword: true,
-        errorName: false,
-        errorConfirmPassowrd: false,
-        errorPhone: false,
-        errorCpf: false,
-        errorMessage: "Por favor, insira uma senha!",
-      });
-    } else if (!userLogin.confirmPassword) {
-      setErroRegisterUser({
-        ...errorRegisterUser,
-        errorEmail: false,
-        errorPassword: false,
-        errorName: false,
-        errorConfirmPassowrd: true,
-        errorPhone: false,
-        errorCpf: false,
-        errorMessage: "Por favor, insira uma senha!",
-      });
-    } else if (!userLogin.cpf) {
-      setErroRegisterUser({
-        ...errorRegisterUser,
-        errorEmail: false,
-        errorPassword: false,
-        errorName: false,
-        errorConfirmPassowrd: false,
-        errorPhone: false,
-        errorCpf: true,
-        errorMessage: "Por favor, insira uma senha!",
-      });
-    } else if (!userLogin.phone) {
-      setErroRegisterUser({
-        ...errorRegisterUser,
-        errorEmail: false,
-        errorPassword: false,
-        errorName: false,
-        errorConfirmPassowrd: false,
-        errorPhone: true,
-        errorCpf: false,
-        errorMessage: "Por favor, insira uma senha!",
-      });
-    } else if (!userLogin.name) {
-      setErroRegisterUser({
-        ...errorRegisterUser,
-        errorEmail: false,
-        errorPassword: false,
-        errorName: true,
-        errorConfirmPassowrd: false,
-        errorPhone: false,
-        errorCpf: false,
-        errorMessage: "Por favor, insira uma senha!",
-      });
-    } else {
-      if (!validarEmail(userLogin.email)) {
-        setErroRegisterUser({
-          ...errorRegisterUser,
-          errorEmail: true,
-          errorPassword: false,
-          errorName: false,
-          errorConfirmPassowrd: false,
-          errorPhone: false,
-          errorCpf: false,
-          errorMessage: "Por favor, insira um e-mail válido!",
-        });
-      } else {
-        const originalString = "+55" + userLogin.phone;
-        const stringWithoutPunctuation = originalString.replace(/[()-]/g, ''); // Remove parênteses e traço
-        const stringWithoutFirstNine = stringWithoutPunctuation.replace("9", ''); // Remove o primeiro dígito 9
-        try{
-          await fetchPostUsers({...userLogin, phone: stringWithoutFirstNine});
-          toggleModalRegister();
-          toast.success("Usuário cadastrado com sucesso!", {
-            autoClose: 2000
-          })
-        }catch(error){
-          console.log(error)
-          toast.error(error.message, {
-            autoClose:2000
-          })
-        }
-        
-      }
-    }
-  };
 
   const handleClodeModal = () => {
     toggleModalRegister();
@@ -231,12 +123,26 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
             <Button
               variant="contained"
               fullWidth
-              onClick={handleSubmit}
+              onClick={() =>
+                handleSubmit({
+                  userLogin: userLogin,
+                  setErroRegisterUser: setErroRegisterUser,
+                  errorRegisterUser: errorRegisterUser,
+                  toggleModalRegister: toggleModalLogin,
+                  setIsLoading: setIsLoading,
+                })
+              }
               sx={{ bgcolor: colors.grey[100] }}
             >
-              <Typography sx={{ color: colors.grey[900], fontWeight: "bold" }}>
-                Criar conta
-              </Typography>
+              {isLoading ? (
+                <CircularProgress size={18} />
+              ) : (
+                <Typography
+                  sx={{ color: colors.grey[900], fontWeight: "bold" }}
+                >
+                  Criar conta
+                </Typography>
+              )}
             </Button>
           </Grid>
           <Grid item display="flex" justifyContent="center" alignItems="center">

@@ -21,8 +21,10 @@ const PhoneAndCpfInput = ({setErroRegisterUser, errorRegisterUser, setUserLogin,
       errorConfirmPassowrd: false,
     });
     e.preventDefault();
+    console.log(e.target.value)
     setUserLogin({ ...userLogin, cpf: e.target.value });
   };
+  console.log(userLogin.cpf)
 
   return (
     <>
@@ -61,7 +63,7 @@ const PhoneAndCpfInput = ({setErroRegisterUser, errorRegisterUser, setUserLogin,
             </Grid>
             <Grid item xs={6}>
               <InputMask
-                mask="999-999-999-99"
+                mask="999.999.999-99"
                 maskChar="_"
                 alwaysShowMask
                 onChange={handleChangeCpf}
