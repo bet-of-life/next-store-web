@@ -38,7 +38,7 @@ const PasswordInput = ({ setErroRegisterUser, errorRegisterUser, setUserLogin, u
           <Grid container item direction="row">
             <TextField
               id="outlined-basic2"
-              label="Password"
+              label="Senha"
               variant="filled"
               required
               type={showPassword ? "text" : "password"}
@@ -64,7 +64,7 @@ const PasswordInput = ({ setErroRegisterUser, errorRegisterUser, setUserLogin, u
           <Grid container item direction="row">
             <TextField
               id="outlined-basic2"
-              label="ConfirmPassword"
+              label="Confirme sua senha"
               variant="filled"
               required
               type={showPassword ? "text" : "confirmPassword"}

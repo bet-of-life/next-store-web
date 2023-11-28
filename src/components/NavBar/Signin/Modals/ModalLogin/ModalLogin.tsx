@@ -149,7 +149,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
           <Grid container item direction='row' >
             <TextField
               id="outlined-basic1"
-              label="Password"
+              label="Senha"
               variant='filled'
               required
               type={showPassword ? 'text' : 'password'}
