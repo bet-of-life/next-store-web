@@ -1,12 +1,12 @@
 import { ChangeEvent, useContext, useState } from 'react';
 import { Modal, Typography, Grid, TextField, Button, IconButton, Link, Box } from '@mui/material'
-import useThemeMode from '../../../../hooks/useThemeMode'
+import useThemeMode from '../../../../../hooks/useThemeMode'
 import { VisibilityOff, Visibility } from '@mui/icons-material';
-import useMediaQuery from '../../../../hooks/useMediaQuery';
-import { tokens } from '../../../../themes/theme';
-import { AuthContext } from '../../../../context/AuthContenxt';
-import useModal from '../../../../hooks/useModal';
-import { validarEmail } from '../../../../utils/validateEmail';
+import useMediaQuery from '../../../../../hooks/useMediaQuery';
+import { tokens } from '../../../../../themes/theme';
+import { AuthContext } from '../../../../../context/AuthContenxt';
+import useModal from '../../../../../hooks/useModal';
+import { validarEmail } from '../../../../../utils/validateEmail';
 
 interface ModalLoginProps {
   open: boolean
@@ -42,8 +42,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setErrorUser({
       ...errorUser,
-      errorEmail: false,
-      errorMessage: 'Por favor, insira um e-mail!'
+      errorEmail: false
     })
     e.preventDefault()
     setUserLogin({ ...userLogin, email: e.target.value })
@@ -52,8 +51,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setErrorUser({
       ...errorUser,
-      errorPassword: false,
-      errorMessage: 'Por favor, insira uma senha!'
+      errorPassword: false
     })
     e.preventDefault()
     setUserLogin({ ...userLogin, password: e.target.value })
