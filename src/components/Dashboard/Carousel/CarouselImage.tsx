@@ -9,23 +9,27 @@ const CarouselImage = () => {
   const src = [
     {
       id: 1,
-      src: '/photos/carousel/carousel1.jpeg'
+      src: '/photos/carousel/2.svg'
     },
     {
       id: 2,
-      src: '/photos/carousel/carousel6.jpeg'
+      src: '/photos/carousel/3.svg'
     },
     {
       id: 3,
-      src: '/carousel/wallpaper3.jpg'
+      src: '/photos/carousel/4.svg'
     },
     {
       id: 4,
-      src: '/carousel/wallpaper4.jpg'
+      src: '/photos/carousel/5.svg'
     },
     {
       id: 5,
-      src: '/carousel/wallpaper5.jpg'
+      src: '/photos/carousel/6.svg'
+    },
+    {
+      id: 6,
+      src: '/photos/carousel/7.svg'
     },
   ]
 
