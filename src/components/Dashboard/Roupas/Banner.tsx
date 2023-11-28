@@ -37,12 +37,12 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
   return (
     <Box
       key={id}
-      onClick={() => router.push(`/item/${id}`)}
+      onClick={() => router.push(`/shirtDetail/${id}`)}
       display="flex"
       flexDirection="column"
       alignItems="center"
       flex="none"
-      width={sm ? "163px" : md ? "230px" : "250px"}
+      width={sm ? "163px" : md ? "230px" : "264px"}
       height={sm ? "250px" : md ? "330px" : "450px"}
       borderRadius={3}
       gap={sm ? 1 : md ? 3 : 4}
@@ -55,7 +55,7 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
         <Image
           src={hoveredImage}
           alt="camisa"
-          width={250}
+          width={264}
           height={310}
           style={{ borderRadius: '8px 8px 0 0' }}
         />

@@ -7,8 +7,7 @@ export const fetchGetAllShirts = async () => {
   return shirts;
 };
 export const fetchGetShirt = async (id) => {
-  const { shirts } = await api.get(HANDLE_SHIRTS + "/" + id);
-  return shirts;
+  return await api.get(HANDLE_SHIRTS + "/" + id);
 };
 
 //values:  src, srcHover, name, price, oldPrice
