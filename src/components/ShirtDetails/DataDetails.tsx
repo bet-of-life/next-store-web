@@ -1,8 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import useThemeMode from "../../hooks/useThemeMode";
 import { tokens } from "../../themes/theme";
-import RadioGroupSizes from "./RadioGroupSizes";
 import SocialIcons from "../NavBar/SocialIcons";
+import { useState } from "react";
+import ShirtSizes from "./ShirtSizes";
+import { data } from "./utils";
 
 interface DataDetailsProps {
   name: string,
@@ -14,8 +16,10 @@ const DataDetails = ({ name, price, oldPrice }: DataDetailsProps) => {
   const { mode } = useThemeMode()
   const colors = tokens(mode)
 
+  const [shirtSize, setShirtSize] = useState<string>('')
+  console.log(shirtSize)
   return (
-    <Box bgcolor={colors.grey[900]} p={2} borderRadius={3}>
+    <Box ml={2}>
       <Typography variant='h5'>
         {name}
       </Typography>
@@ -32,19 +36,34 @@ const DataDetails = ({ name, price, oldPrice }: DataDetailsProps) => {
           </Typography>
         </Box>
       </Box>
-      <Box mt={5}>
-        <RadioGroupSizes />
-      </Box>
-      <Button
-        variant="contained"
-        sx={{ bgcolor: colors.grey[100], mt: '40px' }}
-        fullWidth
+      <Box
+        mt={5}
+        display='flex'
+        flexDirection='column'
+        gap={2}
+        justifyContent='start'
+        alignItems='start'
       >
-        <Typography sx={{ color: colors.grey[800], fontWeight: 'bold' }}>
-          Comprar
+        <Typography>
+          Tamanho: {shirtSize}
         </Typography>
-      </Button>
-      <Box display='flex' gap={1} mt={5.5} justifyContent='center' alignItems='center' flexDirection='column'>
+        <Box display='flex' gap={2}>
+          {data.map((item, key) => (
+            <ShirtSizes key={key} value={item.value} setShirtSizes={setShirtSize} />
+          ))}
+        </Box>
+      </Box>
+      <Box display='flex' justifyContent='start' alignItems='center'>
+        <Button
+          variant="contained"
+          sx={{ bgcolor: colors.grey[100], mt: '40px', width: '15rem', borderRadius: 2, height: '2.7rem' }}
+        >
+          <Typography sx={{ color: colors.grey[800], fontWeight: 'bold' }}>
+            Comprar
+          </Typography>
+        </Button>
+      </Box>
+      <Box display='flex' gap={1} mt={5.5} justifyContent='start' alignItems='start' flexDirection='column'>
         <Typography>
           Compartilhe
         </Typography>
