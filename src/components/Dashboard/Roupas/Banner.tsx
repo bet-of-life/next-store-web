@@ -43,12 +43,12 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
       alignItems="center"
       flex="none"
       width={sm ? "163px" : md ? "230px" : "264px"}
-      height={sm ? "250px" : md ? "330px" : "450px"}
+      height={sm ? "250px" : md ? "330px" : "530px"}
       borderRadius={3}
       gap={sm ? 1 : md ? 3 : 4}
       sx={{ cursor: "pointer", bgcolor: colors.black[900], ":hover": { boxShadow: 'top: 10px;box-shadow:0 10px 10px #252525' } }}
     >
-      <Box width='100%' height='310px'
+      <Box width='100%' height='380px'
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
@@ -56,7 +56,7 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
           src={hoveredImage}
           alt="camisa"
           width={264}
-          height={310}
+          height={380}
           style={{ borderRadius: '8px 8px 0 0' }}
         />
       </Box>
@@ -67,6 +67,7 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
         justifyContent="start"
         alignItems="start"
         px={1}
+        gap={1}
       >
         <Typography mb={1} color={colors.grey[100]} variant="body2">
           {name}
@@ -74,15 +75,18 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
         <Typography variant="body2" sx={{ textDecoration: "line-through" }} color={colors.grey[100]}>
           R$ {oldPrice}
         </Typography>
-        <Typography
-          variant="body1"
-          fontWeight="bold"
-          mt={1}
-          width={sm ? 100 : 200}
-          color={colors.grey[100]}
-        >
-          R$ {price}
-        </Typography>
+        <Box display='flex' alignItems='end' gap={1}>
+          <Typography
+            variant="body1"
+            fontWeight="bold"
+            color={colors.grey[100]}
+          >
+            R$ {price}
+          </Typography>
+          <Typography variant="body2">
+            3x R$ {(parseFloat(price) / 3).toFixed(2)} sem juros
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );

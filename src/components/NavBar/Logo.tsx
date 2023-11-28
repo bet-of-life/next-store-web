@@ -5,7 +5,7 @@ import Link from "next/link";
 const Logo = () => {
   return (
     <Box mt={1} height={"100%"} display='flex' justifyContent='center' alignItems='center'>
-      <Link href='/'>
+      <Link href='/dashboard'>
         <Image src='/logo.png' alt="logo" width={150} height={60} />
       </Link>
     </Box>
