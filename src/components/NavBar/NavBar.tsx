@@ -34,8 +34,8 @@ const NavBar = () => {
           {/* <Grid item xs={2} sm={2}>
         
           </Grid> */}
-          <Grid item xs={2} sm={5}>
-            {!sm && <SearchNavBar width="40%" variant="filled" />}
+          <Grid item xs={4} sm={5}>
+            <SearchNavBar width="40%" variant="filled" />
           </Grid>
 
           <Grid item xs={4} sm={2}>

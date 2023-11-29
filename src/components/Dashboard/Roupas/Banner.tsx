@@ -75,18 +75,13 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
         <Typography variant="body2" sx={{ textDecoration: "line-through" }} color={colors.grey[100]}>
           R$ {oldPrice}
         </Typography>
-        <Box display='flex' alignItems='end' gap={1}>
-          <Typography
-            variant="body1"
-            fontWeight="bold"
-            color={colors.grey[100]}
-          >
-            R$ {price}
-          </Typography>
-          <Typography variant="body2">
-            3x R$ {(parseFloat(price) / 3).toFixed(2)} sem juros
-          </Typography>
-        </Box>
+        <Typography
+          variant="body1"
+          fontWeight="bold"
+          color={colors.grey[100]}
+        >
+          R$ {price}
+        </Typography>
       </Box>
     </Box>
   );

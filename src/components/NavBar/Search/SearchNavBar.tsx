@@ -18,7 +18,7 @@ const SearchNavBar: React.FC<SearchNavBarprops> = ({ width, variant }) => {
   return (
     <Box display="flex" height='100%' justifyContent='center' alignItems='center' sx={{ gap: "1rem" }}>
       <SocialIcons />
-      <Box display='flex' width={width} justifyContent='center' alignItems='center'>
+      {!sm && <Box display='flex' width={width} justifyContent='center' alignItems='center'>
         <TextField
           id="outlined-basic"
           label="Pesquise..."
@@ -31,7 +31,7 @@ const SearchNavBar: React.FC<SearchNavBarprops> = ({ width, variant }) => {
           <SearchIcon sx={{ color: colors.grey[100] }} />
         </IconButton>
 
-      </Box>
+      </Box>}
     </Box>
   );
 }
