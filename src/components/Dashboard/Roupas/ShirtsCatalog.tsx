@@ -18,12 +18,12 @@ const ShirtsCatalog = ({ data }: DataShirtProps) => {
 
   return (
     <Box
-      width={md ? "100vw" : "75vw"}
+      width='100%'
       height={sm ? "250px" : md ? "350px" : "auto"}
       display="flex"
       justifyContent='center'
       alignItems="center"
-      gap={4}
+      gap={'1.5rem'}
     >
       {data.map((data) => (
         <Banner

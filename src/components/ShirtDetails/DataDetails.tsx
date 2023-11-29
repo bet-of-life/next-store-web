@@ -1,10 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import useThemeMode from "../../hooks/useThemeMode";
 import { tokens } from "../../themes/theme";
-import SocialIcons from "../NavBar/SocialIcons";
 import { useState } from "react";
 import ShirtSizes from "./ShirtSizes";
 import { data } from "./utils";
+import IconsDetails from "./IconsDetails";
 
 interface DataDetailsProps {
   name: string,
@@ -67,7 +67,7 @@ const DataDetails = ({ name, price, oldPrice }: DataDetailsProps) => {
         <Typography>
           Compartilhe
         </Typography>
-        <SocialIcons />
+        <IconsDetails />
       </Box>
     </Box>
   );

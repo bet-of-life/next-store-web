@@ -24,7 +24,7 @@ const ShirtSizes = ({ setShirtSizes, value }: ShirtSizesProps) => {
       borderRadius={2}
       borderColor={colors.grey[600]}
       onClick={() => setShirtSizes(value)}
-      sx={{ cursor: 'pointer' }}
+      sx={{ cursor: 'pointer', '&:hover': { borderColor: colors.grey[100] } }}
     >
       <Typography>
         {value}
