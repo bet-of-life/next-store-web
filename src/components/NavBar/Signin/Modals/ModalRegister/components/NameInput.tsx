@@ -2,21 +2,13 @@ import { Grid, TextField } from "@mui/material";
 import React, { ChangeEvent } from "react";
 import useThemeMode from "../../../../../../hooks/useThemeMode";
 import { tokens } from "../../../../../../themes/theme";
-import { UserRegisterErrorState } from "../utils";
+import { DataInputProps } from "../interfaces";
 
-const NameInput = (
-{ setErroRegisterUser,
-  errorRegisterUser,
-  setUserLogin,
-  userLogin}
-) => {
+const NameInput: React.FC<DataInputProps> = ({ setErroRegisterUser, errorRegisterUser, setUserLogin, userLogin }) => {
   const { mode } = useThemeMode();
   const colors = tokens(mode);
   const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-    setErroRegisterUser({
-      ...errorRegisterUser,
-      errorName: false,
-    });
+    setErroRegisterUser({ ...errorRegisterUser, errorName: false, });
     e.preventDefault();
     setUserLogin({ ...userLogin, name: e.target.value });
   };
