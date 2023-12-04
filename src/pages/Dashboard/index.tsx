@@ -33,7 +33,7 @@ const Dashboard = ({ data }: AllDataShirtsProps) => {
           alignItems='center'
           paddingY={theme.spacing(3)}
         >
-          <ShirtsCatalog data={data} />
+          {/* <ShirtsCatalog data={data} /> */}
         </Box>
       </Box>
     </Layout>

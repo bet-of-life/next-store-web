@@ -22,7 +22,6 @@ const ShirtsCatalog = ({ data }: DataShirtProps) => {
       height="auto"
       display="flex"
       justifyContent='center'
-      py='1rem'
     >
       <Box width={md ? '100%' : '75vw'} height='auto' display='flex' gap='1.5rem' justifyContent='center'>
         {data.map((data) => (

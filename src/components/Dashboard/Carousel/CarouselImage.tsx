@@ -32,7 +32,7 @@ const CarouselImage = () => {
 
   return (
     <Carousel
-      height='60vw'
+      //height={md ? '70vw' : '40rem'}
       navButtonsAlwaysVisible={true}
       navButtonsProps={{ style: { opacity: 0.2 } }}
       indicators={true}

@@ -24,7 +24,7 @@ const NavBar = () => {
         <Grid
           container
           direction="row"
-          height={90}
+          height={sm ? 70 : md ? 80 : 90}
           paddingX={sm ? 2 : md ? 2 : lg ? 5 : 18}
           bgcolor={colors.black[800]}
         >
@@ -43,8 +43,8 @@ const NavBar = () => {
           </Grid>
 
           <Grid item xs={4} sm={5}>
-            {!sm && <SignIn />}
-            {sm && <SigninSizeSm />}
+            {!md && <SignIn />}
+            {md && <SigninSizeSm />}
           </Grid>
           {/* <Grid item xs={2} sm={4}>
            

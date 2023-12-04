@@ -13,12 +13,12 @@ interface SearchNavBarprops {
 const SearchNavBar: React.FC<SearchNavBarprops> = ({ width, variant }) => {
   const { mode } = useThemeMode()
   const colors = tokens(mode)
-  const { sm } = useMediaQuery()
+  const { md } = useMediaQuery()
 
   return (
     <Box display="flex" height='100%' justifyContent='center' alignItems='center' sx={{ gap: "1rem" }}>
       <SocialIcons />
-      {!sm && <Box display='flex' width={width} justifyContent='center' alignItems='center'>
+      {!md && <Box display='flex' width={width} justifyContent='center' alignItems='center'>
         <TextField
           id="outlined-basic"
           label="Pesquise..."
