@@ -25,8 +25,9 @@ const Dashboard = ({ data }: AllDataShirtsProps) => {
   return (
     <Layout>
       <Box width='100%' height='auto'>
-
-        <CarouselImage />
+        <Box width='100%' height='50vw'>
+          <CarouselImage />
+        </Box>
         <Box
           display='flex'
           flexDirection='column'

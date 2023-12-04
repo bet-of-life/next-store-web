@@ -17,7 +17,7 @@ interface BannerProps {
 const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
   const { mode } = useThemeMode()
   const [hoveredImage, setHoveredImage] = useState<string>(src);
-  const { sm, md } = useMediaQuery();
+  const { sm, md, lg } = useMediaQuery();
   const router = useRouter()
   const colors = tokens(mode)
 
@@ -34,6 +34,9 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
     setHoveredImage(src);
   };
 
+  const customWidth = sm ? 163 : md ? 200 : lg ? 220 : 250
+  const customHeight = sm ? 365 : md ? 400 : lg ? 435 : 500
+
   return (
     <Box
       key={id}
@@ -42,21 +45,21 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
       flexDirection="column"
       alignItems="center"
       flex="none"
-      width={sm ? "163px" : md ? "230px" : "264px"}
-      height={sm ? "250px" : md ? "330px" : "530px"}
+      width={customWidth}
+      height={customHeight}
       borderRadius={3}
-      gap={sm ? 1 : md ? 3 : 4}
+      gap={sm ? 0.5 : md ? 1 : 1.5}
       sx={{ cursor: "pointer", bgcolor: colors.black[900], ":hover": { boxShadow: 'top: 10px;box-shadow:0 10px 10px #252525' } }}
     >
-      <Box width='100%' height='380px'
+      <Box width='100%' height={customHeight / 1.35}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
         <Image
           src={hoveredImage}
           alt="camisa"
-          width={264}
-          height={380}
+          width={customWidth}
+          height={customHeight / 1.38}
           style={{ borderRadius: '8px 8px 0 0' }}
         />
       </Box>
@@ -67,16 +70,24 @@ const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
         justifyContent="start"
         alignItems="start"
         px={1}
-        gap={1}
+        gap={sm ? '0.3px' : md ? '1px' : '6px'}
       >
-        <Typography mb={1} color={colors.grey[100]} variant="body2">
+        <Typography
+          mb={0.5}
+          color={colors.grey[100]}
+          variant={sm ? "caption" : "body2"}
+        >
           {name}
         </Typography>
-        <Typography variant="body2" sx={{ textDecoration: "line-through" }} color={colors.grey[100]}>
+        <Typography
+          variant={sm ? "caption" : "body2"}
+          sx={{ textDecoration: "line-through" }}
+          color={colors.grey[100]}
+        >
           R$ {oldPrice}
         </Typography>
         <Typography
-          variant="body1"
+          variant={sm ? "body2" : "body1"}
           fontWeight="bold"
           color={colors.grey[100]}
         >
