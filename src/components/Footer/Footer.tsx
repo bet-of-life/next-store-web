@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <Box
       width='100%'
-      height='160px'
+      height='20vw'
       display='flex'
       bgcolor={colors.black[900]}
       pl='200px'
