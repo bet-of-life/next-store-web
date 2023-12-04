@@ -5,6 +5,7 @@ import Layout from "../../components/Layout";
 import WhatsAppButton from "../../components/Whatsapp/WhatsAppButton";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { fetchGetAllShirts } from "../../config/services/consumers/shirts";
+import SearchNavBar from "../../components/NavBar/Search/SearchNavBar";
 
 interface AllDataShirtsProps {
   data: [{
@@ -19,11 +20,12 @@ interface AllDataShirtsProps {
 
 const Dashboard = ({ data }: AllDataShirtsProps) => {
   const theme = useTheme()
-  const { sm, md } = useMediaQuery()
+  const { sm, md, lg } = useMediaQuery()
 
   return (
     <Layout>
       <Box width='100%' height='auto'>
+
         <CarouselImage />
         <Box
           display='flex'

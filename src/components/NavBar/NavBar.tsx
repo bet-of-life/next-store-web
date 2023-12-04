@@ -10,6 +10,7 @@ import ModalRegister from "./Signin/Modals/ModalRegister/ModalRegister";
 import { tokens } from "../../themes/theme";
 import { AuthContext } from "../../context/AuthContenxt";
 import { useContext } from "react";
+import SocialIcons from "./SocialIcons";
 
 const NavBar = () => {
   const theme = useTheme();
@@ -17,7 +18,7 @@ const NavBar = () => {
   const { sm, md, lg } = useMediaQuery();
   const { isOpenLogin, isOpenRegister, toggleModalLogin, toggleModalRegister } = useModal();
   const { isAuthenticated } = useContext(AuthContext)
-
+  console.log(lg)
   return (
     <Box>
       <AppBar position="fixed">
@@ -28,14 +29,9 @@ const NavBar = () => {
           paddingX={sm ? 2 : md ? 2 : lg ? 5 : 18}
           bgcolor={colors.black[800]}
         >
-          {/* <Grid item xs={2} sm={1}>
-            <Menu />
-          </Grid> */}
-          {/* <Grid item xs={2} sm={2}>
-        
-          </Grid> */}
+          
           <Grid item xs={4} sm={5}>
-            <SearchNavBar width="40%" variant="filled" />
+            {!lg ?  <SearchNavBar width="40%" variant="filled" /> : <SocialIcons />}
           </Grid>
 
           <Grid item xs={4} sm={2}>
@@ -46,10 +42,10 @@ const NavBar = () => {
             {!sm && <SignIn />}
             {sm && <SigninSizeSm />}
           </Grid>
-          {/* <Grid item xs={2} sm={4}>
-           
-          </Grid> */}
-        </Grid>
+
+          </Grid>
+        {lg &&  <SearchNavBar width="40%" variant="filled" />}
+       
       </AppBar>
 
       <ModalLogin open={isOpenLogin} handleClose={toggleModalLogin} />
