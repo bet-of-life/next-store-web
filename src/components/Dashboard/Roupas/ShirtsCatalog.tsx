@@ -19,23 +19,24 @@ const ShirtsCatalog = ({ data }: DataShirtProps) => {
   return (
     <Box
       width='100%'
-      height={sm ? "250px" : md ? "350px" : "auto"}
+      height="auto"
       display="flex"
       justifyContent='center'
-      alignItems="center"
-      gap={'1.5rem'}
+      py='1rem'
     >
-      {data.map((data) => (
-        <Banner
-          key={data.id}
-          id={data.id}
-          src={data.src}
-          srcHover={data.srcHover}
-          name={data.name}
-          oldPrice={data.oldPrice}
-          price={data.price}
-        />
-      ))}
+      <Box width={md ? '100%' : '75vw'} height='auto' display='flex' gap='1.5rem' justifyContent='center'>
+        {data.map((data) => (
+          <Banner
+            key={data.id}
+            id={data.id}
+            src={data.src}
+            srcHover={data.srcHover}
+            name={data.name}
+            oldPrice={data.oldPrice}
+            price={data.price}
+          />
+        ))}
+      </Box>
     </Box>
   );
 };
