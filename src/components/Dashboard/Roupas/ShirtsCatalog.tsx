@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import Banner from "./Banner";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
@@ -55,7 +55,7 @@ const ShirtsCatalog = ({ data }: DataShirtProps) => {
         width={md ? '90%' : '80%'}
         height='auto'
         display='flex'
-        gap={sm ? '8px' : md ? '15px' : '25px'}
+        gap={sm ? '15px' : md ? '15px' : '25px'}
         justifyContent={lg ? 'start' : 'center'}
         alignItems='center'
         sx={{ overflowX: 'auto', scrollBehavior: 'smooth', '&::-webkit-scrollbar': { display: 'none' } }}

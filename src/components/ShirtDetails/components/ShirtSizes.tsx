@@ -1,5 +1,5 @@
-import useThemeMode from '../../hooks/useThemeMode';
-import { tokens } from '../../themes/theme';
+import useThemeMode from '../../../hooks/useThemeMode';
+import { tokens } from '../../../themes/theme';
 import { Box, Typography } from '@mui/material';
 import { useState } from 'react';
 
