@@ -42,18 +42,19 @@ const CarouselImage = () => {
     sizeWindowWidth.width >= 900 && sizeWindowWidth.width <= 1000
       ? "-6rem"
       : sizeWindowWidth.width >= 1100
-        ? "-2.4rem"
+        ? "-5rem"
         : "-4rem";
   const verifyHeightSm = sizeWindowWidth.width < 400 ? 460 : 500;
   const verifyHeightLg = sizeWindowWidth.width > 1200 ? 1000 : 800;
 
   return (
     <Carousel
+      height={sm ? verifyHeightSm : md ? 700 : verifyHeightLg}
       navButtonsAlwaysVisible={true}
-      navButtonsProps={{ style: { color: "black", backgroundColor: "white" } }}
+      navButtonsProps={{ style: { color: "black", backgroundColor: "white", marginTop: '70px' } }}
       indicators={true}
       indicatorContainerProps={{
-        style: { zIndex: 1, marginTop: "-150px", position: "relative" },
+        style: { zIndex: 1, marginTop: "-200px", position: "relative" },
       }}
       sx={{
         mt: sm ? verifyMarginTopSm : md ? verifyMarginTopMd : verifyMarginTopLg,

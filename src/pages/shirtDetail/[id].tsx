@@ -1,9 +1,8 @@
 import Layout from "../../components/Layout";
 import { Box, Typography } from "@mui/material";
 import { fetchGetAllShirts, fetchGetShirt } from '../../config/services/consumers/shirts';
-import ImageDetail from "../../components/ShirtDetails/ImageDetail";
-import DataDetails from "../../components/ShirtDetails/DataDetails";
 import ShirtsCatalog from "../../components/Dashboard/Roupas/ShirtsCatalog";
+import ShirtDetail from "../../components/ShirtDetails/ShirtDetails";
 
 interface DataShirtProps {
   data: {
@@ -29,18 +28,13 @@ const shirtDetail = ({ data, allData }: DataShirtProps) => {
   return (
     <Layout>
       <Box display='flex' flexDirection='column' width='100%' height='auto' justifyContent='center' alignItems='center'>
-        <Box display='flex' width='75vw ' height='auto' py={8} gap={2}>
-          <Box width='62%' height='auto'>
-            <ImageDetail src={data.src} srcHover={data.srcHover} />
+        <ShirtDetail data={data} />
+        <Box width='100%' py={3} borderTop='1px solid #423b3b'>
+          <Box display='flex' width='100%' height={50} justifyContent='center' alignItems='center'>
+            <Typography variant="h6">
+              Produtos Relacionados
+            </Typography>
           </Box>
-          <Box width='36%' height='auto'>
-            <DataDetails name={data.name} price={data.price} oldPrice={data.oldPrice} />
-          </Box>
-        </Box>
-        <Box display='flex' flexDirection='column' py={5} gap={3} borderTop='1px solid #423b3b'>
-          <Typography>
-            Produtos Relacionados
-          </Typography>
           <ShirtsCatalog data={allData} />
         </Box>
       </Box>

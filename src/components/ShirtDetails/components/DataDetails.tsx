@@ -1,9 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
-import useThemeMode from "../../hooks/useThemeMode";
-import { tokens } from "../../themes/theme";
+import useThemeMode from "../../../hooks/useThemeMode";
+import { tokens } from "../../../themes/theme";
 import { useState } from "react";
 import ShirtSizes from "./ShirtSizes";
-import { data } from "./utils";
+import { data } from "../utils";
 import IconsDetails from "./IconsDetails";
 
 interface DataDetailsProps {
@@ -19,7 +19,7 @@ const DataDetails = ({ name, price, oldPrice }: DataDetailsProps) => {
   const [shirtSize, setShirtSize] = useState<string>('')
   console.log(shirtSize)
   return (
-    <Box ml={2}>
+    <Box>
       <Typography variant='h5'>
         {name}
       </Typography>
