@@ -30,20 +30,20 @@ const CarouselImage = () => {
     sizeWindowWidth.width < 400
       ? "-4.1rem"
       : sizeWindowWidth.width >= 500
-      ? "-3.6rem"
-      : "-5.2rem";
+        ? "-3.6rem"
+        : "-5.2rem";
   const verifyMarginTopMd =
     sizeWindowWidth.width >= 600 && sizeWindowWidth.width < 700
       ? "-8.1rem"
       : sizeWindowWidth.width > 750
-      ? "-5.5rem"
-      : "-7rem";
+        ? "-5.5rem"
+        : "-7rem";
   const verifyMarginTopLg =
     sizeWindowWidth.width >= 900 && sizeWindowWidth.width <= 1000
       ? "-6rem"
       : sizeWindowWidth.width >= 1100
-      ? "-2.4rem"
-      : "-4rem";
+        ? "-2.4rem"
+        : "-4rem";
   const verifyHeightSm = sizeWindowWidth.width < 400 ? 460 : 500;
   const verifyHeightLg = sizeWindowWidth.width > 1200 ? 1000 : 800;
 
@@ -59,15 +59,14 @@ const CarouselImage = () => {
         mt: sm ? verifyMarginTopSm : md ? verifyMarginTopMd : verifyMarginTopLg,
       }}
     >
-      {src.map(
-        (item, key) => (
-          <Box
-            width={sizeWindowWidth.width}
-            height={sm ? verifyHeightSm : md ? 700 : verifyHeightLg}
-          >
-            <Image key={key} src={item.src} alt="wallpaper" fill={true} />
-          </Box>
-        )
+      {src.map((item, key) => (
+        <Box key={key}
+          width={sizeWindowWidth.width}
+          height={sm ? verifyHeightSm : md ? 700 : verifyHeightLg}
+        >
+          <Image src={item.src} alt="wallpaper" fill={true} />
+        </Box>
+      )
       )}
     </Carousel>
   );

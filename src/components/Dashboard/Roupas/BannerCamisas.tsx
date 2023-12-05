@@ -12,52 +12,7 @@ const BannerCamisas = () => {
   const { mode } = useThemeMode()
   const { sm, md } = useMediaQuery()
   const theme = useTheme()
-  const colors = tokens(theme.palette.mode)
-
-  const src = [
-    {
-      id: 1,
-      src: '/camisas/camisa1.png',
-      oldPrice: '200,00',
-      price: '150,00'
-    },
-    {
-      id: 2,
-      src: '/camisas/camisa2.jpg',
-      oldPrice: '200,00',
-      price: '150,00'
-    },
-    {
-      id: 3,
-      src: '/camisas/camisa3.jpg',
-      oldPrice: '200,00',
-      price: '150,00'
-    },
-    {
-      id: 4,
-      src: '/camisas/camisa4.jpg',
-      oldPrice: '200,00',
-      price: '150,00'
-    },
-    {
-      id: 5,
-      src: '/camisas/camisa5.jpg',
-      oldPrice: '200,00',
-      price: '150,00'
-    },
-    {
-      id: 6,
-      src: '/camisas/camisa6.jpg',
-      oldPrice: '200,00',
-      price: '150,00'
-    },
-    {
-      id: 7,
-      src: '/camisas/camisa7.jpg',
-      oldPrice: '200,00',
-      price: '150,00'
-    },
-  ]
+  const colors = tokens(mode)
 
   const handleLeftClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -91,7 +46,7 @@ const BannerCamisas = () => {
         ref={carousel}
         sx={{ overflowX: 'auto', scrollBehavior: 'smooth', '&::-webkit-scrollbar': { display: 'none' } }}
       >
-        {src.map((item) => (
+        {/* {src.map((item) => (
           <Box
             key={item.id}
             display='flex'
@@ -144,7 +99,7 @@ const BannerCamisas = () => {
               </Typography>
             </Box>
           </Box>
-        ))}
+        ))} */}
       </Box>
       <Button
         onClick={handleRightClick}
