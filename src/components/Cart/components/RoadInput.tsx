@@ -19,7 +19,6 @@ const RoadInput = ({setErrorAddress, errorAddress, address, setAddress}:InputPro
       <Typography>Rua</Typography>
       <TextField 
           id="outlined-basic1"
-          label="Rua"
           variant="filled"
           required
           InputLabelProps={{ style: { color: colors.grey[100] } }}

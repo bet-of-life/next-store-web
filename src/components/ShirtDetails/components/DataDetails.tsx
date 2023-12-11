@@ -10,6 +10,8 @@ import IconsDetails from "./IconsDetails";
 import { useRouter } from "next/navigation";
 
 import { toast } from "react-toastify";
+import { parseCookies } from "nookies";
+import useModal from "../../../hooks/useModal";
 
 interface DataDetailsProps {
   id: number,
@@ -20,17 +22,28 @@ interface DataDetailsProps {
 
 const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
   const { mode } = useThemeMode()
+  const { toggleModalLogin } = useModal();
   const colors = tokens(mode)
   const router = useRouter()
   const [shirtSize, setShirtSize] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
-  //const [cor, setCor] = useState<string>('White')
-
   const words = name?.split(' ')
   const num = words.length - 1
-
   const color = words[num] === 'White' ? 'White' : 'Black'
   const bgColor = color === 'White' ? 'white' : 'black'
+  
+  const handleVerifyToken = () => {
+    const cookies = parseCookies();
+    const token = cookies["nextauth.token"];
+
+    if (!token) {
+      return toggleModalLogin();
+    } else {
+      shirtSize ? router.push(`/shoppingCart/${id}/${shirtSize}/${color}`) : setError(true)
+    }
+    
+  
+  }
 
   return (
     <Box>
@@ -77,7 +90,7 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
         <Button
           variant="contained"
           sx={{ bgcolor: colors.grey[100], mt: '40px', width: '15rem', borderRadius: 2, height: '2.7rem' }}
-          onClick={() => shirtSize ? router.push(`/shoppingCart/${id}/${shirtSize}/${color}`) : setError(true)}
+          onClick={() => handleVerifyToken()}
         >
           <Typography sx={{ color: colors.grey[800], fontWeight: 'bold' }}>
             Comprar

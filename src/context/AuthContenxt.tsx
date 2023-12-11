@@ -74,7 +74,7 @@ function AuthProvider({ children }: AuthProviderProps) {
       setIsAuthenticated(true);
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
       toggleModalLogin();
-      router.push("/dashboard");
+      // router.push("/dashboard");
     } catch (err) {
       toast.error(err?.response?.data?.error, {
         autoClose: 2000,

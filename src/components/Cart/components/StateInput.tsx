@@ -19,7 +19,6 @@ const StateInput = ({setErrorAddress, errorAddress, address, setAddress}:InputPr
       <Typography>Cidade</Typography>
       <TextField 
           id="outlined-basic1"
-          label="Estado"
           variant="filled"
           required
           InputLabelProps={{ style: { color: colors.grey[100] } }}

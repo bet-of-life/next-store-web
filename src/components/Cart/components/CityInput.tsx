@@ -19,7 +19,6 @@ const CityInput = ({setErrorAddress, errorAddress, address, setAddress}:InputPro
       <Typography>Cidade</Typography>
       <TextField 
           id="outlined-basic1"
-          label="Cidade"
           variant="filled"
           required
           InputLabelProps={{ style: { color: colors.grey[100] } }}

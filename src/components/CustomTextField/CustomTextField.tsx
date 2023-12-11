@@ -23,8 +23,8 @@ const CustomTextField = styled(
     borderColorWhite,
     borderColorDark,
     themeMode,
-    ...props
-  }: CustomTextFieldProps) => <TextField {...props} />
+    ...rest
+  }: CustomTextFieldProps) => <TextField {...rest} />
 )(({ themeMode, color, borderColor, borderColorDark, borderColorWhite }) => ({
 
   "& .MuiOutlinedInput-input::-webkit-input-placeholder": {
