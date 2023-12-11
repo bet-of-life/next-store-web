@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { fetchGetAllShirts, fetchGetShirt } from '../../config/services/consumers/shirts';
 import ShirtsCatalog from "../../components/Dashboard/Roupas/ShirtsCatalog";
 import ShirtDetail from "../../components/ShirtDetails/ShirtDetails";
+import { NextPageContext } from "next";
 
 interface DataShirtProps {
   data: {
@@ -12,6 +13,9 @@ interface DataShirtProps {
     name: string,
     price: string,
     oldPrice: string,
+    srcDetail1: string,
+    srcDetail2: string,
+    srcDetail3: string,
   },
   allData: [{
     id: number,
@@ -44,7 +48,7 @@ const shirtDetail = ({ data, allData }: DataShirtProps) => {
 
 export default shirtDetail;
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps = async (context: NextPageContext) => {
   const response = await fetchGetShirt(context.query.id)
   const allResponse = await fetchGetAllShirts()
 

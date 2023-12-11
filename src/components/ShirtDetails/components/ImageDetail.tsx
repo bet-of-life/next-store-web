@@ -4,11 +4,12 @@ import useMediaQuery from "../../../hooks/useMediaQuery";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 
 interface ImageDetailProps {
-  src: string,
-  srcHover: string,
+  srcDetail1: string,
+  srcDetail2: string,
+  srcDetail3: string,
 }
 
-const ImageDetail = ({ src, srcHover }: ImageDetailProps) => {
+const ImageDetail = ({ srcDetail1, srcDetail2, srcDetail3 }: ImageDetailProps) => {
   const { sm, md, lg } = useMediaQuery()
   const sizeWindowWidth = useWindowDimensions()
 
@@ -20,8 +21,8 @@ const ImageDetail = ({ src, srcHover }: ImageDetailProps) => {
 
   return (
     <Box display='flex' gap={2}>
-      <Image src={src} alt="camisa" width={widthWindow} height={heightWindow} />
-      <Image src={srcHover} alt="camisa" width={widthWindow} height={heightWindow} />
+      <Image src={srcDetail3} alt="camisa" width={widthWindow} height={heightWindow} />
+      <Image src={srcDetail2} alt="camisa" width={widthWindow} height={heightWindow} />
     </Box>
   );
 }
