@@ -33,7 +33,7 @@ const ShirtDetail = ({ data }: DataShirtProps) => {
         <ImageDetail srcDetail1={data.srcDetail1} srcDetail2={data.srcDetail2} srcDetail3={data.srcDetail3} />
       </Box>
       <Box width={widthDetails} height='auto'>
-        <DataDetails name={data.name} price={data.price} oldPrice={data.oldPrice} />
+        <DataDetails id={data.id} name={data.name} price={data.price} oldPrice={data.oldPrice} />
       </Box>
     </Box>
   );

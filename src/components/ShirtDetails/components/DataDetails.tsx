@@ -1,3 +1,5 @@
+
+
 import { Box, Button, Typography } from "@mui/material";
 import useThemeMode from "../../../hooks/useThemeMode";
 import { tokens } from "../../../themes/theme";
@@ -5,19 +7,28 @@ import { useState } from "react";
 import ShirtSizes from "./ShirtSizes";
 import { data } from "../utils";
 import IconsDetails from "./IconsDetails";
+import { useRouter } from "next/navigation";
 
 interface DataDetailsProps {
+  id: number,
   name: string,
   price: string,
   oldPrice: string,
 }
 
-const DataDetails = ({ name, price, oldPrice }: DataDetailsProps) => {
+const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
   const { mode } = useThemeMode()
   const colors = tokens(mode)
-
+  const router = useRouter()
   const [shirtSize, setShirtSize] = useState<string>('')
-  console.log(shirtSize)
+  //const [cor, setCor] = useState<string>('White')
+
+  const words = name?.split(' ')
+  const num = words.length - 1
+
+  const color = words[num] === 'White' ? 'White' : 'Black'
+  const bgColor = color === 'White' ? 'white' : 'black'
+
   return (
     <Box>
       <Typography variant='h5'>
@@ -31,16 +42,21 @@ const DataDetails = ({ name, price, oldPrice }: DataDetailsProps) => {
           <Typography variant="h6" fontWeight='bold'>
             R$ {price}
           </Typography>
-          <Typography variant="body2">
-            3x de R$ {(parseFloat(price) / 3).toFixed(2)} sem juros no cartão
+        </Box>
+      </Box>
+      <Box display='flex' height={100} gap={1} alignItems='center'>
+        <Box>
+          <Typography>
+            Cor: {color}
           </Typography>
+        </Box>
+        <Box width={30} height={30} borderRadius={100} bgcolor={bgColor}>
         </Box>
       </Box>
       <Box
-        mt={5}
         display='flex'
         flexDirection='column'
-        gap={2}
+        gap={3}
         justifyContent='start'
         alignItems='start'
       >
@@ -57,6 +73,7 @@ const DataDetails = ({ name, price, oldPrice }: DataDetailsProps) => {
         <Button
           variant="contained"
           sx={{ bgcolor: colors.grey[100], mt: '40px', width: '15rem', borderRadius: 2, height: '2.7rem' }}
+          onClick={() => router.push(`/shoppingCart/${id}/${shirtSize}/${color}`)}
         >
           <Typography sx={{ color: colors.grey[800], fontWeight: 'bold' }}>
             Comprar
