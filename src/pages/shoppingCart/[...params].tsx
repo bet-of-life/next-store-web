@@ -5,6 +5,7 @@ import Cart from '../../components/Cart/Cart';
 import { fetchGetShirt } from '../../config/services/consumers/shirts';
 import Layout from '../../components/Layout';
 import useThemeMode from '../../hooks/useThemeMode';
+import { parseCookies } from 'nookies';
 interface DataShirtProps {
   data: {
     id: number,
@@ -21,7 +22,6 @@ interface DataShirtProps {
 
 const CartPage = ({ data, size, color }: DataShirtProps) => {
   const theme = useThemeMode();
-  console.log(typeof theme.mode)
   return (
     <Layout>
       <Box width='100%' height='auto' display='flex' justifyContent='center'>
@@ -43,7 +43,16 @@ export default CartPage;
 export const getServerSideProps = async (context: NextPageContext) => {
   const queryId = context.query.params[0]
   const response = await fetchGetShirt(queryId)
-  console.log(context.query)
+  const cookies = parseCookies(context);
+  const token = cookies["nextauth.token"];
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       data: response.data,

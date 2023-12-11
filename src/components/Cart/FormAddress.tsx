@@ -1,6 +1,6 @@
 import { Box, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { AddressErrorProps, AddressProps } from "../../interfaces/interfaces";
+import { AddressErrorProps, AddressProps, InputProps } from "../../interfaces/interfaces";
 import CityInput from "./components/CityInput";
 import ComplementInput from "./components/ComplementInput";
 import HouseNumberInput from "./components/HouseNumberInput";
@@ -8,24 +8,7 @@ import NeighborhoodInput from "./components/NeighborhoodInput";
 import RoadInput from "./components/RoadInput";
 import StateInput from "./components/StateInput";
 
-const FormAddress = () => {
-  const [address, setAddress] = useState<AddressProps>({
-    road: "",
-    neighborhood: "",
-    complement: "",
-    houseNumber: "",
-    city: "",
-    state: "",
-  });
-  const [errorAddress, setErrorAddress] = useState<AddressErrorProps>({
-    errorRoad: false,
-    errorNeighborhood: false,
-    errorComplement: false,
-    errorHouseNumber: false,
-    errorCity: false,
-    errorState: false,
-    errorMessage: "",
-  });
+const FormAddress = ({setAddress, setErrorAddress, address, errorAddress}: InputProps) => {
   return (
     <Grid container>
       <Grid item>

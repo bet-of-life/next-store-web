@@ -19,7 +19,6 @@ const NeighborhoodInput = ({setErrorAddress, errorAddress, address, setAddress}:
       <Typography>Bairro</Typography>
       <TextField 
           id="outlined-basic1"
-          label="Bairro"
           variant="filled"
           required
           InputLabelProps={{ style: { color: colors.grey[100] } }}
