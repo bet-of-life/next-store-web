@@ -44,7 +44,7 @@ const SignIn = () => {
         {isAuthenticated &&
           <Box color={colors.grey[100]} display='flex' flexDirection='row' justifyContent='center' alignItems='center' gap={2}>
             {user.name}
-            <ShoppingCartIcon fontSize="medium" />
+            {/* <ShoppingCartIcon fontSize="medium" /> */}
             <SignOut />
           </Box>
         }

@@ -30,7 +30,7 @@ const ShirtDetail = ({ data }: DataShirtProps) => {
         <ImageDetail src={data.src} srcHover={data.srcHover} />
       </Box>
       <Box width={widthDetails} height='auto'>
-        <DataDetails name={data.name} price={data.price} oldPrice={data.oldPrice} />
+        <DataDetails id={data.id} name={data.name} price={data.price} oldPrice={data.oldPrice} />
       </Box>
     </Box>
   );
