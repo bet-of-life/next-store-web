@@ -13,6 +13,9 @@ interface DataShirtProps {
     name: string,
     price: string,
     oldPrice: string,
+    srcDetail1: string,
+    srcDetail2: string,
+    srcDetail3: string,
   }
 }
 
@@ -27,7 +30,7 @@ const ShirtDetail = ({ data }: DataShirtProps) => {
   return (
     <Box display='flex' flexDirection={flexColumn} height='auto' px={2} py={8} gap={2} mt={lg ? 5 : 0}>
       <Box width={widthImage} height='auto'>
-        <ImageDetail src={data.src} srcHover={data.srcHover} />
+        <ImageDetail srcDetail1={data.srcDetail1} srcDetail2={data.srcDetail2} srcDetail3={data.srcDetail3} />
       </Box>
       <Box width={widthDetails} height='auto'>
         <DataDetails name={data.name} price={data.price} oldPrice={data.oldPrice} />
