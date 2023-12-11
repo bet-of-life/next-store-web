@@ -19,7 +19,6 @@ const ComplementInput = ({setErrorAddress, errorAddress, address, setAddress}:In
       <Typography>Complemento</Typography>
       <TextField 
           id="outlined-basic1"
-          label="Complemento"
           variant="filled"
           required
           InputLabelProps={{ style: { color: colors.grey[100] } }}

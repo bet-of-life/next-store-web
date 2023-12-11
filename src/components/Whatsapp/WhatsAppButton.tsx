@@ -9,8 +9,8 @@ interface WhatsAppButtonProps {
   complement: string;
   houseNumber: string;
   shirtName: string;
-  shirtModel: string;
   shirtSize: string;
+  shirtPrice: string;
 }
 
 const WhatsAppButton = ({
@@ -20,8 +20,8 @@ const WhatsAppButton = ({
   complement,
   houseNumber,
   shirtName,
-  shirtModel,
   shirtSize,
+  shirtPrice
 }: WhatsAppButtonProps) => {
   const clienteData = {
     Nome: clientName,
@@ -31,8 +31,8 @@ const WhatsAppButton = ({
     Numero: houseNumber,
     Pedido: {
       Camisa: shirtName,
-      Modelo: shirtModel,
       Tamanho: shirtSize,
+      Preço: shirtPrice
     },
   };
 

@@ -19,7 +19,6 @@ const HouseNumberInput = ({setErrorAddress, errorAddress, address, setAddress}:I
       <Typography>Número</Typography>
       <TextField 
           id="outlined-basic1"
-          label="Número da casa"
           variant="filled"
           required
           InputLabelProps={{ style: { color: colors.grey[100] } }}
