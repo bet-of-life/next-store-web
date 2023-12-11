@@ -4,8 +4,6 @@ import React from 'react';
 import Cart from '../../components/Cart/Cart';
 import { fetchGetShirt } from '../../config/services/consumers/shirts';
 import Layout from '../../components/Layout';
-import CustomLabelTextField from '../../components/CustomTextField/CustomLabelTextField';
-import CustomTextField from '../../components/CustomTextField/CustomTextField';
 import useThemeMode from '../../hooks/useThemeMode';
 import { parseCookies } from 'nookies';
 interface DataShirtProps {
