@@ -44,7 +44,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   return {
     props: {
       data: response.data,
-      size: context.query?.params[1],
+      size: context.query.params[1],
       color: context.query.params[2]
     }
   }

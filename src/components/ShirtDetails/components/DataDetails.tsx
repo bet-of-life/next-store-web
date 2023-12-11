@@ -9,6 +9,8 @@ import { data } from "../utils";
 import IconsDetails from "./IconsDetails";
 import { useRouter } from "next/navigation";
 
+import { toast } from "react-toastify";
+
 interface DataDetailsProps {
   id: number,
   name: string,
@@ -21,6 +23,7 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
   const colors = tokens(mode)
   const router = useRouter()
   const [shirtSize, setShirtSize] = useState<string>('')
+  const [error, setError] = useState<boolean>(false)
   //const [cor, setCor] = useState<string>('White')
 
   const words = name?.split(' ')
@@ -31,6 +34,7 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
 
   return (
     <Box>
+   
       <Typography variant='h5'>
         {name}
       </Typography>
@@ -73,12 +77,19 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
         <Button
           variant="contained"
           sx={{ bgcolor: colors.grey[100], mt: '40px', width: '15rem', borderRadius: 2, height: '2.7rem' }}
-          onClick={() => router.push(`/shoppingCart/${id}/${shirtSize}/${color}`)}
+          onClick={() => shirtSize ? router.push(`/shoppingCart/${id}/${shirtSize}/${color}`) : setError(true)}
         >
           <Typography sx={{ color: colors.grey[800], fontWeight: 'bold' }}>
             Comprar
           </Typography>
+          
+         {error && toast.error("Por favor, preencha um tamanho!", {
+          autoClose: 2000,
+          onClose: () => setError(false)
+         })}
+         
         </Button>
+  
       </Box>
       <Box display='flex' gap={1} mt={5.5} justifyContent='start' alignItems='start' flexDirection='column'>
         <Typography>
