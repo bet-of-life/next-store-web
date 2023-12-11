@@ -35,6 +35,7 @@ export default CartPage;
 export const getServerSideProps = async (context: NextPageContext) => {
     const queryId = context.query.params[0]
     const response = await fetchGetShirt(queryId)
+    console.log(context.query)
     return {
       props: {
         data: response.data,
