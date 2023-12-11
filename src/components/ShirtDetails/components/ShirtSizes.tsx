@@ -9,10 +9,16 @@ interface ShirtSizesProps {
 }
 
 const ShirtSizes = ({ setShirtSizes, value }: ShirtSizesProps) => {
-
+  const [isFocused, setIsFocused] = useState(false);
   const { mode } = useThemeMode()
   const colors = tokens(mode)
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
 
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
   return (
     <Box
       display='flex'
@@ -22,9 +28,12 @@ const ShirtSizes = ({ setShirtSizes, value }: ShirtSizesProps) => {
       height={40}
       border='1px solid'
       borderRadius={2}
-      borderColor={colors.grey[600]}
+      borderColor={isFocused ? colors.grey[100]: colors.grey[600]}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
       onClick={() => setShirtSizes(value)}
       sx={{ cursor: 'pointer', '&:hover': { borderColor: colors.grey[100] } }}
+      tabIndex={0}
     >
       <Typography>
         {value}
