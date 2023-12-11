@@ -1,8 +1,8 @@
-import { Box, Typography, IconButton } from "@mui/material";
-import { CartProps } from "../../Cart";
+import { Box, Typography, IconButton } from "@mui/material"
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import { useState } from "react";
+import { CartProps } from "../../../../interfaces/interfaces";
 
 const DataCart = ({ name, color, size, quantityShirts, setQuantityShirts }: CartProps) => {
 
