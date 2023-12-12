@@ -21,7 +21,7 @@ interface DataShirtProps {
 const CartPage = ({ data, size, color }: DataShirtProps) => {
 
   return (
-    <Box width='100%' minHeight='75vh' display='flex' justifyContent='center'>
+    <Box width='100%' height='auto' display='flex' justifyContent='center'>
       <Cart
         id={data.id}
         name={data.name}
