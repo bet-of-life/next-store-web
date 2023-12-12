@@ -10,15 +10,14 @@ const FinishCart = ({ price, quantityShirts, handleOpenModal }: CartProps) => {
   return (
     <Box
       width='85%'
-      height={270}
-      bgcolor={colors.grey[700]}
+      height={230}
+      bgcolor={colors.grey[900]}
       borderRadius={2}
       p={2}
       display='flex'
       flexDirection='column'
       justifyContent='center'
       alignItems='center'
-      gap={2}
     >
       <Box width='100%'>
         <PaymentMode />
@@ -26,9 +25,10 @@ const FinishCart = ({ price, quantityShirts, handleOpenModal }: CartProps) => {
       <Box
         width='100%'
         display='flex'
-        justifyContent='space-between'
+        justifyContent='center'
         alignItems='center'
-        py={2}
+        gap={0.5}
+        mb={2}
       >
         <Typography>Total:</Typography>
         <Typography fontWeight='bold'>R$ {(quantityShirts * parseFloat(price)).toFixed(2)}</Typography>
