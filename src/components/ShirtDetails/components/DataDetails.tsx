@@ -1,5 +1,3 @@
-
-
 import { Box, Button, Typography } from "@mui/material";
 import useThemeMode from "../../../hooks/useThemeMode";
 import { tokens } from "../../../themes/theme";
@@ -8,10 +6,10 @@ import ShirtSizes from "./ShirtSizes";
 import { data } from "../utils";
 import IconsDetails from "./IconsDetails";
 import { useRouter } from "next/navigation";
-
 import { toast } from "react-toastify";
 import { parseCookies } from "nookies";
 import useModal from "../../../hooks/useModal";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 
 interface DataDetailsProps {
   id: number,
@@ -29,9 +27,12 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
   const [error, setError] = useState<boolean>(false)
   const words = name?.split(' ')
   const num = words.length - 1
-  const color = words[num] === 'White' ? 'White' : 'Black'
-  const bgColor = color === 'White' ? 'white' : 'black'
-  
+  const color = words[num] === 'White' ? 'Off White' : 'Black'
+  const bgColor = color === 'Off White' ? 'white' : 'black'
+  const sizeWindowWidth = useWindowDimensions();
+
+  const fullWidhtButton = sizeWindowWidth.width < 1025 ? '100%' : '15rem'
+
   const handleVerifyToken = () => {
     const cookies = parseCookies();
     const token = cookies["nextauth.token"];
@@ -41,13 +42,10 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
     } else {
       shirtSize ? router.push(`/shoppingCart/${id}/${shirtSize}/${color}`) : setError(true)
     }
-    
-  
   }
 
   return (
     <Box>
-   
       <Typography variant='h5'>
         {name}
       </Typography>
@@ -89,20 +87,21 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
       <Box display='flex' justifyContent='start' alignItems='center'>
         <Button
           variant="contained"
-          sx={{ bgcolor: colors.grey[100], mt: '40px', width: '15rem', borderRadius: 2, height: '2.7rem' }}
+          sx={{ bgcolor: colors.grey[100], mt: '40px', width: fullWidhtButton, borderRadius: 2, height: '2.7rem' }}
           onClick={() => handleVerifyToken()}
+        //fullWidth={fullWidhtButton}
         >
           <Typography sx={{ color: colors.grey[800], fontWeight: 'bold' }}>
             Comprar
           </Typography>
-          
-         {error && toast.error("Por favor, preencha um tamanho!", {
-          autoClose: 2000,
-          onClose: () => setError(false)
-         })}
-         
+
+          {error && toast.error("Por favor, preencha um tamanho!", {
+            autoClose: 2000,
+            onClose: () => setError(false)
+          })}
+
         </Button>
-  
+
       </Box>
       <Box display='flex' gap={1} mt={5.5} justifyContent='start' alignItems='start' flexDirection='column'>
         <Typography>

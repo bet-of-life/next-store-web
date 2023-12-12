@@ -14,14 +14,14 @@ const ThemeMui = () => {
           <>
             <Brightness4Icon fontSize="small" sx={{ mr: '10px' }} />
             <Typography>
-              Light Mode
+              Dark Mode
             </Typography>
           </>
         ) : (
           <>
             <Brightness7Icon fontSize="small" sx={{ mr: '10px' }} />
             <Typography>
-              Dark Mode
+              Light Mode
             </Typography>
           </>
         )}

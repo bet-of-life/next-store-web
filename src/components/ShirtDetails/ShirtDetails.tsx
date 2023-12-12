@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 import ImageDetail from "./components/ImageDetail";
 import DataDetails from "./components/DataDetails";
-import { fetchGetShirt } from "../../config/services/consumers/shirts";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 

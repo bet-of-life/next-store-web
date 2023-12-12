@@ -1,67 +1,71 @@
-import { Box, colors, Typography } from "@mui/material";
+import { Box, colors, styled, Typography } from "@mui/material";
 import { useState } from "react";
 import useThemeMode from "../../../../hooks/useThemeMode";
 import { tokens } from "../../../../themes/theme";
 
 const PaymentMode = () => {
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocusedPix, setIsFocusedPix] = useState<boolean>(false);
+  const [isFocusedDinheiro, setIsFocusedDinheiro] = useState<boolean>(false);
   const [payment, setPayment] = useState<string>('');
   const { mode } = useThemeMode()
   const colors = tokens(mode)
-  const handleFocus = () => {
-    setIsFocused(true);
+
+  const handleFocusPix = () => {
+    setIsFocusedPix(true);
+    setIsFocusedDinheiro(false);
+    setPayment('Pix')
+  };
+
+  const handleFocusDinheiro = () => {
+    setIsFocusedDinheiro(true);
+    setIsFocusedPix(false);
+    setPayment('Dinheiro')
   };
 
   const handleBlur = () => {
-    setIsFocused(false);
+    setIsFocusedPix(false);
+    setIsFocusedDinheiro(false)
   };
 
+  const CustomBox = styled(Box)(() => ({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 100,
+    height: 40,
+    border: '1px solid',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    '&:hover': { borderColor: colors.grey[100] },
+    tabIndex: 0
+  }))
+
   return (
-    <Box display='flex' flexDirection='column' py={2} gap={2}>
+    <Box display='flex' flexDirection='column' gap={2} mb={2}>
       <Box>
         <Typography>
-          Forma de Pagamento:{payment}
+          Forma de Pagamento: {payment}
         </Typography>
       </Box>
       <Box display='flex' gap={2}>
-        <Box
-          display='flex'
-          justifyContent='center'
-          alignItems='center'
-          width={40}
-          height={40}
-          border='1px solid'
-          borderRadius={2}
-          borderColor={isFocused ? colors.grey[100] : colors.grey[600]}
-          onFocus={handleFocus}
+        <CustomBox
+          onClick={handleFocusPix}
+          sx={{ borderColor: isFocusedPix ? colors.grey[100] : colors.grey[600] }}
           onBlur={handleBlur}
-          onClick={() => setPayment('Pix')}
-          sx={{ cursor: 'pointer', '&:hover': { borderColor: colors.grey[100] } }}
-          tabIndex={0}
         >
           <Typography>
             Pix
           </Typography>
-        </Box>
-        <Box
-          display='flex'
-          justifyContent='center'
-          alignItems='center'
-          width={100}
-          height={40}
-          border='1px solid'
-          borderRadius={2}
-          borderColor={isFocused ? colors.grey[100] : colors.grey[600]}
-          onFocus={handleFocus}
+        </CustomBox>
+        <CustomBox
+          onClick={handleFocusDinheiro}
+          sx={{ borderColor: isFocusedDinheiro ? colors.grey[100] : colors.grey[600] }}
           onBlur={handleBlur}
-          onClick={() => setPayment('Dinheiro')}
-          sx={{ cursor: 'pointer', '&:hover': { borderColor: colors.grey[100] } }}
-          tabIndex={0}
         >
           <Typography>
             Dinheiro
           </Typography>
-        </Box>
+        </CustomBox>
       </Box>
     </Box>
   );

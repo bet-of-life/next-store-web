@@ -1,4 +1,3 @@
-import Layout from "../../components/Layout";
 import { Box, Typography } from "@mui/material";
 import { fetchGetAllShirts, fetchGetShirt } from '../../config/services/consumers/shirts';
 import ShirtsCatalog from "../../components/Dashboard/Roupas/ShirtsCatalog";
@@ -30,19 +29,17 @@ interface DataShirtProps {
 const shirtDetail = ({ data, allData }: DataShirtProps) => {
 
   return (
-    <Layout>
-      <Box display='flex' flexDirection='column' width='100%' height='auto' justifyContent='center' alignItems='center'>
-        <ShirtDetail data={data} />
-        <Box width='100%' py={3} borderTop='1px solid #423b3b'>
-          <Box display='flex' width='100%' height={50} justifyContent='center' alignItems='center'>
-            <Typography variant="h6">
-              Produtos Relacionados
-            </Typography>
-          </Box>
-          <ShirtsCatalog data={allData} />
+    <Box display='flex' flexDirection='column' width='100%' height='auto' justifyContent='center' alignItems='center'>
+      <ShirtDetail data={data} />
+      <Box width='100%' py={3} borderTop='1px solid #423b3b'>
+        <Box display='flex' width='100%' height={50} justifyContent='center' alignItems='center'>
+          <Typography variant="h6">
+            Produtos Relacionados
+          </Typography>
         </Box>
+        <ShirtsCatalog data={allData} />
       </Box>
-    </Layout>
+    </Box>
   );
 }
 

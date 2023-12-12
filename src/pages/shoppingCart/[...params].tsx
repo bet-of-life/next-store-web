@@ -3,8 +3,6 @@ import { Box } from '@mui/material'
 import React from 'react';
 import Cart from '../../components/Cart/Cart';
 import { fetchGetShirt } from '../../config/services/consumers/shirts';
-import Layout from '../../components/Layout';
-import useThemeMode from '../../hooks/useThemeMode';
 import { parseCookies } from 'nookies';
 interface DataShirtProps {
   data: {
@@ -21,20 +19,18 @@ interface DataShirtProps {
 }
 
 const CartPage = ({ data, size, color }: DataShirtProps) => {
-  const theme = useThemeMode();
+
   return (
-    <Layout>
-      <Box width='100%' height='auto' display='flex' justifyContent='center'>
-        <Cart
-          id={data.id}
-          name={data.name}
-          color={color}
-          price={data.price}
-          src={data.src}
-          size={size}
-        />
-      </Box>
-    </Layout>
+    <Box width='100%' minHeight='75vh' display='flex' justifyContent='center'>
+      <Cart
+        id={data.id}
+        name={data.name}
+        color={color}
+        price={data.price}
+        src={data.src}
+        size={size}
+      />
+    </Box>
   );
 };
 
