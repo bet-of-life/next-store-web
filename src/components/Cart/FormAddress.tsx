@@ -1,14 +1,14 @@
 import { Box, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { AddressErrorProps, AddressProps, InputProps } from "../../interfaces/interfaces";
-import CityInput from "./components/CityInput";
-import ComplementInput from "./components/ComplementInput";
-import HouseNumberInput from "./components/HouseNumberInput";
-import NeighborhoodInput from "./components/NeighborhoodInput";
-import RoadInput from "./components/RoadInput";
-import StateInput from "./components/StateInput";
+import CityInput from "./components/FormModal/components/CityInput";
+import ComplementInput from "./components/FormModal/components/ComplementInput";
+import HouseNumberInput from "./components/FormModal/components/HouseNumberInput";
+import NeighborhoodInput from "./components/FormModal/components/NeighborhoodInput";
+import RoadInput from "./components/FormModal/components/RoadInput";
+import StateInput from "./components/FormModal/components/StateInput";
 
-const FormAddress = ({setAddress, setErrorAddress, address, errorAddress}: InputProps) => {
+const FormAddress = ({ setAddress, setErrorAddress, address, errorAddress }: InputProps) => {
   return (
     <Grid container>
       <Grid item>

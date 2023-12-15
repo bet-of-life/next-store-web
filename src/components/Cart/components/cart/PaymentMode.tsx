@@ -41,13 +41,16 @@ const PaymentMode = () => {
   }))
 
   return (
-    <Box display='flex' flexDirection='column' gap={2} mb={2}>
-      <Box>
+    <Box display='flex' width='100%' flexDirection='column' gap={2} mb={2}>
+      <Box display='flex' justifyContent='center'>
         <Typography>
-          Forma de Pagamento: {payment}
+          Forma de Pagamento:
+        </Typography>
+        <Typography fontWeight='bold' ml={1}>
+          {payment}
         </Typography>
       </Box>
-      <Box display='flex' gap={2}>
+      <Box display='flex' gap={2} justifyContent='center'>
         <CustomBox
           onClick={handleFocusPix}
           sx={{ borderColor: isFocusedPix ? colors.grey[100] : colors.grey[600] }}

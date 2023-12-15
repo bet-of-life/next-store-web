@@ -15,7 +15,7 @@ const SocialIcons = () => {
     <Box
       display="flex"
       gap={1}
-      justifyContent="center"
+      justifyContent="start"
       alignItems="center"
       height="100%"
     >

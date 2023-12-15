@@ -8,44 +8,48 @@ import useModal from "../../hooks/useModal";
 import ModalLogin from "./Signin/Modals/ModalLogin/ModalLogin";
 import ModalRegister from "./Signin/Modals/ModalRegister/ModalRegister";
 import { tokens } from "../../themes/theme";
-import { AuthContext } from "../../context/AuthContenxt";
-import { useContext } from "react";
 import SocialIcons from "./SocialIcons";
+import { useRouter } from "next/router";
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 
 const NavBar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { sm, md, lg } = useMediaQuery();
   const { isOpenLogin, isOpenRegister, toggleModalLogin, toggleModalRegister } = useModal();
-  const { isAuthenticated } = useContext(AuthContext)
-  console.log(lg)
+  const router = useRouter()
+  const sizeWindowWidth = useWindowDimensions();
+
+  const route = router.pathname
+  const BoxWidth = sizeWindowWidth.width < 1025 ? '90vw' : '70vw'
+
   return (
     <Box height={90}>
       <AppBar position="fixed">
-        <Grid
-          container
-          direction="row"
-          height={90}
-          paddingX={sm ? 2 : md ? 2 : lg ? 5 : 18}
-          bgcolor={colors.black[800]}
-        >
-
-          <Grid item xs={4} sm={5}>
-            {!lg ? <SearchNavBar width="40%" variant="filled" /> : <SocialIcons />}
+        <Grid container width='100%' bgcolor={colors.black[800]} justifyContent='center'>
+          <Grid
+            container
+            item
+            direction="row"
+            height={90}
+            width={BoxWidth}
+          >
+            <Grid item xs={1}>
+              <SocialIcons />
+            </Grid>
+            <Grid item xs={3} pl={1}>
+              {route === '/dashboard' && <>{!md && <SearchNavBar />}</>}
+            </Grid>
+            <Grid item xs={4}>
+              <Logo />
+            </Grid>
+            <Grid item xs={4}>
+              {!md && <SignIn />}
+              {md && <SigninSizeSm />}
+            </Grid>
           </Grid>
-
-          <Grid item xs={4} sm={2}>
-            <Logo />
-          </Grid>
-
-          <Grid item xs={4} sm={5}>
-            {!sm && <SignIn />}
-            {sm && <SigninSizeSm />}
-          </Grid>
-
         </Grid>
-        {lg && <SearchNavBar width="40%" variant="filled" />}
-
+        {route === '/dashboard' && <>{md && <SearchNavBar />}</>}
       </AppBar>
 
       <ModalLogin open={isOpenLogin} handleClose={toggleModalLogin} />

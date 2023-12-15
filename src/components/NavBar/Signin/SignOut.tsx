@@ -1,15 +1,16 @@
 import { useContext, useState } from "react";
-import { IconButton, Menu, MenuItem, Box, Avatar, Typography } from '@mui/material'
+import { IconButton, Menu, MenuItem, Box, Avatar } from '@mui/material'
 import { AuthContext } from "../../../context/AuthContenxt";
 import useThemeMode from "../../../hooks/useThemeMode";
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { tokens } from "../../../themes/theme";
+import ThemeMui from "../ThemeMui";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 
 const SignOut = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const { mode, toggleTheme } = useThemeMode()
-  const { signOutUser } = useContext(AuthContext)
+  const { mode } = useThemeMode()
+  const { signOutUser, user } = useContext(AuthContext)
+  const { md } = useMediaQuery()
   const colors = tokens(mode)
   const open = Boolean(anchorEl);
 
@@ -26,7 +27,7 @@ const SignOut = () => {
 
   return (
     <>
-      <Box display='flex' justifyContent='center' alignItems='center' height='100%'>
+      <Box display='flex' justifyContent='end' alignItems='center' height='100%'>
         <IconButton onClick={handleClick}>
           <Avatar alt="pessoa" sx={{ bgcolor: colors.grey[100], width: 30, height: 30 }} />
         </IconButton>
@@ -51,26 +52,9 @@ const SignOut = () => {
           horizontal: 'right',
         }}
       >
+        {md && <MenuItem sx={{ color: colors.grey[100], display: 'flex', justifyContent: 'center' }}>{user.name}</MenuItem>}
         <MenuItem onClick={handleLogout} sx={{ color: colors.grey[100], display: 'flex', justifyContent: 'center' }}>Sair</MenuItem>
-        <MenuItem sx={{ color: colors.grey[100] }}>
-          <IconButton onClick={toggleTheme} sx={{ color: colors.grey[100] }}>
-            {mode === 'dark' ? (
-              <>
-                <Brightness4Icon fontSize="small" sx={{ mr: '10px' }} />
-                <Typography>
-                  Light Mode
-                </Typography>
-              </>
-            ) : (
-              <>
-                <Brightness7Icon fontSize="small" sx={{ mr: '10px' }} />
-                <Typography>
-                  Dark Mode
-                </Typography>
-              </>
-            )}
-          </IconButton>
-        </MenuItem>
+        <MenuItem sx={{ color: colors.grey[100] }}><ThemeMui /></MenuItem>
       </Menu>
     </>
   );

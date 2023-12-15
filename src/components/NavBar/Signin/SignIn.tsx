@@ -22,11 +22,10 @@ const SignIn = () => {
       <Box
         height="100%"
         display="flex"
-        justifyContent="center"
+        justifyContent="end"
         alignItems="center"
         gap={1}
         flexDirection="row"
-        px="35px"
       >
         {!isAuthenticated &&
           <>

@@ -9,8 +9,8 @@ const FinishCart = ({ price, quantityShirts, handleOpenModal }: CartProps) => {
 
   return (
     <Box
-      width='85%'
-      height={230}
+      width='100%'
+      height={250}
       bgcolor={colors.grey[900]}
       borderRadius={2}
       p={2}
@@ -18,8 +18,9 @@ const FinishCart = ({ price, quantityShirts, handleOpenModal }: CartProps) => {
       flexDirection='column'
       justifyContent='center'
       alignItems='center'
+      gap={1}
     >
-      <Box width='100%'>
+      <Box width='100%' display='flex' justifyContent='center'>
         <PaymentMode />
       </Box>
       <Box

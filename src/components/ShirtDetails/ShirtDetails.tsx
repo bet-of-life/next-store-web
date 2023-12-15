@@ -27,7 +27,7 @@ const ShirtDetail = ({ data }: DataShirtProps) => {
   const widthDetails = sizeWindowWidth.width < 1025 ? '100%' : '36%'
 
   return (
-    <Box display='flex' flexDirection={flexColumn} height='auto' px={2} py={8} gap={2} mt={lg ? 5 : 0}>
+    <Box display='flex' flexDirection={flexColumn} height='auto' px={2} py={2} gap={2} mt={lg ? 5 : 0}>
       <Box width={widthImage} height='auto'>
         <ImageDetail srcDetail1={data.srcDetail1} srcDetail2={data.srcDetail2} srcDetail3={data.srcDetail3} />
       </Box>
