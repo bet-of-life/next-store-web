@@ -1,58 +1,33 @@
 import { useState } from "react";
-import { Modal, Typography, Grid, Button, Link, CircularProgress } from "@mui/material";
+import { Modal, Typography, Grid, Button, Link, CircularProgress, Box } from "@mui/material";
 import useThemeMode from "../../../../../hooks/useThemeMode";
-import useMediaQuery from "../../../../../hooks/useMediaQuery";
 import { tokens } from "../../../../../themes/theme";
-import useModal from "../../../../../hooks/useModal";
-import NameInput from "./components/NameInput";
-import EmailInput from "./components/EmailInput";
-import PasswordInput from "./components/PasswordInputAndConfirmPassword";
-import PhoneAndCpfInput from "./components/PhoneAndCpfInput";
-import { handleSubmit } from "./utils";
-import { ModalRegisterProps, UserLoginProps, UserRegisterErrorState } from "./interfaces";
+import { useForm } from "react-hook-form";
+import { handleOnSubmit } from "./utils";
+import useMediaQueryAdapter from "../../../../../hooks/useMediaQuery";
+import { FormDataRegisterprops, ModalSignInProps } from "../../../../../interfaces/interfaces";
+import NameInputRegister from "./components/NameInputRegister";
+import EmailInputRegister from "./components/EmailInputRegister";
+import PasswordInputRegister from "./components/PasswordInputRegister";
+import ConfirmPasswordInputRegister from "./components/ConfirmPasswordInputRegister";
+import CpfInputRegister from "./components/CpfInputRegister";
+import PhoneInputRegister from "./components/PhoneInputRegister";
 
-const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
+const ModalRegister = ({ open, toggleModalLogin, toggleModalRegister }: ModalSignInProps) => {
+  const { register, handleSubmit, formState: { errors } } = useForm<FormDataRegisterprops>()
   const { mode } = useThemeMode();
-  const { sm } = useMediaQuery();
-  const { toggleModalLogin, toggleModalRegister } = useModal();
+  const { sm } = useMediaQueryAdapter();
+
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const colors = tokens(mode);
-
-  const [errorRegisterUser, setErroRegisterUser] = useState<UserRegisterErrorState>({
-    errorName: false,
-    errorEmail: false,
-    errorPassword: false,
-    errorConfirmPassword: false,
-    errorPhone: false,
-    errorCpf: false,
-    errorMessage: "",
-  });
-  const [userLogin, setUserLogin] = useState<UserLoginProps>({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    phone: "",
-    cpf: "",
-  });
 
   const handleReplaceModal = () => {
     toggleModalRegister();
     toggleModalLogin();
-    setIsLoading(false)
   };
 
-  const handleCloseModal = () => {
-    setErroRegisterUser({
-      errorName: false,
-      errorEmail: false,
-      errorPassword: false,
-      errorConfirmPassword: false,
-      errorPhone: false,
-      errorCpf: false,
-      errorMessage: '',
-    })
-    handleClose()
+  const onSubmit = async (data: FormDataRegisterprops) => {
+    handleOnSubmit({ data: data, setIsLoading: setIsLoading, toggleModalRegister: toggleModalRegister })
   }
 
   const style = {
@@ -71,57 +46,41 @@ const ModalRegister: React.FC<ModalRegisterProps> = ({ open, handleClose }) => {
     <>
       <Modal
         open={open}
-        onClose={handleCloseModal}
+        onClose={toggleModalRegister}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         disableScrollLock={true}
       >
-        <Grid container sx={style} direction="column" gap={1}>
+        <Grid container sx={style} direction="column" gap={2}>
           <Grid item display="flex" justifyContent="center">
             <Typography variant="h6" sx={{ color: colors.grey[100] }}>
               Criar sua Conta
             </Typography>
           </Grid>
-          <NameInput
-            setErroRegisterUser={setErroRegisterUser}
-            errorRegisterUser={errorRegisterUser}
-            setUserLogin={setUserLogin}
-            userLogin={userLogin}
-          />
-          <EmailInput
-            setErroRegisterUser={setErroRegisterUser}
-            errorRegisterUser={errorRegisterUser}
-            setUserLogin={setUserLogin}
-            userLogin={userLogin}
-          />
-          <PasswordInput
-            setErroRegisterUser={setErroRegisterUser}
-            errorRegisterUser={errorRegisterUser}
-            setUserLogin={setUserLogin}
-            userLogin={userLogin}
-          />
-
-          <PhoneAndCpfInput
-            setErroRegisterUser={setErroRegisterUser}
-            errorRegisterUser={errorRegisterUser}
-            setUserLogin={setUserLogin}
-            userLogin={userLogin}
-          />
-
+          <Grid item>
+            <NameInputRegister register={register} errors={errors} />
+          </Grid>
+          <Grid item>
+            <EmailInputRegister register={register} errors={errors} />
+          </Grid>
+          <Grid item >
+            <PasswordInputRegister register={register} errors={errors} />
+          </Grid>
+          <Grid item >
+            <ConfirmPasswordInputRegister register={register} errors={errors} />
+          </Grid>
+          <Grid item>
+            <Box display='flex' width='100%' gap={1}>
+              <PhoneInputRegister register={register} errors={errors} />
+              <CpfInputRegister register={register} errors={errors} />
+            </Box>
+          </Grid>
           <Grid item mt={2}>
             <Button
               variant="contained"
               fullWidth
-              onClick={() =>
-                handleSubmit({
-                  userLogin,
-                  setErroRegisterUser,
-                  errorRegisterUser,
-                  toggleModalRegister,
-                  setIsLoading
-                })
-              }
               sx={{ bgcolor: colors.grey[100] }}
+              onClick={handleSubmit(onSubmit)}
             >
               {isLoading ? (
                 <CircularProgress size={18} />

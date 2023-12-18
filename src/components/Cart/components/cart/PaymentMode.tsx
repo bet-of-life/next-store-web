@@ -1,12 +1,17 @@
 import { Box, colors, styled, Typography } from "@mui/material";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import useThemeMode from "../../../../hooks/useThemeMode";
 import { tokens } from "../../../../themes/theme";
 
-const PaymentMode = () => {
+interface PaymentProps {
+  payment: string
+  setPayment: Dispatch<SetStateAction<string>>
+}
+
+const PaymentMode = ({ payment, setPayment }: PaymentProps) => {
   const [isFocusedPix, setIsFocusedPix] = useState<boolean>(false);
   const [isFocusedDinheiro, setIsFocusedDinheiro] = useState<boolean>(false);
-  const [payment, setPayment] = useState<string>('');
+
   const { mode } = useThemeMode()
   const colors = tokens(mode)
 

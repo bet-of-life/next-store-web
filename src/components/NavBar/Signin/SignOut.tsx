@@ -4,13 +4,13 @@ import { AuthContext } from "../../../context/AuthContenxt";
 import useThemeMode from "../../../hooks/useThemeMode";
 import { tokens } from "../../../themes/theme";
 import ThemeMui from "../ThemeMui";
-import useMediaQuery from "../../../hooks/useMediaQuery";
+import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
 
 const SignOut = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { mode } = useThemeMode()
   const { signOutUser, user } = useContext(AuthContext)
-  const { md } = useMediaQuery()
+  const { tablet } = useMediaQueryAdapter()
   const colors = tokens(mode)
   const open = Boolean(anchorEl);
 
@@ -52,7 +52,7 @@ const SignOut = () => {
           horizontal: 'right',
         }}
       >
-        {md && <MenuItem sx={{ color: colors.grey[100], display: 'flex', justifyContent: 'center' }}>{user.name}</MenuItem>}
+        {tablet && <MenuItem sx={{ color: colors.grey[100], display: 'flex', justifyContent: 'center' }}>{user.name}</MenuItem>}
         <MenuItem onClick={handleLogout} sx={{ color: colors.grey[100], display: 'flex', justifyContent: 'center' }}>Sair</MenuItem>
         <MenuItem sx={{ color: colors.grey[100] }}><ThemeMui /></MenuItem>
       </Menu>

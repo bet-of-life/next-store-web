@@ -1,104 +1,26 @@
-import { ChangeEvent, useContext, useState } from 'react';
-import { Modal, Typography, Grid, TextField, Button, IconButton, Link, Box } from '@mui/material'
+import { useContext } from 'react';
+import { Modal, Typography, Grid, Button, Link } from '@mui/material'
 import useThemeMode from '../../../../../hooks/useThemeMode'
-import { VisibilityOff, Visibility } from '@mui/icons-material';
-import useMediaQuery from '../../../../../hooks/useMediaQuery';
 import { tokens } from '../../../../../themes/theme';
 import { AuthContext } from '../../../../../context/AuthContenxt';
-import useModal from '../../../../../hooks/useModal';
-import { validarEmail } from '../../../../../utils/validateEmail';
+import useMediaQueryAdapter from '../../../../../hooks/useMediaQuery';
+import { useForm } from 'react-hook-form';
+import { FormDataLoginProps, ModalSignInProps } from '../../../../../interfaces/interfaces';
+import PasswordInputLogin from './components/PasswordInputLogin';
+import EmailInputLogin from './components/EmailInputLogin';
 
-interface ModalLoginProps {
-  open: boolean
-  handleClose: () => void
-}
-
-interface UserErrorState {
-  errorEmail: boolean;
-  errorPassword: boolean;
-  errorMessage: string;
-}
-
-const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
+const ModalLogin = ({ open, toggleModalLogin, toggleModalRegister }: ModalSignInProps) => {
+  const { register, handleSubmit, formState: { errors } } = useForm<FormDataLoginProps>()
   const { mode } = useThemeMode()
-  const { sm } = useMediaQuery()
-  const { singIn, user } = useContext(AuthContext);
-  const { toggleModalLogin, toggleModalRegister } = useModal()
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [errorUser, setErrorUser] = useState<UserErrorState>({
-    errorEmail: false,
-    errorPassword: false,
-    errorMessage: '',
-  })
-  const [userLogin, setUserLogin] = useState({
-    email: '',
-    password: '',
-  })
+  const { sm } = useMediaQueryAdapter()
+  const { singIn } = useContext(AuthContext);
 
   const colors = tokens(mode)
 
-
-  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setErrorUser({
-      ...errorUser,
-      errorEmail: false
-    })
-    e.preventDefault()
-    setUserLogin({ ...userLogin, email: e.target.value })
+  const onSubmit = async (data: FormDataLoginProps) => {
+    await singIn(data)
+    toggleModalLogin()
   }
-
-  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setErrorUser({
-      ...errorUser,
-      errorPassword: false
-    })
-    e.preventDefault()
-    setUserLogin({ ...userLogin, password: e.target.value })
-  }
-
-  const handleSubmit = () => {
-    if (!userLogin.email && !userLogin.password) {
-      setErrorUser({
-        errorEmail: true,
-        errorPassword: true,
-        errorMessage: 'Por favor, preencha os campos!'
-      })
-    } else if (!userLogin.email) {
-      setErrorUser({
-        errorEmail: true,
-        errorPassword: false,
-        errorMessage: 'Por favor, insira um e-mail!'
-      })
-    } else if (!userLogin.password) {
-      setErrorUser({
-        errorEmail: false,
-        errorPassword: true,
-        errorMessage: 'Por favor, insira uma senha!'
-      })
-    } else {
-      if (!validarEmail(userLogin.email)) {
-        setErrorUser({
-          errorEmail: true,
-          errorPassword: false,
-          errorMessage: 'Por favor, insira um e-mail válido!'
-        })
-      } else {
-        singIn({ email: userLogin.email, password: userLogin.password })
-      }
-    }
-  }
-
-  const handleCloseModal = () => {
-    setErrorUser({ ...errorUser, errorEmail: false, errorPassword: false })
-    handleClose()
-  }
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
 
   const handleReplaceModal = () => {
     toggleModalLogin()
@@ -116,13 +38,12 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
     p: 4,
     borderRadius: '15px'
   };
-  const error = errorUser as { errorEmail: boolean; errorPassword: boolean, errorMessage: string };
 
   return (
     <>
       <Modal
         open={open}
-        onClose={handleCloseModal}
+        onClose={toggleModalLogin}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         disableScrollLock={true}
@@ -131,44 +52,15 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
           <Grid item display='flex' justifyContent='center'>
             <Typography variant='h6' sx={{ color: colors.grey[100] }}>Entre com sua Conta</Typography>
           </Grid>
+
           <Grid item container direction='row'>
-            <TextField
-              id="outlined-basic"
-              label="Email"
-              variant='filled'
-              autoFocus
-              required
-              InputLabelProps={{ style: { color: colors.grey[100] } }}
-              inputProps={{ style: { backgroundColor: colors.black[800] } }}
-              fullWidth
-              onChange={handleChangeEmail}
-              error={error.errorEmail}
-              helperText={error.errorEmail && error.errorMessage}
-            />
+            <EmailInputLogin register={register} errors={errors} />
           </Grid>
+
           <Grid container item direction='row' >
-            <TextField
-              id="outlined-basic1"
-              label="Senha"
-              variant='filled'
-              required
-              type={showPassword ? 'text' : 'password'}
-              InputLabelProps={{ style: { color: colors.grey[100] } }}
-              inputProps={{ style: { backgroundColor: colors.black[800] } }}
-              fullWidth
-              onChange={handleChangePassword}
-              error={error.errorPassword}
-              helperText={error.errorPassword && error.errorMessage}
-            />
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              sx={{ ml: '-40px', mt: '7px', color: colors.grey[100] }}
-            >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
+            <PasswordInputLogin register={register} errors={errors} />
           </Grid>
+
           <Grid item mt={1}>
             <Typography variant='body2'>
               <Link color={colors.grey[100]} sx={{ cursor: 'pointer', underline: 'aways' }}>
@@ -181,7 +73,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ open, handleClose }) => {
               variant='contained'
               fullWidth
               sx={{ bgcolor: colors.grey[100] }}
-              onClick={handleSubmit}
+              onClick={handleSubmit(onSubmit)}
             >
               <Typography sx={{ color: colors.grey[900], fontWeight: 'bold' }}>
                 Entrar

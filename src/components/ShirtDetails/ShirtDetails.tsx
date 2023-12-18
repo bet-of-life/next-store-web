@@ -1,8 +1,7 @@
 import { Box } from "@mui/material";
 import ImageDetail from "./components/ImageDetail";
 import DataDetails from "./components/DataDetails";
-import useMediaQuery from "../../hooks/useMediaQuery";
-import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import useMediaQueryAdapter from "../../hooks/useMediaQuery";
 
 interface DataShirtProps {
   data: {
@@ -19,12 +18,11 @@ interface DataShirtProps {
 }
 
 const ShirtDetail = ({ data }: DataShirtProps) => {
-  const { lg } = useMediaQuery()
-  const sizeWindowWidth = useWindowDimensions();
+  const { lg, tablet } = useMediaQueryAdapter()
 
-  const flexColumn = sizeWindowWidth.width < 1025 ? 'column' : 'row'
-  const widthImage = sizeWindowWidth.width < 1025 ? '100%' : '62%'
-  const widthDetails = sizeWindowWidth.width < 1025 ? '100%' : '36%'
+  const flexColumn = tablet ? 'column' : 'row'
+  const widthImage = tablet ? '100%' : '62%'
+  const widthDetails = tablet ? '100%' : '36%'
 
   return (
     <Box display='flex' flexDirection={flexColumn} height='auto' px={2} py={2} gap={2} mt={lg ? 5 : 0}>

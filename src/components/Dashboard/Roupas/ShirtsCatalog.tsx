@@ -1,11 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
-import useMediaQuery from "../../../hooks/useMediaQuery";
+import { Box, Button } from "@mui/material";
 import Banner from "./Banner";
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import { MouseEvent, useRef } from "react";
 import useThemeMode from "../../../hooks/useThemeMode";
 import { tokens } from "../../../themes/theme";
+import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
 
 interface DataShirtProps {
   data: [{
@@ -20,7 +20,7 @@ interface DataShirtProps {
 
 const ShirtsCatalog = ({ data }: DataShirtProps) => {
   const carousel = useRef(null)
-  const { sm, md, lg } = useMediaQuery();
+  const { sm, md, lg } = useMediaQueryAdapter();
   const { mode } = useThemeMode()
   const colors = tokens(mode)
 

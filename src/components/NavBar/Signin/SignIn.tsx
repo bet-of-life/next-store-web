@@ -7,13 +7,12 @@ import useThemeMode from "../../../hooks/useThemeMode";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContenxt";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
 import SignOut from "./SignOut";
 
 const SignIn = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { toggleModalLogin, toggleModalRegister } = useModal();
+  const { isOpenLogin, isOpenRegister, toggleModalLogin, toggleModalRegister } = useModal();
   const { mode } = useThemeMode();
   const { isAuthenticated, user } = useContext(AuthContext)
 

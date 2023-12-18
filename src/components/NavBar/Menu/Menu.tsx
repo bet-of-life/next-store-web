@@ -7,9 +7,10 @@ import Roupas from "./SubMenus/Roupas";
 import Marcas from './SubMenus/Marcas';
 import Calcados from './SubMenus/Calcados'
 import DrawerMenu from "./MenuLateral/DrawerMenu";
+import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
 
 const Menu = () => {
-  const { sm } = useMediaQuery()
+  const { sm } = useMediaQueryAdapter()
   const { toggleDrawerOpen } = useDrawerMode()
 
   return (

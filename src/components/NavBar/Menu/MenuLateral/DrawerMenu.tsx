@@ -5,12 +5,12 @@ import useDrawerMode from "../../../../hooks/useDrawerMode";
 import Roupas from './Roupas';
 import useThemeMode from '../../../../hooks/useThemeMode';
 import SearchNavBar from '../../Search/SearchNavBar';
-import useMediaQuery from '../../../../hooks/useMediaQuery';
+import useMediaQueryAdapter from '../../../../hooks/useMediaQuery';
 
 const DrawerMenu = () => {
   const { isDrawerOpen, toggleDrawerOpen } = useDrawerMode()
   const { mode } = useThemeMode()
-  const { sm } = useMediaQuery()
+  const { sm } = useMediaQueryAdapter()
 
   return (
     <Drawer
@@ -28,9 +28,6 @@ const DrawerMenu = () => {
         height='100vh' p={1}
         sx={{ backgroundColor: mode == 'dark' ? '#171717' : '#000336' }}
       >
-        <Box width='100%' height={120}>
-          <SearchNavBar width='100%' variant='outlined' />
-        </Box>
 
         <Divider sx={{ bgcolor: '#959595' }} />
 
