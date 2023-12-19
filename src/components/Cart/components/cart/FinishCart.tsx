@@ -1,11 +1,19 @@
 import { Box, colors, Typography, Button } from "@mui/material";
-
-import { useState } from "react";
 import PaymentMode from "./PaymentMode";
-import useModal from "../../../../hooks/useModal";
 import { CartProps } from "../../../../interfaces/interfaces";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const FinishCart = ({ price, quantityShirts, handleOpenModal }: CartProps) => {
+  const [payment, setPayment] = useState<string>('');
+
+  const handleFinishPayment = () => {
+    if (!payment) {
+      toast.error('Por favor escolha a forma de pagamento')
+    } else {
+      handleOpenModal()
+    }
+  }
 
   return (
     <Box
@@ -21,7 +29,7 @@ const FinishCart = ({ price, quantityShirts, handleOpenModal }: CartProps) => {
       gap={1}
     >
       <Box width='100%' display='flex' justifyContent='center'>
-        <PaymentMode />
+        <PaymentMode payment={payment} setPayment={setPayment} />
       </Box>
       <Box
         width='100%'
@@ -34,7 +42,7 @@ const FinishCart = ({ price, quantityShirts, handleOpenModal }: CartProps) => {
         <Typography>Total:</Typography>
         <Typography fontWeight='bold'>R$ {(quantityShirts * parseFloat(price)).toFixed(2)}</Typography>
       </Box>
-      <Button variant="contained" sx={{ bgcolor: colors.grey[100] }} fullWidth onClick={handleOpenModal}>
+      <Button variant="contained" sx={{ bgcolor: colors.grey[100] }} fullWidth onClick={handleFinishPayment}>
         <Typography sx={{ color: colors.grey[900], fontWeight: 'bold' }} textTransform="capitalize">
           Finalizar Compra
         </Typography>

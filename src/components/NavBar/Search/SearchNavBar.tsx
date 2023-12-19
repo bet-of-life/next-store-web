@@ -1,8 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, IconButton, TextField, TextFieldVariants } from '@mui/material';
+import { Box, IconButton, TextField } from '@mui/material';
 import useThemeMode from '../../../hooks/useThemeMode';
-import useMediaQuery from '../../../hooks/useMediaQuery';
-import SocialIcons from '../SocialIcons';
 import { tokens } from '../../../themes/theme';
 
 const SearchNavBar = () => {

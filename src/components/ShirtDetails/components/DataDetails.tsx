@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { parseCookies } from "nookies";
 import useModal from "../../../hooks/useModal";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
 
 interface DataDetailsProps {
   id: number,
@@ -19,19 +19,19 @@ interface DataDetailsProps {
 }
 
 const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
+  const [shirtSize, setShirtSize] = useState<string>('')
   const { mode } = useThemeMode()
   const { toggleModalLogin } = useModal();
+  const { tablet } = useMediaQueryAdapter()
+
   const colors = tokens(mode)
   const router = useRouter()
-  const [shirtSize, setShirtSize] = useState<string>('')
-  const [error, setError] = useState<boolean>(false)
   const words = name?.split(' ')
   const num = words.length - 1
   const color = words[num] === 'White' ? 'Off White' : 'Black'
   const bgColor = color === 'Off White' ? 'white' : 'black'
-  const sizeWindowWidth = useWindowDimensions();
 
-  const fullWidhtButton = sizeWindowWidth.width < 1025 ? '100%' : '15rem'
+  const fullWidhtButton = tablet ? '100%' : '15rem'
 
   const handleVerifyToken = () => {
     const cookies = parseCookies();
@@ -39,8 +39,10 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
 
     if (!token) {
       return toggleModalLogin();
+    } else if (shirtSize) {
+      router.push(`/shoppingCart/${id}/${shirtSize}/${color}`)
     } else {
-      shirtSize ? router.push(`/shoppingCart/${id}/${shirtSize}/${color}`) : setError(true)
+      toast.error('Por favor, escolha um tamanho!')
     }
   }
 
@@ -89,19 +91,11 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
           variant="contained"
           sx={{ bgcolor: colors.grey[100], mt: '40px', width: fullWidhtButton, borderRadius: 2, height: '2.7rem' }}
           onClick={() => handleVerifyToken()}
-        //fullWidth={fullWidhtButton}
         >
           <Typography sx={{ color: colors.grey[800], fontWeight: 'bold' }}>
             Comprar
           </Typography>
-
-          {error && toast.error("Por favor, preencha um tamanho!", {
-            autoClose: 2000,
-            onClose: () => setError(false)
-          })}
-
         </Button>
-
       </Box>
       <Box display='flex' gap={1} mt={5.5} justifyContent='start' alignItems='start' flexDirection='column'>
         <Typography>

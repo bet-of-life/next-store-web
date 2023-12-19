@@ -1,12 +1,10 @@
 import Carousel from "react-material-ui-carousel";
-import { styled, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import Image from "next/image";
-import useMediaQuery from "../../../hooks/useMediaQuery";
-import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
 
 const CarouselImage = () => {
-  const { sm, md } = useMediaQuery();
-  const sizeWindowWidth = useWindowDimensions();
+  const { miniSm, maxSm, sm, miniMd, md, midSm, midMd, maxMd, lg } = useMediaQueryAdapter();
   const src = [
     {
       id: 1,
@@ -26,26 +24,11 @@ const CarouselImage = () => {
     },
   ];
 
-  const verifyMarginTopSm =
-    sizeWindowWidth.width < 400
-      ? "-4.1rem"
-      : sizeWindowWidth.width >= 500
-        ? "-3.6rem"
-        : "-5.2rem";
-  const verifyMarginTopMd =
-    sizeWindowWidth.width >= 600 && sizeWindowWidth.width < 700
-      ? "-8.1rem"
-      : sizeWindowWidth.width > 750
-        ? "-5.5rem"
-        : "-7rem";
-  const verifyMarginTopLg =
-    sizeWindowWidth.width >= 900 && sizeWindowWidth.width <= 1000
-      ? "-6rem"
-      : sizeWindowWidth.width >= 1100
-        ? "-5rem"
-        : "-4rem";
-  const verifyHeightSm = sizeWindowWidth.width < 400 ? 460 : 500;
-  const verifyHeightLg = sizeWindowWidth.width > 1200 ? 1000 : 800;
+  const verifyMarginTopSm = miniSm ? "-4.1rem" : !maxSm ? "-3.6rem" : "-5.2rem";
+  const verifyMarginTopMd = !sm && miniMd ? "-8.1rem" : midSm ? "-5.5rem" : "-7rem";
+  const verifyMarginTopLg = !md && midMd ? "-6rem" : !maxMd ? "-5rem" : "-4rem";
+  const verifyHeightSm = miniSm ? 460 : 500;
+  const verifyHeightLg = !lg ? 1000 : 800;
 
   return (
     <Carousel
@@ -62,7 +45,7 @@ const CarouselImage = () => {
     >
       {src.map((item, key) => (
         <Box key={key}
-          width={sizeWindowWidth.width}
+          width='100%'
           height={sm ? verifyHeightSm : md ? 700 : verifyHeightLg}
         >
           <Image src={item.src} alt="wallpaper" fill={true} />

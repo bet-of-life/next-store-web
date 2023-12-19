@@ -4,21 +4,20 @@ import React, { useContext, useState } from "react";
 import DataCart from "./components/cart/DataCart";
 import FinishCart from "./components/cart/FinishCart";
 import useModal from "../../hooks/useModal";
-import ModalAddress from "./components/FormModal/ModalAddress";
+import ModalAddress from "./components/ModalAddress";
 import { AuthContext } from "../../context/AuthContenxt";
 import { CartProps } from "../../interfaces/interfaces";
-import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import useMediaQueryAdapter from "../../hooks/useMediaQuery";
 
 const Cart = ({ name, color, price, src, size }: CartProps) => {
   const [quantityShirts, setQuantityShirts] = useState<number>(1)
-
+  const { md, tablet } = useMediaQueryAdapter()
   const { isOpenModal, toggleModal } = useModal()
   const { user } = useContext(AuthContext)
-  const sizeWindowWidth = useWindowDimensions();
 
-  const BoxWidth = sizeWindowWidth.width < 1025 ? '90vw' : '70vw'
-  const paddingY = sizeWindowWidth.width < 900 ? 5 : 13
-  const marginTopGrid = sizeWindowWidth.width < 1025 ? 3 : 0
+  const BoxWidth = tablet ? '90vw' : '70vw'
+  const paddingY = md ? 5 : 13
+  const marginTopGrid = tablet ? 3 : 0
 
   return (
     <Box

@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
-import useMediaQuery from "../../../hooks/useMediaQuery";
 import useThemeMode from "../../../hooks/useThemeMode";
 import { tokens } from "../../../themes/theme";
 import { useRouter } from "next/navigation";
+import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
 interface BannerProps {
   id: number;
   src: string;
@@ -17,7 +17,7 @@ interface BannerProps {
 const Banner = ({ id, src, srcHover, name, oldPrice, price }: BannerProps) => {
   const { mode } = useThemeMode()
   const [hoveredImage, setHoveredImage] = useState<string>(src);
-  const { sm, md, lg } = useMediaQuery();
+  const { sm, md, lg } = useMediaQueryAdapter();
   const router = useRouter()
   const colors = tokens(mode)
 
