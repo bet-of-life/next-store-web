@@ -5,7 +5,7 @@ import { useState } from "react";
 import useThemeMode from "../../../../../../hooks/useThemeMode";
 import { tokens } from "../../../../../../themes/theme";
 
-const ConfirmPasswordInputRegister = ({ register, errors }: InputRegisterProps) => {
+const ConfirmPasswordInputRegister = ({ register, errors, watchPassword }: InputRegisterProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { mode } = useThemeMode();
   const colors = tokens(mode);
@@ -24,9 +24,15 @@ const ConfirmPasswordInputRegister = ({ register, errors }: InputRegisterProps) 
         type={showPassword ? 'text' : 'password'}
         InputLabelProps={{ style: { color: colors.grey[100] } }}
         fullWidth
-        {...register('confirmPassword', { required: true })}
-        error={errors?.confirmPassword?.type == 'required'}
-        helperText={errors?.confirmPassword?.type === 'required' && 'Por favor confirme sua senha'}
+        {...register('confirmPassword', { required: true, validate: (value) => value === watchPassword })}
+        error={
+          errors?.confirmPassword?.type === 'required' ||
+          errors?.confirmPassword?.type === 'validate'
+        }
+        helperText={
+          errors?.confirmPassword?.type === 'required' && 'Por favor confirme sua senha' ||
+          errors?.confirmPassword?.type === 'validate' && 'A senha não confere'
+        }
       />
       <IconButton
         aria-label="toggle password visibility"

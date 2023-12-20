@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { IMaskInput } from 'react-imask';
-import FormControl from '@mui/material/FormControl';
 import { InputRegisterProps } from '../../../../../../interfaces/interfaces';
-import { OutlinedInput, InputLabel, FormHelperText } from '@mui/material';
+import { TextField } from '@mui/material';
 import useThemeMode from '../../../../../../hooks/useThemeMode';
 import { tokens } from '../../../../../../themes/theme';
 import { colors } from '@mui/material';
+import { validatePhoneNumber } from '../../../../../../utils/validatePhone';
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -36,18 +36,18 @@ export default function FormattedInputs({ register, errors }: InputRegisterProps
 
   return (
     <>
-      <FormControl variant="outlined">
-        <InputLabel htmlFor="phone" sx={{ color: colors.grey[100] }}>Numero de telefone:</InputLabel>
-        <OutlinedInput
-          label='Numero de telefone:'
-          inputComponent={TextMaskCustom as any}
-          {...register('phone', { required: true })}
-          error={errors?.phone?.type == 'required'}
-        />
-        <FormHelperText id="my-helper-text" error={errors?.phone?.type === 'required'}>
-          {errors?.phone?.type == 'required' && 'Preencha seu telefone'}
-        </FormHelperText>
-      </FormControl>
+      <TextField
+        label='Numero de telefone:'
+        variant='outlined'
+        InputLabelProps={{ style: { color: colors.grey[100] } }}
+        InputProps={{ inputComponent: TextMaskCustom as any }}
+        {...register('phone', { required: true, validate: (value) => validatePhoneNumber(value) })}
+        error={errors?.phone?.type === 'required' || errors?.phone?.type === 'validate'}
+        helperText={
+          errors?.phone?.type === 'required' && 'Preencha seu numero' ||
+          errors?.phone?.type === 'validate' && 'Presncha um numero válido'
+        }
+      />
     </>
   );
 }
