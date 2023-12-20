@@ -75,10 +75,10 @@ const ModalAddress = ({ open, handleClose, clientName, shirtPrice, shirtSize, sh
       aria-describedby="modal-modal-description"
       disableScrollLock={true}
     >
-      <Grid container sx={style} direction="column" gap={1}>
+      <Grid container sx={style} direction="column" gap={2}>
         <Grid item display="flex" justifyContent="center">
           <Typography variant="h6" sx={{ color: colors.grey[100] }}>
-            Formulário de compra
+            Informe seu Endereço
           </Typography>
         </Grid>
         <Grid item>

@@ -16,7 +16,7 @@ const CityInput = ({ register, errors }: InputAdressProps) => {
       fullWidth
       {...register('city', { required: true })}
       error={errors?.city?.type == 'required'}
-      helperText={errors?.city?.type === 'required' && 'Por favor preencha sua cidade'}
+      helperText={errors?.city?.type === 'required' && 'Por favor Informe sua cidade'}
     />
   );
 }

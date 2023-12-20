@@ -9,14 +9,14 @@ const HouseNumberInput = ({ register, errors }: InputAdressProps) => {
 
   return (
     <TextField
-      label="Num:"
+      label="Númeno da casa:"
       variant='outlined'
       type='text'
       InputLabelProps={{ style: { color: colors.grey[100] } }}
       fullWidth
       {...register('houseNumber', { required: true })}
       error={errors?.houseNumber?.type == 'required'}
-      helperText={errors?.houseNumber?.type === 'required' && 'Por favor preencha o numero de sua casa'}
+      helperText={errors?.houseNumber?.type === 'required' && 'Por favor informe o numero de sua casa'}
     />
   );
 }
