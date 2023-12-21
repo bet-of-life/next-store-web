@@ -1,11 +1,14 @@
-import { Box, colors, Typography, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import PaymentMode from "./PaymentMode";
 import { CartProps } from "../../../../interfaces/interfaces";
-import { useState } from "react";
 import { toast } from "react-toastify";
+import useThemeMode from "../../../../hooks/useThemeMode";
+import { tokens } from "../../../../themes/theme";
 
 const FinishCart = ({ price, quantityShirts, handleOpenModal, payment, setPayment }: CartProps) => {
-  
+  const { mode } = useThemeMode()
+  const colors = tokens(mode)
+
   const handleFinishPayment = () => {
     if (!payment) {
       toast.error('Por favor escolha a forma de pagamento')
@@ -18,7 +21,7 @@ const FinishCart = ({ price, quantityShirts, handleOpenModal, payment, setPaymen
     <Box
       width='100%'
       height={250}
-      bgcolor={colors.grey[900]}
+      bgcolor={colors.grey[800]}
       borderRadius={2}
       p={2}
       display='flex'

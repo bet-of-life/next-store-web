@@ -37,15 +37,15 @@ const Cart = ({ name, color, price, src, size }: CartProps) => {
         shirtName={name}
         payment={payment}
       />
-      <Grid container py={5} direction='row'>
+      <Grid container py={4} direction='row' maxWidth={1150}>
         <Grid item xs={12} lg={8}>
           <Box display='flex'>
             <Box>
               <Image
                 src={src}
                 alt="camisa"
-                width={140}
-                height={200}
+                width={170}
+                height={250}
                 style={{ borderRadius: "8px" }}
               />
             </Box>
@@ -55,7 +55,7 @@ const Cart = ({ name, color, price, src, size }: CartProps) => {
           </Box>
         </Grid>
         <Grid item xs={12} lg={4} display='flex' alignItems='center' justifyContent='center' mt={marginTopGrid}>
-          <FinishCart price={price} quantityShirts={quantityShirts} handleOpenModal={toggleModal} payment={payment} setPayment={setPayment}/>
+          <FinishCart price={price} quantityShirts={quantityShirts} handleOpenModal={toggleModal} payment={payment} setPayment={setPayment} />
         </Grid>
       </Grid>
     </Box>

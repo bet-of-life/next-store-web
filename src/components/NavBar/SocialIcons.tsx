@@ -8,7 +8,8 @@ import { FaTiktok } from "react-icons/fa";
 const SocialIcons = () => {
   const { mode } = useThemeMode()
   const colors = tokens(mode)
-  const handleInstagramClick = (url: string) => {
+
+  const handleClick = (url: string) => {
     window.open(url, "_blank");
   }
   return (
@@ -23,12 +24,17 @@ const SocialIcons = () => {
 
       <InstagramIcon
         onClick={() =>
-          handleInstagramClick("https://www.instagram.com/usevetter/")
+          handleClick("https://www.instagram.com/usevetter/")
         }
         sx={{ cursor: "pointer", color: colors.grey[100] }}
       />
 
-      <FaTiktok />
+      <FaTiktok
+        cursor='pointer'
+        onClick={() =>
+          handleClick('https://www.tiktok.com/@vetterstreet?_t=8hiEAYGzmGD&_r=1')
+        }
+      />
     </Box>
   );
 };
