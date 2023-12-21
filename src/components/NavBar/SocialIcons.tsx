@@ -4,7 +4,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { tokens } from "../../themes/theme";
 import useThemeMode from "../../hooks/useThemeMode";
-
+import { FaTiktok } from "react-icons/fa";
 const SocialIcons = () => {
   const { mode } = useThemeMode()
   const colors = tokens(mode)
@@ -28,7 +28,7 @@ const SocialIcons = () => {
         sx={{ cursor: "pointer", color: colors.grey[100] }}
       />
 
-      <TwitterIcon sx={{ cursor: "pointer", color: colors.grey[100] }} />
+      <FaTiktok />
     </Box>
   );
 };
