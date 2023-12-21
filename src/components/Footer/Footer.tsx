@@ -7,6 +7,7 @@ import PaymentTypes from './components/PaymentTypes';
 import Service from './components/Service';
 import useMediaQueryAdapter from '../../hooks/useMediaQuery';
 import SocialIcons from '../NavBar/SocialIcons';
+import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
 const Footer = () => {
   const { mode } = useThemeMode()
@@ -15,11 +16,11 @@ const Footer = () => {
   const colors = tokens(mode)
   const router = useRouter()
   const route = router.pathname
-  const verifyPostion = route === "/shoppingCart/[...params]" ? { position: 'fixed' } : {}
+  const sizeWindowWidth = useWindowDimensions().width;
+  const verifyPostion = route === "/shoppingCart/[...params]" && sizeWindowWidth > 900  ? { position: 'fixed' } : {}
   const maxWidth = tv ? 1130 : 1220
   const direction = md ? 'column' : 'row'
   const gapGrid = md ? 1 : 0
-
   return (
     <Box
       component='footer'
