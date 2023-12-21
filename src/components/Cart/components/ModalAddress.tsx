@@ -81,7 +81,7 @@ const ModalAddress = ({ open, handleClose, clientName, shirtPrice, shirtSize, sh
       <Grid container sx={style} direction="column" gap={2}>
         <Grid item display="flex" justifyContent="center">
           <Typography variant="h6" sx={{ color: colors.grey[100] }}>
-            Informe seu Endereço
+            Informe seu endereço
           </Typography>
         </Grid>
         <Grid item>
@@ -109,7 +109,9 @@ const ModalAddress = ({ open, handleClose, clientName, shirtPrice, shirtSize, sh
             sx={{ bgcolor: colors.grey[100] }}
             onClick={handleSubmit(onSubmit)}
           >
-            <Typography sx={{ color: colors.grey[900], fontWeight: 'bold' }}>Finalizar Compra</Typography>
+            <Typography sx={{ color: colors.grey[900], fontWeight: 'bold' }} textTransform="capitalize">
+              Finalizar Compra
+            </Typography>
           </Button>
         </Grid>
       </Grid>

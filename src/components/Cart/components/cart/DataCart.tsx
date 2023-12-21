@@ -14,7 +14,7 @@ const DataCart = ({ name, color, size, quantityShirts, setQuantityShirts }: Cart
   return (
     <>
       <Box display='flex' flexDirection='column' gap={3} mt={1}>
-        <Typography>{name}</Typography>
+        <Typography sx={{ fontWeight: 'bold' }}>{name}</Typography>
         <Typography>Cor: {color}</Typography>
         <Typography>Tamanho: {size}</Typography>
       </Box>

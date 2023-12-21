@@ -100,6 +100,9 @@ export const tokens = (mode: PaletteMode) => ({
         800: "#5c6066",
         900: "#2e3033"
       },
+      yellow: {
+        100: '#ffeb3b',
+      }
     }
     : {
       black: {
@@ -190,6 +193,9 @@ export const tokens = (mode: PaletteMode) => ({
         800: "#5c6066",
         900: "#2e3033"
       },
+      yellow: {
+        100: '#ff9800',
+      }
     }),
 });
 

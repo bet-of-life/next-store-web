@@ -29,7 +29,6 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
   const words = name?.split(' ')
   const num = words.length - 1
   const color = words[num] === 'White' ? 'Off White' : 'Black'
-  const bgColor = color === 'Off White' ? 'white' : 'black'
 
   const fullWidhtButton = tablet ? '100%' : '15rem'
 
@@ -66,8 +65,6 @@ const DataDetails = ({ id, name, price, oldPrice }: DataDetailsProps) => {
           <Typography>
             Cor: {color}
           </Typography>
-        </Box>
-        <Box width={30} height={30} borderRadius={100} bgcolor={bgColor}>
         </Box>
       </Box>
       <Box
