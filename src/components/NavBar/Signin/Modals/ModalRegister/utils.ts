@@ -16,16 +16,16 @@ interface handleOnSubmitProps {
 }
 
 export const handleOnSubmit = async ({ data, setIsLoading, toggleModalRegister }: handleOnSubmitProps) => {
-
   setIsLoading(true)
   const originalString = "+55" + data.phone;
-  const stringWithoutPunctuation = originalString.replace(/[()-]/g, ""); // Remove parênteses e traço
+  const stringWithoutPunctuation = originalString.replace(/[()-]/g, "");
   const stringWithoutFirstNine = stringWithoutPunctuation.replace(
     "9",
     ""
-  ); // Remove o primeiro dígito 9
+  );
+
   try {
-    await fetchPostUsers({ data, phone: stringWithoutFirstNine });
+    await fetchPostUsers({ ...data, phone: stringWithoutFirstNine.replace(" ", "")});
     toggleModalRegister();
     toast.success("Usuário cadastrado com sucesso!", {
       autoClose: 2000,
