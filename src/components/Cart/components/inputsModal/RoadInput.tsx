@@ -9,14 +9,14 @@ const RoadInput = ({ register, errors }: InputAdressProps) => {
 
   return (
     <TextField
-      label="Rua"
+      label="Nome da Rua:"
       variant='outlined'
       type='text'
       InputLabelProps={{ style: { color: colors.grey[100] } }}
       fullWidth
       {...register('road', { required: true })}
       error={errors?.road?.type == 'required'}
-      helperText={errors?.road?.type === 'required' && 'Por favor preencha sua rua'}
+      helperText={errors?.road?.type === 'required' && 'Por favor informe o nome da sua rua'}
     />
   );
 }
