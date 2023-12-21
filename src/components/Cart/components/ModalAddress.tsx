@@ -3,12 +3,13 @@ import useThemeMode from "../../../hooks/useThemeMode";
 import { tokens } from "../../../themes/theme";
 import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
 import { useForm } from "react-hook-form";
-import { formatMessage } from "../../Whatsapp/utils";
 import RoadInput from "./inputsModal/RoadInput";
 import HouseNumberInput from "./inputsModal/HouseNumberInput";
 import NeighborhoodInput from "./inputsModal/NeighborhoodInput";
 import CityInput from "./inputsModal/CityInput";
 import StateInput from "./inputsModal/StateInput";
+import { formatMessage } from "../utils";
+import ComplementInput from "./inputsModal/ComplementInput";
 
 interface ModalAddressProps {
   open: boolean;
@@ -17,6 +18,7 @@ interface ModalAddressProps {
   shirtSize: string;
   shirtPrice: string;
   shirtName: string;
+  payment: string;
 }
 
 interface FormDataAdressProps {
@@ -28,7 +30,7 @@ interface FormDataAdressProps {
   state: string,
 }
 
-const ModalAddress = ({ open, handleClose, clientName, shirtPrice, shirtSize, shirtName, }: ModalAddressProps) => {
+const ModalAddress = ({ open, handleClose, clientName, shirtPrice, shirtSize, shirtName, payment }: ModalAddressProps) => {
   const { mode } = useThemeMode();
   const { sm } = useMediaQueryAdapter();
   const { register, handleSubmit, formState: { errors } } = useForm<FormDataAdressProps>()
@@ -40,12 +42,13 @@ const ModalAddress = ({ open, handleClose, clientName, shirtPrice, shirtSize, sh
       Nome: clientName,
       Endereco: road,
       Bairro: neighborhood,
-      Complemento: complement,
+      Complemento: complement || "",
       Numero: houseNumber,
       Pedido: {
         Camisa: shirtName,
         Tamanho: shirtSize,
-        Preço: shirtPrice
+        Preço: shirtPrice,
+        "Forma de Pagamento": payment
       },
     };
     const whatsappMessage = formatMessage(clienteData);
@@ -89,6 +92,9 @@ const ModalAddress = ({ open, handleClose, clientName, shirtPrice, shirtSize, sh
         </Grid>
         <Grid item>
           <NeighborhoodInput register={register} errors={errors} />
+        </Grid>
+        <Grid item>
+          <ComplementInput register={register} errors={errors} />
         </Grid>
         <Grid item>
           <CityInput register={register} errors={errors} />

@@ -19,7 +19,7 @@ interface DataShirtProps {
 }
 
 const CartPage = ({ data, size, color }: DataShirtProps) => {
-
+  console.log(data)
   return (
     <Box width='100%' height='auto' display='flex' justifyContent='center'>
       <Cart
@@ -44,7 +44,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   if (!token) {
     return {
       redirect: {
-        destination: "/dashboard",
+        destination: "/",
         permanent: false,
       },
     };

@@ -16,7 +16,7 @@ const RoadInput = ({ register, errors }: InputAdressProps) => {
       fullWidth
       {...register('road', { required: true })}
       error={errors?.road?.type == 'required'}
-      helperText={errors?.road?.type === 'required' && 'Por favor informe o nome da sua rua'}
+      helperText={errors?.road?.type === 'required' && 'Por favor, informe a rua!'}
     />
   );
 }

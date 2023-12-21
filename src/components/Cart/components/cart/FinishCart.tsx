@@ -4,9 +4,8 @@ import { CartProps } from "../../../../interfaces/interfaces";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const FinishCart = ({ price, quantityShirts, handleOpenModal }: CartProps) => {
-  const [payment, setPayment] = useState<string>('');
-
+const FinishCart = ({ price, quantityShirts, handleOpenModal, payment, setPayment }: CartProps) => {
+  
   const handleFinishPayment = () => {
     if (!payment) {
       toast.error('Por favor escolha a forma de pagamento')
