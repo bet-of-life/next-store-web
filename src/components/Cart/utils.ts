@@ -1,28 +1,3 @@
-// export const clienteData = {
-//     Nome: 'Rafael',
-//     Endereco: 'Travessa Tal',
-//     Numero: '853',
-//     Telefone: '99999999',
-//     Detalhes: {
-//       Tamanho: 'M',
-//       Genero: 'Masculino',
-//     },
-//   };
-  
-
-export const clienteData = {
-  Nome: 'Rafael',
-  Endereco: 'Travessa Tal',
-  Numero: '853',
-  Telefone: '99999999',
-  Pedido: {
-    Camisa: 'tal',
-    Modelo: 'tal',
-    Tamanho: 'M',
-    Genero: 'Masculino',
-  },
-};
-
 export function objectToXml(obj: any): string {
     let xml = '';
   

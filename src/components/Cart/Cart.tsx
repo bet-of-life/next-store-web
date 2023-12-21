@@ -14,7 +14,7 @@ const Cart = ({ name, color, price, src, size }: CartProps) => {
   const { md, tablet } = useMediaQueryAdapter()
   const { isOpenModal, toggleModal } = useModal()
   const { user } = useContext(AuthContext)
-
+  const [payment, setPayment] = useState<string>('');
   const BoxWidth = tablet ? '90vw' : '70vw'
   const paddingY = md ? 5 : 13
   const marginTopGrid = tablet ? 3 : 0
@@ -35,6 +35,7 @@ const Cart = ({ name, color, price, src, size }: CartProps) => {
         shirtSize={size}
         shirtPrice={price}
         shirtName={name}
+        payment={payment}
       />
       <Grid container py={5} direction='row'>
         <Grid item xs={12} lg={8}>
@@ -54,7 +55,7 @@ const Cart = ({ name, color, price, src, size }: CartProps) => {
           </Box>
         </Grid>
         <Grid item xs={12} lg={4} display='flex' alignItems='center' justifyContent='center' mt={marginTopGrid}>
-          <FinishCart price={price} quantityShirts={quantityShirts} handleOpenModal={toggleModal} />
+          <FinishCart price={price} quantityShirts={quantityShirts} handleOpenModal={toggleModal} payment={payment} setPayment={setPayment}/>
         </Grid>
       </Grid>
     </Box>

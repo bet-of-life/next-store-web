@@ -26,8 +26,8 @@ const PasswordInputLogin = ({ register, errors }: InputLoginProps) => {
         InputLabelProps={{ style: { color: colors.grey[100] } }}
         fullWidth
         {...register('password', { required: true })}
-        error={errors?.email?.type == 'required'}
-        helperText={errors?.email?.type === 'required' && 'Por favor preencha a senha'}
+        error={errors?.password?.type == 'required'}
+        helperText={errors?.password?.type === 'required' && 'Por favor preencha a senha'}
       />
       <IconButton
         aria-label="toggle password visibility"

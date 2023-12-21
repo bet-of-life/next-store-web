@@ -7,9 +7,11 @@ export interface CartProps {
   price?: string;
   src?: string;
   size?: string;
-  quantityShirts?: number
-  setQuantityShirts?: Dispatch<SetStateAction<number>>
-  handleOpenModal?: () => void
+  quantityShirts?: number;
+  payment?: string;
+  setPayment?: Dispatch<SetStateAction<string>>;
+  setQuantityShirts?: Dispatch<SetStateAction<number>>;
+  handleOpenModal?: () => void;
 }
 
 export interface ModalSignInProps {

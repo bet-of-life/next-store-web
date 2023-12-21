@@ -65,7 +65,7 @@ const ModalRegister = ({ open, toggleModalLogin, toggleModalRegister }: ModalSig
           <Grid item>
             <EmailInputRegister register={register} errors={errors} />
           </Grid>
-          <Grid item >
+          <Grid item>
             <PasswordInputRegister register={register} errors={errors} />
           </Grid>
           <Grid item >

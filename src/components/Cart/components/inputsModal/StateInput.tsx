@@ -16,7 +16,7 @@ const StateInput = ({ register, errors }: InputAdressProps) => {
       fullWidth
       {...register('state', { required: true })}
       error={errors?.state?.type == 'required'}
-      helperText={errors?.state?.type === 'required' && 'Por favor informe seu estado'}
+      helperText={errors?.state?.type === 'required' && 'Por favor, informe o estado!'}
     />
   );
 }
