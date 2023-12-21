@@ -14,12 +14,14 @@ import CpfInputRegister from "./components/CpfInputRegister";
 import PhoneInputRegister from "./components/PhoneInputRegister";
 
 const ModalRegister = ({ open, toggleModalLogin, toggleModalRegister }: ModalSignInProps) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormDataRegisterprops>()
+  const { register, handleSubmit, formState: { errors }, watch } = useForm<FormDataRegisterprops>()
   const { mode } = useThemeMode();
   const { sm } = useMediaQueryAdapter();
 
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const colors = tokens(mode);
+
+  const watchPassword = watch('password')
 
   const handleReplaceModal = () => {
     toggleModalRegister();
@@ -67,7 +69,7 @@ const ModalRegister = ({ open, toggleModalLogin, toggleModalRegister }: ModalSig
             <PasswordInputRegister register={register} errors={errors} />
           </Grid>
           <Grid item >
-            <ConfirmPasswordInputRegister register={register} errors={errors} />
+            <ConfirmPasswordInputRegister register={register} errors={errors} watchPassword={watchPassword} />
           </Grid>
           <Grid item>
             <Box display='flex' width='100%' gap={1}>
