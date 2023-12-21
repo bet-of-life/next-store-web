@@ -18,6 +18,7 @@ import {
 } from "../../../../../interfaces/interfaces";
 import PasswordInputLogin from "./components/PasswordInputLogin";
 import EmailInputLogin from "./components/EmailInputLogin";
+import { singIn } from "./utils";
 
 const ModalLogin = ({
   open,
@@ -31,19 +32,12 @@ const ModalLogin = ({
   } = useForm<FormDataLoginProps>();
   const { mode } = useThemeMode();
   const { sm } = useMediaQueryAdapter();
-  const { singIn } = useContext(AuthContext);
+  const { setIsAuthenticated, setUser } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const colors = tokens(mode);
 
   const onSubmit = async (data: FormDataLoginProps) => {
-    try {
-      setIsLoading(true);
-      await singIn(data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
+      await singIn({...data, setIsAuthenticated, setUser, toggleModalLogin, setIsLoading});
   };
 
   const handleReplaceModal = () => {

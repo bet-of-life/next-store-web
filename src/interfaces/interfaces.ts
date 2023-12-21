@@ -55,3 +55,14 @@ export interface InputAdressProps {
   register: UseFormRegister<FormDataAdressProps>;
   errors: FieldErrors<FormDataAdressProps>
 }
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  phone: string;
+  gender: string;
+  created_at: string;
+  updated_at: string;
+}
