@@ -4,6 +4,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import useThemeMode from '../../hooks/useThemeMode';
 import { tokens } from '../../themes/theme';
+import Institutional from './components/Institutional';
+import PaymentTypes from './components/PaymentTypes';
+import Service from './components/Service';
 
 const Footer = () => {
   const { mode } = useThemeMode()
@@ -17,7 +20,7 @@ const Footer = () => {
     component='footer'
     width='100%'
     display='flex'
-    justifyContent='center'
+    justifyContent='space-between'
     alignItems='center'
     bgcolor={colors.black[900]}
     py='20px' // Espaçamento vertical uniforme
@@ -26,12 +29,9 @@ const Footer = () => {
     left='0'
     right='0'
   >
-    <Box display='flex' flexDirection='column' alignItems='center'>
-      <Typography color='white' variant='body1'>INSTITUCIONAL</Typography>
-      <Link href='/' color='white' >
-        <Typography color='white' variant='body1'>Home</Typography>
-      </Link>
-    </Box>
+    <Institutional />
+    <Service />
+    <PaymentTypes />
   </Box>
   );
 }
