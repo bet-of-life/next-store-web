@@ -1,6 +1,5 @@
 import { InputRegisterProps } from "../../../../../../interfaces/interfaces";
 import { IconButton, TextField, colors } from "@mui/material";
-import validator from 'validator'
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { useState } from "react";
 import useThemeMode from "../../../../../../hooks/useThemeMode";
@@ -25,9 +24,15 @@ const PasswordInputRegister = ({ register, errors }: InputRegisterProps) => {
         type={showPassword ? 'text' : 'password'}
         InputLabelProps={{ style: { color: colors.grey[100] } }}
         fullWidth
-        {...register('password', { required: true })}
-        error={errors?.password?.type == 'required'}
-        helperText={errors?.password?.type === 'required' && 'Por favor preencha a senha'}
+        {...register('password', { required: true, minLength: 6 })}
+        error={
+          errors?.password?.type == 'required' ||
+          errors?.password?.type == 'minLength'
+        }
+        helperText={
+          errors?.password?.type === 'required' && 'Por favor preencha a senha' ||
+          errors?.password?.type === 'minLength' && 'A senha deve ter no mínimo 6 caracteres'
+        }
       />
       <IconButton
         aria-label="toggle password visibility"

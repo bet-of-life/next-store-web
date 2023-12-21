@@ -1,5 +1,4 @@
 export const validatePhoneNumber = (phoneNumber: string): boolean => {
-    const phoneRegex = /^\(\d{2}\)\d{5}-\d{4}$/;
+    const phoneRegex = /^\(?[1-9]{2}\)? ?(?:[2-8]|9[0-9])[0-9]{3}\-?[0-9]{4}$/;
     return phoneRegex.test(phoneNumber);
 };
-  

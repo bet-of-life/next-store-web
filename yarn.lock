@@ -468,6 +468,11 @@
   "resolved" "https://registry.npmjs.org/@types/scheduler/-/scheduler-0.16.5.tgz"
   "version" "0.16.5"
 
+"@types/validator@^13.11.7":
+  version "13.11.7"
+  resolved "https://registry.npmjs.org/@types/validator/-/validator-13.11.7.tgz"
+  integrity sha512-q0JomTsJ2I5Mv7dhHhQLGjMvX0JJm5dyZ1DXQySIUzU1UlwzB8bt+R6+LODUbz0UDIOvEzGc28tk27gBJw2N8Q==
+
 "@typescript-eslint/parser@^5.4.2 || ^6.0.0":
   "integrity" "sha512-5tNs6Bw0j6BdWuP8Fx+VH4G9fEPDxnVI7yH1IAPkQH5RUtvKwRoqdecAPdQXv4rSOADAaz1LFBZvZG7VbXivSg=="
   "resolved" "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-6.8.0.tgz"

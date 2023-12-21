@@ -39,6 +39,7 @@ export interface FormDataRegisterprops {
 export interface InputRegisterProps {
   register: UseFormRegister<FormDataRegisterprops>;
   errors: FieldErrors<FormDataRegisterprops>
+  watchPassword?: string
 }
 
 export interface FormDataAdressProps {
