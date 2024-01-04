@@ -1,58 +1,129 @@
-import Carousel from "react-material-ui-carousel";
 import { Box } from "@mui/material";
 import Image from "next/image";
 import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
+import Slider from "react-slick";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const CarouselImage = () => {
-  const { miniSm, maxSm, sm, miniMd, md, midSm, midMd, maxMd, lg } = useMediaQueryAdapter();
+  const { sm, tablet } = useMediaQueryAdapter();
   const src = [
     {
-      id: 1,
-      src: "/photos/carousel/4.svg",
-    },
-    {
       id: 2,
-      src: "/photos/carousel/5.svg",
+      src: "/photos/carousel/jpeg/2.jpeg",
     },
     {
       id: 3,
-      src: "/photos/carousel/6.svg",
+      src: "/photos/carousel/jpeg/3.jpeg",
     },
     {
       id: 4,
-      src: "/photos/carousel/2.svg",
+      src: "/photos/carousel/jpeg/4.jpeg",
+    },
+    {
+      id: 5,
+      src: "/photos/carousel/jpeg/5.jpeg",
+    },
+    {
+      id: 6,
+      src: "/photos/carousel/jpeg/6.jpeg",
+    },
+    {
+      id: 7,
+      src: "/photos/carousel/jpeg/7.jpeg",
     },
   ];
 
-  const verifyMarginTopSm = miniSm ? "-4.1rem" : !maxSm ? "-3.6rem" : "-5.2rem";
-  const verifyMarginTopMd = !sm && miniMd ? "-8.1rem" : midSm ? "-5.5rem" : "-7rem";
-  const verifyMarginTopLg = !md && midMd ? "-6rem" : !maxMd ? "-5rem" : "-4rem";
-  const verifyHeightSm = miniSm ? 460 : 500;
-  const verifyHeightLg = !lg ? 1000 : 800;
+  const marginTop = tablet ? '58px' : '0px';
+  const widthButton = sm ? '25px' : '45px'
+  const heigthButton = sm ? '25px' : '45px'
+  const fontSizeIcon = sm ? 'small' : 'medium'
+
+  const NextArrow = ({ onClick }: any) => {
+    return (
+      <Box
+        position='absolute'
+        onClick={onClick}
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        bgcolor='#a2a2a2'
+        width={widthButton}
+        height={heigthButton}
+        sx={{
+          cursor: 'pointer',
+          top: '45%',
+          right: 5,
+          borderRadius: '100%',
+          ":hover": { bgcolor: 'white' }
+        }}>
+        <ArrowForwardIosIcon fontSize={fontSizeIcon} color="primary" />
+      </Box>
+    )
+  }
+
+  const PrevArrow = ({ onClick }: any) => {
+    return (
+      <Box
+        position='absolute'
+        onClick={onClick}
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        width={widthButton}
+        height={heigthButton}
+        bgcolor='#a2a2a2'
+        sx={{
+          cursor: 'pointer',
+          top: '45%',
+          left: 5,
+          borderRadius: '100%',
+          zIndex: 'tooltip',
+          ":hover": { bgcolor: 'white' }
+        }}>
+        <ArrowBackIosIcon fontSize={fontSizeIcon} color="primary" sx={{ marginLeft: 1 }} />
+      </Box>
+    )
+  }
+
+
+  const settings = {
+    infinite: true,
+    dots: false,
+    dotsClass: `slick-dots slick-thumbs`,
+    // customPaging: (i) => (
+    //     <Box height={10} width={10} mt='-50px' display='flex' justifyContent='center' borderRadius='100%' alignItems='center'
+    //       bgcolor={i == 'active' ? 'blue' : 'white'}
+    //       sx={{ ":hover": { bgcolor: 'grey' } }}
+    //     >
+    //     </Box>
+    //   ),
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
 
   return (
-    <Carousel
-      height={sm ? verifyHeightSm : md ? 700 : verifyHeightLg}
-      navButtonsAlwaysVisible={true}
-      navButtonsProps={{ style: { color: "black", backgroundColor: "white", marginTop: '70px' } }}
-      indicators={true}
-      indicatorContainerProps={{
-        style: { zIndex: 1, marginTop: "-200px", position: "relative" },
-      }}
-      sx={{
-        mt: sm ? verifyMarginTopSm : md ? verifyMarginTopMd : verifyMarginTopLg,
-      }}
-    >
-      {src.map((item, key) => (
-        <Box key={key}
-          width='100%'
-          height={sm ? verifyHeightSm : md ? 700 : verifyHeightLg}
-        >
-          <Image src={item.src} alt="wallpaper" fill={true} />
-        </Box>
-      )
-      )}
-    </Carousel>
+    <Box mt={marginTop}>
+      <Slider {...settings}>
+        {src.map((item, key) => (
+          <Box key={key}>
+            <Image
+              src={item.src}
+              alt="slider"
+              width={1600}
+              height={650}
+              layout="responsive"
+              style={{ position: 'relative', }}
+            />
+          </Box>
+        ))}
+      </Slider>
+    </Box>
   );
 };
 
