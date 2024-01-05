@@ -4,25 +4,18 @@ import useMediaQueryAdapter from "../../../hooks/useMediaQuery";
 import Slider from "react-slick";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import SliderWrapper from "./SliderWrapper";
 
 const CarouselImage = () => {
   const { sm, tablet } = useMediaQueryAdapter();
   const src = [
     {
-      id: 2,
-      src: "/photos/carousel/jpeg/2.jpeg",
-    },
-    {
       id: 3,
       src: "/photos/carousel/jpeg/3.jpeg",
     },
     {
-      id: 4,
-      src: "/photos/carousel/jpeg/4.jpeg",
-    },
-    {
-      id: 5,
-      src: "/photos/carousel/jpeg/5.jpeg",
+      id: 2,
+      src: "/photos/carousel/jpeg/2.jpeg",
     },
     {
       id: 6,
@@ -47,7 +40,7 @@ const CarouselImage = () => {
         display='flex'
         justifyContent='center'
         alignItems='center'
-        bgcolor='#a2a2a2'
+        bgcolor='#d9d9d9'
         width={widthButton}
         height={heigthButton}
         sx={{
@@ -72,7 +65,7 @@ const CarouselImage = () => {
         alignItems='center'
         width={widthButton}
         height={heigthButton}
-        bgcolor='#a2a2a2'
+        bgcolor='#d9d9d9'
         sx={{
           cursor: 'pointer',
           top: '45%',
@@ -86,18 +79,15 @@ const CarouselImage = () => {
     )
   }
 
-
   const settings = {
     infinite: true,
-    dots: false,
-    dotsClass: `slick-dots slick-thumbs`,
-    // customPaging: (i) => (
-    //     <Box height={10} width={10} mt='-50px' display='flex' justifyContent='center' borderRadius='100%' alignItems='center'
-    //       bgcolor={i == 'active' ? 'blue' : 'white'}
-    //       sx={{ ":hover": { bgcolor: 'grey' } }}
-    //     >
-    //     </Box>
-    //   ),
+    dots: true,
+    dotsClass: 'slick-dots indicators',
+    customPaging: (i) => (
+      <div className="ft-slick__dots--custom">
+        {i}
+      </div>
+    ),
     autoplay: true,
     speed: 500,
     slidesToShow: 1,
@@ -109,20 +99,22 @@ const CarouselImage = () => {
 
   return (
     <Box mt={marginTop}>
-      <Slider {...settings}>
-        {src.map((item, key) => (
-          <Box key={key}>
-            <Image
-              src={item.src}
-              alt="slider"
-              width={1600}
-              height={650}
-              layout="responsive"
-              style={{ position: 'relative', }}
-            />
-          </Box>
-        ))}
-      </Slider>
+      <SliderWrapper bottom={sm ? 1 : 2} width={sm ? 20 : 40}>
+        <Slider {...settings}>
+          {src.map((item, key) => (
+            <Box key={key}>
+              <Image
+                src={item.src}
+                alt="slider"
+                width={1600}
+                height={650}
+                layout="responsive"
+                style={{ position: 'relative', }}
+              />
+            </Box>
+          ))}
+        </Slider>
+      </SliderWrapper>
     </Box>
   );
 };
